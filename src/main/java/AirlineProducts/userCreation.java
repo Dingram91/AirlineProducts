@@ -30,6 +30,7 @@ public class userCreation extends javax.swing.JInternalFrame {
         initComponents();
         autoID();
     }
+    
     Connection con;
     PreparedStatement pst;
 
@@ -173,16 +174,15 @@ public class userCreation extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-          String id = txtuserid.getText();
-         String firstname = txtfirstname.getText();
-         String lastname = txtlastname.getText();
+        String id = txtuserid.getText();
+        String firstname = txtfirstname.getText();
+        String lastname = txtlastname.getText();
         String username = txtusername.getText();
-         String password = txtpassword.getText();
-         
-      
+        String password = txtpassword.getText();
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-             con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DbUtils.DB_PASSWORD);
             pst = con.prepareStatement("insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
             
             pst.setString(1, id);
@@ -190,10 +190,8 @@ public class userCreation extends javax.swing.JInternalFrame {
             pst.setString(3, lastname);
             pst.setString(4, username);
             pst.setString(5, password);
-          
-           
+
             pst.executeUpdate();
-            
             
             JOptionPane.showMessageDialog(null,"User Createdd.........");
         } catch (ClassNotFoundException ex) {
@@ -201,23 +199,6 @@ public class userCreation extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
         }
-           
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -225,56 +206,28 @@ public class userCreation extends javax.swing.JInternalFrame {
         this.hide();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
-     public void autoID()
-    {
+    public void autoID() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DbUtils.DB_PASSWORD);
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery("select MAX(id) from user");
             rs.next();
             rs.getString("MAX(id)");
-            if(rs.getString("MAX(id)") == null)
-            {
+            if(rs.getString("MAX(id)") == null) {
                 txtuserid.setText("UO001");
-            }
-            else
-            {
+            } else {
                 long id = Long.parseLong(rs.getString("MAX(id)").substring(2,rs.getString("MAX(id)").length()));
                 id++;
-                 txtuserid.setText("UO" + String.format("%03d", id));
-                
-                
-            }
-            
-            
-            
+                txtuserid.setText("UO" + String.format("%03d", id));
+            } 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
-    
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

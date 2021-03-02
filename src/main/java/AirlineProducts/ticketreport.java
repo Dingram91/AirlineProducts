@@ -29,8 +29,10 @@ public class ticketreport extends javax.swing.JInternalFrame {
         initComponents();
         LoadData();
     }
-Connection con;
-PreparedStatement pst;
+    
+    Connection con;
+    PreparedStatement pst;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,73 +95,41 @@ PreparedStatement pst;
         this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
-    public void LoadData()
-    {
+    public void LoadData() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-             con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
-             pst = con.prepareStatement("SELECT * from ticket");
-             ResultSet rs = pst.executeQuery();
+            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DbUtils.DB_PASSWORD);
+            pst = con.prepareStatement("SELECT * from ticket");
+            ResultSet rs = pst.executeQuery();
              
-             ResultSetMetaData rsm = rs.getMetaData();
-             int c;
-             c = rsm.getColumnCount();
+            ResultSetMetaData rsm = rs.getMetaData();
+            int c;
+            c = rsm.getColumnCount();
              
-             DefaultTableModel Df = (DefaultTableModel)jTable1.getModel();
-             Df.setRowCount(0);
+            DefaultTableModel Df = (DefaultTableModel)jTable1.getModel();
+            Df.setRowCount(0);
              
-             while(rs.next())
-             {
+            while(rs.next()) {
                  Vector v2 = new Vector();
                  
-                 for(int i = 1; i<= c; i ++)
-                 {
-                     v2.add(rs.getString("id"));
-                  v2.add(rs.getString("flightid"));
-                  v2.add(rs.getString("custid"));
-                  v2.add(rs.getString("class"));
-                  v2.add(rs.getString("price"));
-                  v2.add(rs.getString("seats"));
-                  v2.add(rs.getString("date"));
-             
+                for(int i = 1; i<= c; i ++) {
+                    v2.add(rs.getString("id"));
+                    v2.add(rs.getString("flightid"));
+                    v2.add(rs.getString("custid"));
+                    v2.add(rs.getString("class"));
+                    v2.add(rs.getString("price"));
+                    v2.add(rs.getString("seats"));
+                    v2.add(rs.getString("date"));
                  }
                  
                  Df.addRow(v2);
-                 
-              
-                 
-                 
              }
-             
-             
-             
-             
-             
-             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;

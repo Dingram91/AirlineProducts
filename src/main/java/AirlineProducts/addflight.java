@@ -19,8 +19,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 public class addflight extends javax.swing.JInternalFrame {
 
     /**
@@ -33,8 +31,6 @@ public class addflight extends javax.swing.JInternalFrame {
     
      Connection con;
     PreparedStatement pst;
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -227,75 +223,48 @@ public class addflight extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-     public void autoID()
-    {
+     public void autoID() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DbUtils.DB_PASSWORD);
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery("select MAX(id) from flight");
             rs.next();
             rs.getString("MAX(id)");
-            if(rs.getString("MAX(id)") == null)
-            {
+            if(rs.getString("MAX(id)") == null) {
                 txtflightid.setText("FO001");
             }
-            else
-            {
+            else {
                 long id = Long.parseLong(rs.getString("MAX(id)").substring(2,rs.getString("MAX(id)").length()));
                 id++;
-                 txtflightid.setText("FO" + String.format("%03d", id));
-                
-                
+                txtflightid.setText("FO" + String.format("%03d", id));  
             }
-            
-            
-            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
-    
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-           String id = txtflightid.getText();
-         String flightname = txtflightname.getText();
+        String id = txtflightid.getText();
+        String flightname = txtflightname.getText();
          
-         String source = txtsource.getSelectedItem().toString().trim();
-         String depart = txtdepart.getSelectedItem().toString().trim(); 
+        String source = txtsource.getSelectedItem().toString().trim();
+        String depart = txtdepart.getSelectedItem().toString().trim(); 
          
-       DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         String date = da.format(txtdate.getDate());
 
-      
-         String departtime = txtdtime.getText();
-         String arrtime = txtarrtime.getText();
-         String flightcharge = txtflightcharge.getText();
-         
-         
-      
+        String departtime = txtdtime.getText();
+        String arrtime = txtarrtime.getText();
+        String flightcharge = txtflightcharge.getText();
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-             con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DbUtils.DB_PASSWORD);
             pst = con.prepareStatement("insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
             
             pst.setString(1, id);
@@ -309,19 +278,12 @@ public class addflight extends javax.swing.JInternalFrame {
            
             pst.executeUpdate();
             
-            
             JOptionPane.showMessageDialog(null,"Flight Createdd.........");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           
-            
-            
-        
-        
-        
+        }  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
