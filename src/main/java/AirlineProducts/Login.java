@@ -126,21 +126,11 @@ public class Login extends javax.swing.JFrame {
         String username = tf_username.getText();
         String password = new String(pwf_password.getPassword());
         
-        if(username.isEmpty() ||  password.isEmpty()) {
+        if(!hasValidInputs(username, password)) {
             JOptionPane.showMessageDialog(this, "UserName or Password Blank");
         } else {
             try {
-                Connection connection = DbUtils.getDbConnection();
-                PreparedStatement statement = 
-                        connection.prepareStatement("select * from user where "
-                                + "username = ? and password = ?");
-                statement.setString(1, username);
-                statement.setString(2, password);
-                 
-                ResultSet result;
-                result = statement.executeQuery();
-                 
-                if(result.next()){
+                if (isValidUser(username, password)) {
                     Main main = new Main();
                     dispose();
                     main.setVisible(true);
@@ -149,7 +139,7 @@ public class Login extends javax.swing.JFrame {
                     tf_username.setText("");
                     pwf_password.setText("");
                     tf_username.requestFocus(); 
-                }    
+                }
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "Unable to connect to database");
@@ -165,6 +155,28 @@ public class Login extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jb_cancelActionPerformed
 
+    boolean hasValidInputs(String username, String password) {
+        return !(username.isEmpty() ||  password.isEmpty());
+    }
+    
+    boolean isValidUser(String username, String password) throws SQLException, ClassNotFoundException {
+        Connection connection = DbUtils.getDbConnection();
+        PreparedStatement statement = 
+                connection.prepareStatement("select * from user where "
+                                + "username = ? and password = ?;");
+        statement.setString(1, username);
+        statement.setString(2, password);
+                 
+        ResultSet result;
+        result = statement.executeQuery();
+        
+        if (result.next()) {
+            System.out.println(result.getString("firstname"));
+            return true;
+        }                
+        else return false;
+    }
+     
     /**
      * @param args the command line arguments
      */
