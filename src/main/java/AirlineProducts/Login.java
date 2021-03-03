@@ -130,7 +130,6 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "UserName or Password Blank");
         } else {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection connection = DbUtils.getDbConnection();
                 PreparedStatement statement = 
                         connection.prepareStatement("select * from user where "
