@@ -15,11 +15,12 @@ import java.sql.SQLException;
  */
 public class DbUtils {
     
-    public static String DB_PASSWORD = "blink4141";
+    private static String DB_PASSWORD = "";
     
     private static Connection connection;
     
-    public static Connection getDbConnection() throws SQLException {
+    public static Connection getDbConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         if (connection == null) {
             connection = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DB_PASSWORD);
         }
