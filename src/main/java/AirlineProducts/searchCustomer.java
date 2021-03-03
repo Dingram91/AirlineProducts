@@ -399,8 +399,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         String contact = txtcontact.getText();
          
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DbUtils.DB_PASSWORD);
+            con = DbUtils.getDbConnection();
             pst = con.prepareStatement("update customer set firstname = ?,lastname = ?,nic = ?,passport = ?,address= ?,dob = ?,gender = ?,contact = ?,photo = ? where id = ?");
             
 
@@ -436,8 +435,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         String id = txtcustid.getText();
         
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DbUtils.DB_PASSWORD);
+            con = DbUtils.getDbConnection();
             pst = con.prepareStatement("select * from customer where id = ?");
             pst.setString(1, id);
             ResultSet rs = pst.executeQuery();

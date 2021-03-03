@@ -329,8 +329,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
     public void autoID()
     {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DbUtils.DB_PASSWORD);
+            con = DbUtils.getDbConnection();
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery("select MAX(id) from customer");
             rs.next();
@@ -410,8 +409,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
          String contact = txtcontact.getText();
          
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DbUtils.DB_PASSWORD);
+            con = DbUtils.getDbConnection();
             pst = con.prepareStatement("insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
             
             pst.setString(1, id);

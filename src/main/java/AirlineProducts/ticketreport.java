@@ -97,8 +97,7 @@ public class ticketreport extends javax.swing.JInternalFrame {
 
     public void LoadData() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root", DbUtils.DB_PASSWORD);
+            con = DbUtils.getDbConnection();
             pst = con.prepareStatement("SELECT * from ticket");
             ResultSet rs = pst.executeQuery();
              
