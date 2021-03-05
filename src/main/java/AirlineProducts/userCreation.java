@@ -182,7 +182,7 @@ public class UserCreation extends javax.swing.JInternalFrame {
 
                 statement.executeUpdate();
             
-                JOptionPane.showMessageDialog(null,"User Createdd.........");
+                JOptionPane.showMessageDialog(null, "User Created");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "Unable to connect to database");
@@ -237,8 +237,8 @@ public class UserCreation extends javax.swing.JInternalFrame {
     }
     
     boolean isValidUsername(String username) {
-        if (username.length() < 2 || username.length() > 10) {
-            JOptionPane.showMessageDialog(this, "Username must be between 2 and 10 characters");
+        if (username.length() < 2 || username.length() > 15) {
+            JOptionPane.showMessageDialog(this, "Username must be between 2 and 15 characters");
             return false;
         }
         if (!username.chars().allMatch(Character::isLetterOrDigit)) {
@@ -250,6 +250,7 @@ public class UserCreation extends javax.swing.JInternalFrame {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM user "
                 + "WHERE username = ?;");
             statement.setString(1, username);
+            System.out.println("valid username query: " + statement.toString());
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 JOptionPane.showMessageDialog(this, "Username is not available");
@@ -290,7 +291,7 @@ public class UserCreation extends javax.swing.JInternalFrame {
         return true;
     }
     
-    boolean hasValidInputs(String id, String firstName, String lastName,
+    private boolean hasValidInputs(String id, String firstName, String lastName,
             String username, String password) {
         return hasValidID(id) && isValidName(firstName) && isValidName(lastName) &&
                 isValidUsername(username) && isValidPassword(password);
