@@ -206,10 +206,10 @@ public class UserCreation extends javax.swing.JInternalFrame {
             result.next();
             l_user_id_value.setText(generateID(result.getString("MAX(id)")));
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserCreation.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Unable to connect to database");
         } catch (SQLException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserCreation.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "An error occurred "
                 + "interacting with the database");
         }
@@ -257,10 +257,10 @@ public class UserCreation extends javax.swing.JInternalFrame {
                 return false;
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserCreation.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Unable to connect to database");
         } catch (SQLException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserCreation.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "An error occurred "
                 + "interacting with the database");
         }       

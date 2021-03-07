@@ -239,9 +239,9 @@ public class addflight extends javax.swing.JInternalFrame {
                 txtflightid.setText("FO" + String.format("%03d", id));  
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
      

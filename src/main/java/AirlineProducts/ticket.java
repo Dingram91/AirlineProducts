@@ -481,9 +481,9 @@ public class ticket extends javax.swing.JInternalFrame {
                 txtticketno.setText("TO" + String.format("%03d", id));
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
