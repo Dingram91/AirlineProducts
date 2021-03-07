@@ -569,9 +569,9 @@ public class ticket extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,"Ticket Bookeed.........");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddFlight.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AddFlight.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
