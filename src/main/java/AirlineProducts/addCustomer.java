@@ -436,8 +436,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-//        this.hide();
-        this.dispose();
+        this.hide();
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

@@ -152,7 +152,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        AddFlight f = new AddFlight();
+        addflight f = new addflight();
         jDesktopPane1.add(f);
         f.setVisible(true);
         
