@@ -184,10 +184,10 @@ public class UserCreation extends javax.swing.JInternalFrame {
             
                 JOptionPane.showMessageDialog(null, "User Created");
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AddFlight.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "Unable to connect to database");
             } catch (SQLException ex) {
-                Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AddFlight.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "An error occurred "
                     + "interacting with the database");
             }

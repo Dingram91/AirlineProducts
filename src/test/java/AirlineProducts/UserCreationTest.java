@@ -44,10 +44,10 @@ public class UserCreationTest {
             ResultSet result = statement.executeQuery();
             if (result.next()) System.out.println("Inserted user with id " + result.getString(1));
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddFlight.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Unable to connect to database");
         } catch (SQLException ex) {
-            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddFlight.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("An error occurred interacting with the database");
         }
     }
@@ -185,10 +185,10 @@ public class UserCreationTest {
             statement.setString(1, "UO99999");
             statement.executeUpdate();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddFlight.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Unable to connect to database");
         } catch (SQLException ex) {
-            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddFlight.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("An error occurred interacting with the database");
         }
     }
