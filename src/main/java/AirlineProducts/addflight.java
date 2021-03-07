@@ -1,15 +1,13 @@
 package AirlineProducts;
 
-
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,17 +17,17 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-public class addflight extends javax.swing.JInternalFrame {
+public class AddFlight extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form addflight
+     * Creates new form AddFlight
      */
-    public addflight() {
+    public AddFlight() {
         initComponents();
         autoID();
     }
-    
-     Connection con;
+
+    Connection con;
     PreparedStatement pst;
 
     /**
@@ -98,14 +96,14 @@ public class addflight extends javax.swing.JInternalFrame {
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addFlightClicked(evt);
             }
         });
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cancelButtinClicked(evt);
             }
         });
 
@@ -223,73 +221,165 @@ public class addflight extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-     public void autoID() {
+    private void autoID() {
+        txtflightid.setText(generateFlightID());
+    }
+
+    /**
+     * Queries the database and gets the next sequential flight number to be
+     * created
+     *
+     * @return String (flightID)
+     */
+    private String generateFlightID() {
+        String flightNumber = "";
         try {
             con = DbUtils.getDbConnection();
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery("select MAX(id) from flight");
             rs.next();
             rs.getString("MAX(id)");
-            if(rs.getString("MAX(id)") == null) {
-                txtflightid.setText("FO001");
-            }
-            else {
-                long id = Long.parseLong(rs.getString("MAX(id)").substring(2,rs.getString("MAX(id)").length()));
+            if (rs.getString("MAX(id)") == null) {
+                flightNumber = "FO001";
+            } else {
+                long id = Long.parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
                 id++;
-                txtflightid.setText("FO" + String.format("%03d", id));  
+                flightNumber = "FO" + String.format("%03d", id);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return flightNumber;
     }
-     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
+
+    /**
+     * Event handler for clicking "add" in the addFlight window
+     *
+     * @param evt
+     */
+    private void addFlightClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFlightClicked
+
         String id = txtflightid.getText();
-        String flightname = txtflightname.getText();
-         
+        String flightName = txtflightname.getText();
         String source = txtsource.getSelectedItem().toString().trim();
-        String depart = txtdepart.getSelectedItem().toString().trim(); 
-         
+        String depart = txtdepart.getSelectedItem().toString().trim();
+        Date date = txtdate.getDate();
+        String departTime = txtdtime.getText();
+        String arivalTime = txtarrtime.getText();
+        String flightCharge = txtflightcharge.getText();
+
+        // validate data
+        boolean validData = true;
+        String formatedDate = "";
+        String formatedDepartTime = "";
+        String formatedArrivalTime = "";
+        try {
+            if (date != null) {
+                formatedDate = validateDate(date);
+            } else {
+                validData = false;
+                JOptionPane.showMessageDialog(this, "Must select a date");
+            }
+
+        } catch (IllegalArgumentException e) {
+            validData = false;
+            JOptionPane.showMessageDialog(this, "Date meeds to be in the "
+                    + "format \"yyyy-mm-dd\"");
+        }
+
+        if (!isValidFlightName(flightName)) {
+            validData = false;
+            JOptionPane.showMessageDialog(this, "Flight name can contain only "
+                    + "alphabetic characters");
+        }
+
+        if (!isValidateTime(departTime)) {
+            validData = false;
+            JOptionPane.showMessageDialog(this, "Depart time"
+                    + "needs to be in \"XX:XX AM/PM\" format");
+        }
+        if (!isValidateTime(arivalTime)) {
+            validData = false;
+            JOptionPane.showMessageDialog(this, "Arrival time"
+                    + "needs to be in \"XX:XX AM/PM\" format");
+        }
+
+        if (validData) {
+            addFlightToDB(id, flightName, source, depart, formatedDate, formatedDepartTime,
+                    formatedArrivalTime, flightCharge);
+        }
+    }//GEN-LAST:event_addFlightClicked
+
+    boolean isValidFlightName(String name) {
+        return (name.length() > 2) && (name.chars()
+                .allMatch(Character::isLetter));
+    }
+
+    boolean isValidateTime(String time) {
+        return time.matches("(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)(am|pm)");
+
+    }
+
+    boolean isValidCost(String cost) {
+        return (cost.length() > 0) && (cost.chars()
+                .allMatch(Character::isDigit));
+    }
+
+    String validateDate(Date date) throws IllegalArgumentException {
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-        String date = da.format(txtdate.getDate());
+        String validDate = "";
 
-        String departtime = txtdtime.getText();
-        String arrtime = txtarrtime.getText();
-        String flightcharge = txtflightcharge.getText();
+        validDate = da.format(date);
 
+        return validDate;
+    }
+
+    /**
+     * Adds a new flight to the database.
+     *
+     * @param id
+     * @param flightName
+     * @param source
+     * @param depart
+     * @param date
+     * @param departTime
+     * @param arriveTime
+     * @param flightCharge
+     */
+    private void addFlightToDB(String id, String flightName, String source,
+            String depart, String date, String departTime, String arriveTime,
+            String flightCharge) {
         try {
             con = DbUtils.getDbConnection();
-            pst = con.prepareStatement("insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
-            
+            pst = con.prepareStatement("insert into flight(id,flightname,"
+                    + "source,depart,date,deptime,arrtime,flightcharge)values"
+                    + "(?,?,?,?,?,?,?,?)");
+
             pst.setString(1, id);
-            pst.setString(2, flightname);
+            pst.setString(2, flightName);
             pst.setString(3, source);
             pst.setString(4, depart);
             pst.setString(5, date);
-            pst.setString(6, departtime);
-            pst.setString(7, arrtime);
-            pst.setString(8, flightcharge);
-           
+            pst.setString(6, departTime);
+            pst.setString(7, arriveTime);
+            pst.setString(8, flightCharge);
+
             pst.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Flight Createdd.........");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-        this.hide();
-    }//GEN-LAST:event_jButton2ActionPerformed
+            JOptionPane.showMessageDialog(null, "Flight Created!");
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AddFlight.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
+    /**
+     * Disposes of the addFlight window
+     *
+     * @param evt
+     */
+    private void cancelButtinClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtinClicked
+        this.dispose();
+    }//GEN-LAST:event_cancelButtinClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

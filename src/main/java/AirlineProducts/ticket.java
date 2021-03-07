@@ -1,11 +1,6 @@
 package AirlineProducts;
 
-
-
-import java.awt.Image;
-import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -13,11 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,7 +31,7 @@ public class ticket extends javax.swing.JInternalFrame {
 
     Connection con;
     PreparedStatement pst;
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -424,10 +417,10 @@ public class ticket extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+
         String source = txtsource.getSelectedItem().toString().trim();
         String depart = txtdepart.getSelectedItem().toString().trim();
-        
+
         try {
             con = DbUtils.getDbConnection();
             pst = con.prepareStatement("SELECT * from flight WHERE source = ? and depart = ?");
@@ -435,18 +428,18 @@ public class ticket extends javax.swing.JInternalFrame {
             pst.setString(1, source);
             pst.setString(2, depart);
             ResultSet rs = pst.executeQuery();
-             
+
             ResultSetMetaData rsm = rs.getMetaData();
             int c;
             c = rsm.getColumnCount();
-             
-            DefaultTableModel Df = (DefaultTableModel)jTable1.getModel();
+
+            DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
             Df.setRowCount(0);
-             
-            while(rs.next()) {
+
+            while (rs.next()) {
                 Vector v2 = new Vector();
-                 
-                for(int i = 1; i<= c; i ++) {
+
+                for (int i = 1; i <= c; i++) {
                     v2.add(rs.getString("id"));
                     v2.add(rs.getString("flightname"));
                     v2.add(rs.getString("source"));
@@ -456,9 +449,9 @@ public class ticket extends javax.swing.JInternalFrame {
                     v2.add(rs.getString("arrtime"));
                     v2.add(rs.getString("flightcharge"));
                 }
-               
-                Df.addRow(v2); 
-             }
+
+                Df.addRow(v2);
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -473,10 +466,10 @@ public class ticket extends javax.swing.JInternalFrame {
             ResultSet rs = s.executeQuery("select MAX(id) from ticket");
             rs.next();
             rs.getString("MAX(id)");
-            if(rs.getString("MAX(id)") == null) {
+            if (rs.getString("MAX(id)") == null) {
                 txtticketno.setText("TO001");
             } else {
-                long id = Long.parseLong(rs.getString("MAX(id)").substring(2,rs.getString("MAX(id)").length()));
+                long id = Long.parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
                 id++;
                 txtticketno.setText("TO" + String.format("%03d", id));
             }
@@ -486,42 +479,42 @@ public class ticket extends javax.swing.JInternalFrame {
             Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         String id = txtcustid.getText();
-          
+
         try {
             con = DbUtils.getDbConnection();
             pst = con.prepareStatement("select * from customer where id = ?");
             pst.setString(1, id);
             ResultSet rs = pst.executeQuery();
-            
-            if(rs.next() == false) {
+
+            if (rs.next() == false) {
                 JOptionPane.showMessageDialog(this, "Record not Found");
-            } else { 
+            } else {
                 String fname = rs.getString("firstname");
                 String lname = rs.getString("lastname");
-               
+
                 String passport = rs.getString("passport");
-         
+
                 txtfirstname.setText(fname.trim());
                 txtlastname.setText(lname.trim());
-               
+
                 txtpassport.setText(passport.trim());
-               } 
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        
-        DefaultTableModel Df = (DefaultTableModel)jTable1.getModel();
-       
+
+        DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+
         int selectIndex = jTable1.getSelectedRow();
 
         flightno.setText(Df.getValueAt(selectIndex, 0).toString());
@@ -532,55 +525,54 @@ public class ticket extends javax.swing.JInternalFrame {
 
     private void txtseatsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtseatsStateChanged
         // TODO add your handling code here:
-        
+
         int price = Integer.parseInt(txtprice.getText());
         int qty = Integer.parseInt(txtseats.getValue().toString());
-        
+
         int tot = price * qty;
-        
+
         txttotal.setText(String.valueOf(tot));
     }//GEN-LAST:event_txtseatsStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         String ticketid = txtticketno.getText();
-        String flightid = flightno.getText();     
-        String custid = txtcustid.getText();        
-        String flightclass = txtclass.getSelectedItem().toString().trim();  
+        String flightid = flightno.getText();
+        String custid = txtcustid.getText();
+        String flightclass = txtclass.getSelectedItem().toString().trim();
         String price = txtprice.getText();
         String seats = txtseats.getValue().toString();
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         String date = da.format(txtdate.getDate());
-        
+
         try {
             con = DbUtils.getDbConnection();
             pst = con.prepareStatement("insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
-            
+
             pst.setString(1, ticketid);
             pst.setString(2, flightid);
-            pst.setString(3, custid);          
+            pst.setString(3, custid);
             pst.setString(4, flightclass);
             pst.setString(5, price);
             pst.setString(6, seats);
             pst.setString(7, date);
-        
+
             pst.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Ticket Bookeed.........");
+
+            JOptionPane.showMessageDialog(null, "Ticket Bookeed.........");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
         this.hide();
     }//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel flightname;
