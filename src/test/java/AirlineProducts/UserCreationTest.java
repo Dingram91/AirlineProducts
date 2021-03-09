@@ -57,6 +57,20 @@ public class UserCreationTest {
     /**
      * Test of generateID method, of class UserCreation.
      */
+    
+    /**
+     * UnitTest-AirlineProduct-002
+     * REQ-R-25 The program shall generate a
+     * valid user ID based on the last maximum value
+     * Purpose- To ensure that the ID is incremented correctly
+     * TestSetup-A UserCreation object is created and a string containing the sudo previous
+     * user id of “UO999” is passed to “generateID”
+     * TestStrategy- Boundary Value Testing
+     * Input- In this case “UO999”
+     * The expected output is the string “UO1000”
+     */
+
+
     @Test
     public void testGenerateID() {
         System.out.println("generateID");
@@ -80,6 +94,17 @@ public class UserCreationTest {
     /**
      * Test of isValidName method, of class UserCreation.
      */
+    
+    /**
+     * UnitTest-AirlineProduct-001
+     * REQ-R-2 The user shall enter a valid username
+     * Purpose- To ensure that the name between 2 *and 15 characters
+     * TestSetup- A UserCreation object is created and a string containing a single character is passed to its “isValidName” method
+     * TestStrategy- Equivalence class testing
+     * Input- A string containing the letter “a”
+     * The expected output False
+     */
+
     @Test
     public void testIsValidName() {
         System.out.println("isValidName");
@@ -134,6 +159,16 @@ public class UserCreationTest {
     /**
      * Test of isValidPassword method, of class UserCreation.
      */
+    
+    /*UnitTest-AirlineProduct-003
+    *REQ-R-30 The user password shall require one  *special character
+    *Purpose- To ensure the password contains a *special character
+    *TestSetup- A UserCreation object is created and a string containing a special character is passed to it’s “isValidPassword” method.
+    *TestStrategy- Decision Table Testing
+    *Inputs 1. The user enters a password 2. In this *case “abc123#”
+    *The expected output is true.
+    */
+
     @Test
     public void testIsValidPassword() {
         System.out.println("isValidPassword");
