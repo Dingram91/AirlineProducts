@@ -48,9 +48,13 @@ public class AddFlightTest {
      */
     @Test
     public void testIsValidCost() {
-        assertEquals(false, AddFlight.isValidCost(" "));
-        assertEquals(false, AddFlight.isValidCost(" "));
-        assertEquals(false, AddFlight.isValidCost(" "));
+        AddFlight addFlight = new AddFlight();
+        System.out.println("tes");
+        System.out.println(addFlight.getComponentCount());
+        System.out.println(addFlight.getComponent(0).toString());
+//        assertEquals(false, AddFlight.isValidCost(" "));
+//        assertEquals(false, AddFlight.isValidCost(" "));
+//        assertEquals(false, AddFlight.isValidCost(" "));
 
     }
 //
