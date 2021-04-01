@@ -172,8 +172,8 @@ public class UserCreation extends javax.swing.JInternalFrame {
             try {
                 Connection connection = DbUtils.getDbConnection();
                 PreparedStatement statement = connection.prepareStatement("insert "
-                    + "into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
-            
+                        + "into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
+
                 statement.setString(1, id);
                 statement.setString(2, firstname);
                 statement.setString(3, lastname);
@@ -181,15 +181,15 @@ public class UserCreation extends javax.swing.JInternalFrame {
                 statement.setString(5, password);
 
                 statement.executeUpdate();
-            
+
                 JOptionPane.showMessageDialog(null, "User Created");
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UserCreation.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "Unable to connect to database");
             } catch (SQLException ex) {
-                Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UserCreation.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "An error occurred "
-                    + "interacting with the database");
+                        + "interacting with the database");
             }
         }
     }//GEN-LAST:event_b_addActionPerformed
@@ -211,19 +211,19 @@ public class UserCreation extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(UserCreation.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "An error occurred "
-                + "interacting with the database");
+                    + "interacting with the database");
         }
     }
-    
+
     String generateID(String maxID) {
         if (maxID == null) {
             return "UO001";
         } else {
             long id = Long.parseLong(maxID.substring(2, maxID.length()));
             return "UO" + String.format("%03d", ++id);
-        } 
+        }
     }
-    
+
     boolean isValidName(String name) {
         if (name.length() < 2 || name.length() > 15) {
             JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
@@ -232,10 +232,10 @@ public class UserCreation extends javax.swing.JInternalFrame {
         if (!name.chars().allMatch(Character::isLetter)) {
             JOptionPane.showMessageDialog(this, "Names may only contains letters");
             return false;
-        }  
+        }
         return true;
     }
-    
+
     boolean isValidUsername(String username) {
         if (username.length() < 2 || username.length() > 15) {
             JOptionPane.showMessageDialog(this, "Username must be between 2 and 15 characters");
@@ -244,11 +244,11 @@ public class UserCreation extends javax.swing.JInternalFrame {
         if (!username.chars().allMatch(Character::isLetterOrDigit)) {
             JOptionPane.showMessageDialog(this, "Username may only contains letters and digits");
             return false;
-        }        
+        }
         try {
             Connection connection = DbUtils.getDbConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM user "
-                + "WHERE username = ?;");
+                    + "WHERE username = ?;");
             statement.setString(1, username);
             System.out.println("valid username query: " + statement.toString());
             ResultSet result = statement.executeQuery();
@@ -262,11 +262,11 @@ public class UserCreation extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(UserCreation.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "An error occurred "
-                + "interacting with the database");
-        }       
+                    + "interacting with the database");
+        }
         return true;
     }
-    
+
     boolean isValidPassword(String password) {
         if (password.length() < 6 || password.length() > 15) {
             JOptionPane.showMessageDialog(this, "Password must be between 6 and 15 characters");
@@ -282,7 +282,7 @@ public class UserCreation extends javax.swing.JInternalFrame {
         }
         return true;
     }
-    
+
     boolean hasValidID(String id) {
         if (id.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid ID");
@@ -290,13 +290,13 @@ public class UserCreation extends javax.swing.JInternalFrame {
         }
         return true;
     }
-    
+
     private boolean hasValidInputs(String id, String firstName, String lastName,
             String username, String password) {
-        return hasValidID(id) && isValidName(firstName) && isValidName(lastName) &&
-                isValidUsername(username) && isValidPassword(password);
+        return hasValidID(id) && isValidName(firstName) && isValidName(lastName)
+                && isValidUsername(username) && isValidPassword(password);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_add;
     private javax.swing.JButton b_cancel;
