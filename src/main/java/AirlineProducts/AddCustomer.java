@@ -6,20 +6,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,10 +30,14 @@ public class AddCustomer extends javax.swing.JInternalFrame {
     public AddCustomer() {
         initComponents();
         generateID();
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(rb_female);
+        group.add(rb_male);
     }
     
-    String path=null;
-    byte[] userimage=null;
+    String path = null;
+    byte[] userImage = null;
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -226,7 +226,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
                 .addContainerGap(120, Short.MAX_VALUE))
         );
 
-        j_photo.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        j_photo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         b_browse.setText("Browse");
         b_browse.addActionListener(new java.awt.event.ActionListener() {
@@ -308,11 +308,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
     
     private void generateID() {
         try {
-            Connection connection = DbUtils.getDbConnection();
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery("select MAX(id) from user;");
-            result.next();
-            l_customer_id_value.setText(generateID(result.getString("MAX(id)")));
+            l_customer_id_value.setText(generateID(DbUtils.getMaxCustomerId()));
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Unable to connect to database");
@@ -334,30 +330,32 @@ public class AddCustomer extends javax.swing.JInternalFrame {
     
     private void b_browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_browseActionPerformed
         // TODO add your handling code here:
-        try {
-            JFileChooser picchooser = new JFileChooser();
-            picchooser.showOpenDialog(null);
-            File pic = picchooser.getSelectedFile();       
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images","png","jpg");
-            picchooser.addChoosableFileFilter(filter);     
-            path= pic.getAbsolutePath();
-            BufferedImage img;                    
-            img = ImageIO.read(picchooser.getSelectedFile());
-            ImageIcon imageIcon = new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
-            j_photo.setIcon(imageIcon); 
-
-            File image = new File(path);
-            FileInputStream fis = new FileInputStream(image);
-            ByteArrayOutputStream baos= new ByteArrayOutputStream();
-            byte[] buff = new byte[1024];
-            for(int readNum; (readNum=fis.read(buff)) !=-1 ; ) {
-                baos.write(buff,0,readNum);
+        File picture = FileUtils.showFileChooser();
+        if (picture != null) {
+            path = picture.getAbsolutePath();
+            BufferedImage imgBuff;
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            try {                
+                imgBuff = ImageIO.read(picture);
+                if (imgBuff == null) {
+                    path = null;
+                    JOptionPane.showMessageDialog(this, "File is not an image");
+                    return;
+                }
+                FileInputStream input = new FileInputStream(picture);
+                byte[] buff = new byte[1024];
+                for(int readNum; (readNum = input.read(buff)) !=-1 ; ) {
+                    output.write(buff,0,readNum);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "There was an issue processing the file");
+                return;
             }
-            userimage=baos.toByteArray();
-        } catch (IOException ex) {
-            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Unable to connect to database");
-        } 
+            userImage = output.toByteArray();
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imgBuff).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+            j_photo.setIcon(imageIcon);
+        }
     }//GEN-LAST:event_b_browseActionPerformed
 
     private void b_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_addActionPerformed
@@ -367,42 +365,72 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         String nic = tf_nic.getText(); 
         String passport = tf_passport.getText();
         String address = txtaddress.getText();
+        String contact = tf_contact.getText();
         
-        DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-        String date = da.format(dc_dob.getDate());
-        String Gender;
-        
-        if(rb_male.isSelected())
-        {
-            Gender = "Male";
+        if (hasValidInputs(id, firstname, lastname, nic, passport, address,
+                dc_dob.getDate(), contact)) {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String date = formatter.format(dc_dob.getDate());
+            
+            String gender = (rb_male.isSelected()) ? "Male" : "Female";
+            
+            try {
+                DbUtils.insertCustomer(id, firstname, lastname, nic, passport, 
+                        address, date, contact, gender, userImage);
+                JOptionPane.showMessageDialog(null,"Registation Createdd...");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Unable to connect to database");
+            } catch (SQLException ex) {
+                Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "An error occurred "
+                    + "interacting with the database");
+            }
         }
-        else
-        {
-            Gender = "FeMale";
+    }//GEN-LAST:event_b_addActionPerformed
+
+    private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_b_cancelActionPerformed
+
+    boolean isValidName(String name) {
+        if (name.length() < 2 || name.length() > 15) {
+            JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
+            return false;
         }
-        
-         String contact = tf_contact.getText();
-         
+        if (!name.chars().allMatch(Character::isLetter)) {
+            JOptionPane.showMessageDialog(this, "Names may only contains letters");
+            return false;
+        }
+        return true;
+    }
+    
+    boolean isValidNIC(String nic) {
+        if (nic.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "There is no valid NIC");
+            return false;
+        }
+        return true;
+    }
+    
+    boolean hasValidID(String id) {
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "There is no valid ID");
+            return false;
+        }
+        return true;
+    }
+    
+    boolean isValidPassport(String passport) {
+        if (!passport.matches("^(?!^0+$)[a-zA-Z0-9]{3,20}$")) {
+            JOptionPane.showMessageDialog(this, "Passport is not valid");
+            return false;
+        }
         try {
-            Connection connection = DbUtils.getDbConnection();
-            PreparedStatement statement = connection.prepareStatement("insert "
-                    + "into customer(id,firstname,lastname,nic,passport,address,"
-                    + "dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
-            
-            statement.setString(1, id);
-            statement.setString(2, firstname);
-            statement.setString(3, lastname);
-            statement.setString(4, nic);
-            statement.setString(5, passport);
-            statement.setString(6, address);
-            statement.setString(7, date);
-            statement.setString(8, Gender);
-            statement.setString(9, contact);
-            statement.setBytes(10, userimage);
-            statement.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Registation Createdd.........");
-            
+            if (DbUtils.getCustomersByPassport(passport).next()) {
+                JOptionPane.showMessageDialog(this, "Passport is already associated with another customer");
+                return false;
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Unable to connect to database");
@@ -411,12 +439,52 @@ public class AddCustomer extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "An error occurred "
                     + "interacting with the database");
         }
-    }//GEN-LAST:event_b_addActionPerformed
-
-    private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
-        dispose();
-    }//GEN-LAST:event_b_cancelActionPerformed
-
+        return true;
+    }
+    
+    boolean isValidAddress(String address) {
+        if (address.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Address is not valid");
+            return false;
+        }
+        return true;
+    }
+    
+    boolean isValidDate(Date date) {
+        DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            da.format(date);   
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Date is not formatted correctly");
+            return false;
+        }
+        return true;
+    }
+    
+    boolean hasSelectedGender() {
+        if (rb_female.isSelected() || rb_male.isSelected()) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Please selected a gender");
+            return false;
+        }
+    }
+    
+    boolean hasValidContact(String contact) {
+        if (contact.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a contact");
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    boolean hasValidInputs(String id, String firstname, String lastname, String nic, 
+            String passport, String address, Date date, String contact) {
+        return hasValidID(id) && isValidName(firstname) && isValidName(lastname)
+                && isValidNIC(nic) && isValidPassport(passport) && isValidAddress(address)
+                && isValidDate(date) && hasSelectedGender() && hasValidContact(contact);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_add;
