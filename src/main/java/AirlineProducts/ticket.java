@@ -50,7 +50,7 @@ public class ticket extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        txtticketno = new javax.swing.JLabel();
+        txtTicketNum = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -75,7 +75,7 @@ public class ticket extends javax.swing.JInternalFrame {
         txtPrice = new javax.swing.JTextField();
         txtSeats = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        CancelButton = new javax.swing.JButton();
         txtTotal = new javax.swing.JLabel();
         txtDate = new com.toedter.calendar.JDateChooser();
 
@@ -141,16 +141,16 @@ public class ticket extends javax.swing.JInternalFrame {
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                TableFlightSelected(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel3.setText("Ticket No");
+        jLabel3.setText("Ticket #");
 
-        txtticketno.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        txtticketno.setForeground(new java.awt.Color(255, 0, 0));
-        txtticketno.setText("Ticket NO");
+        txtTicketNum.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txtTicketNum.setForeground(new java.awt.Color(255, 0, 0));
+        txtTicketNum.setText("Ticket #");
 
         jLabel5.setText("Customer ID");
 
@@ -328,8 +328,8 @@ public class ticket extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CancelButton.setText("Cancel");
+        CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnClickedCancel(evt);
             }
@@ -354,7 +354,7 @@ public class ticket extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtticketno))
+                                .addComponent(txtTicketNum))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -372,7 +372,7 @@ public class ticket extends javax.swing.JInternalFrame {
                                 .addGap(51, 51, 51)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
@@ -393,7 +393,7 @@ public class ticket extends javax.swing.JInternalFrame {
                         .addGap(53, 53, 53)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(txtticketno)
+                        .addComponent(txtTicketNum)
                         .addGap(32, 32, 32)
                         .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,7 +408,7 @@ public class ticket extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -417,6 +417,8 @@ public class ticket extends javax.swing.JInternalFrame {
 
     private void BtnClickedSearchFlightsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClickedSearchFlightsActionPerformed
         // TODO add your handling code here:
+
+        System.out.println("Search Button Clicked");
 
         String source = txtsource.getSelectedItem().toString().trim();
         String depart = txtdepart.getSelectedItem().toString().trim();
@@ -467,16 +469,16 @@ public class ticket extends javax.swing.JInternalFrame {
             rs.next();
             rs.getString("MAX(id)");
             if (rs.getString("MAX(id)") == null) {
-                txtticketno.setText("TO001");
+                txtTicketNum.setText("TO001");
             } else {
                 long id = Long.parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
                 id++;
-                txtticketno.setText("TO" + String.format("%03d", id));
+                txtTicketNum.setText("TO" + String.format("%03d", id));
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -510,7 +512,7 @@ public class ticket extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_BtnClickedSearchCustomerActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void TableFlightSelected(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableFlightSelected
         // TODO add your handling code here:
 
         DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
@@ -521,7 +523,7 @@ public class ticket extends javax.swing.JInternalFrame {
         flightname.setText(Df.getValueAt(selectIndex, 1).toString());
         txtdept.setText(Df.getValueAt(selectIndex, 5).toString());
         txtPrice.setText(Df.getValueAt(selectIndex, 7).toString());
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_TableFlightSelected
 
     private void SeatsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SeatsStateChanged
         // TODO add your handling code here:
@@ -537,7 +539,7 @@ public class ticket extends javax.swing.JInternalFrame {
     private void BtnClickedBook(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClickedBook
         // TODO add your handling code here:
 
-        String ticketid = txtticketno.getText();
+        String ticketid = txtTicketNum.getText();
         String flightid = flightno.getText();
         String custid = txtCusIid.getText();
         String flightclass = txtClass.getSelectedItem().toString().trim();
@@ -575,12 +577,12 @@ public class ticket extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnClickedCancel
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnClickedSearchCustomer;
-    private javax.swing.JButton BtnClickedSearchFlights;
+    protected javax.swing.JButton BtnClickedSearchCustomer;
+    protected javax.swing.JButton BtnClickedSearchFlights;
+    protected javax.swing.JButton CancelButton;
     private javax.swing.JLabel flightname;
     private javax.swing.JLabel flightno;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    protected javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -603,7 +605,8 @@ public class ticket extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCusIid;
     private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextField txtPrice;
-    private javax.swing.JSpinner txtSeats;
+    protected javax.swing.JSpinner txtSeats;
+    protected javax.swing.JLabel txtTicketNum;
     private javax.swing.JLabel txtTotal;
     private javax.swing.JComboBox<String> txtdepart;
     private javax.swing.JLabel txtdept;
@@ -611,6 +614,5 @@ public class ticket extends javax.swing.JInternalFrame {
     private javax.swing.JLabel txtlastname;
     private javax.swing.JLabel txtpassport;
     private javax.swing.JComboBox<String> txtsource;
-    private javax.swing.JLabel txtticketno;
     // End of variables declaration//GEN-END:variables
 }
