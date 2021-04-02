@@ -35,7 +35,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="txtdate" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDate" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
                           <Component id="jScrollPane1" min="-2" pref="534" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace min="207" pref="207" max="-2" attributes="0"/>
-                              <Component id="txttotal" min="-2" pref="106" max="-2" attributes="0"/>
+                              <Component id="txtTotal" min="-2" pref="106" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -87,7 +87,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="txtticketno" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="txtdate" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtDate" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -95,7 +95,7 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="213" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="txttotal" min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="txtTotal" min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -134,7 +134,7 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnClickedSearchFlights" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -153,7 +153,7 @@
                       <Component id="txtdepart" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="28" max="32767" attributes="0"/>
-                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnClickedSearchFlights" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -204,12 +204,12 @@
             <Property name="text" type="java.lang.String" value="Departure"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="BtnClickedSearchFlights">
           <Properties>
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnClickedSearchFlightsActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -316,9 +316,9 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="txtcustid" min="-2" pref="151" max="-2" attributes="0"/>
+                          <Component id="txtCusIid" min="-2" pref="151" max="-2" attributes="0"/>
                           <EmptySpace pref="54" max="32767" attributes="0"/>
-                          <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                          <Component id="BtnClickedSearchCustomer" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -344,8 +344,8 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtcustid" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCusIid" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BtnClickedSearchCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -383,7 +383,7 @@
             <Property name="text" type="java.lang.String" value="LastName"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtcustid">
+        <Component class="javax.swing.JTextField" name="txtCusIid">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -423,12 +423,12 @@
             <Property name="text" type="java.lang.String" value="jLabel11"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="BtnClickedSearchCustomer">
           <Properties>
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnClickedSearchCustomerActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -467,9 +467,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtclass" pref="116" max="32767" attributes="0"/>
-                              <Component id="txtprice" max="32767" attributes="0"/>
-                              <Component id="txtseats" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
+                              <Component id="txtClass" pref="116" max="32767" attributes="0"/>
+                              <Component id="txtPrice" max="32767" attributes="0"/>
+                              <Component id="txtSeats" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -498,17 +498,17 @@
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtclass" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtClass" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtprice" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPrice" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtseats" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtSeats" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -579,7 +579,7 @@
             <Property name="text" type="java.lang.String" value="jLabel20"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="txtclass">
+        <Component class="javax.swing.JComboBox" name="txtClass">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
@@ -592,11 +592,11 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtprice">
+        <Component class="javax.swing.JTextField" name="txtPrice">
         </Component>
-        <Component class="javax.swing.JSpinner" name="txtseats">
+        <Component class="javax.swing.JSpinner" name="txtSeats">
           <Events>
-            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="txtseatsStateChanged"/>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="SeatsStateChanged"/>
           </Events>
         </Component>
       </SubComponents>
@@ -606,7 +606,7 @@
         <Property name="text" type="java.lang.String" value="Book"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnClickedBook"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
@@ -614,10 +614,10 @@
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnClickedCancel"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="txttotal">
+    <Component class="javax.swing.JLabel" name="txtTotal">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
@@ -628,7 +628,7 @@
         <Property name="text" type="java.lang.String" value="jLabel4"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="txtdate">
+    <Component class="com.toedter.calendar.JDateChooser" name="txtDate">
     </Component>
   </SubComponents>
 </Form>
