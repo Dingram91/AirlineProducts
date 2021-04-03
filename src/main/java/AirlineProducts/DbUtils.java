@@ -7,7 +7,10 @@ package AirlineProducts;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -19,6 +22,8 @@ public class DbUtils {
     
     private static Connection connection;
     
+    private static DBManager dbManager;
+    
     public static Connection getDbConnection() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         if (connection == null) {
@@ -27,4 +32,10 @@ public class DbUtils {
         return connection;
     }
     
+    public static DBManager getDBManager() throws SQLException, ClassNotFoundException {
+        if (dbManager == null) {
+            dbManager = new DBManager(getDbConnection());
+        }
+        return dbManager;
+    }
 }

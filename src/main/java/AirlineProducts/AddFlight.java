@@ -247,7 +247,7 @@ public class AddFlight extends javax.swing.JInternalFrame {
                 flightNumber = "FO" + String.format("%03d", id);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
         return flightNumber;
     }
