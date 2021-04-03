@@ -24,6 +24,11 @@ import javax.swing.JOptionPane;
  */
 public class AddCustomer extends javax.swing.JInternalFrame {
 
+    
+    private String path = null;
+    private byte[] userImage = null;
+    private DBManager dbManager;
+    
     /**
      * Creates new form addCustomer
      */
@@ -36,8 +41,9 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         group.add(rb_male);
     }
     
-    String path = null;
-    byte[] userImage = null;
+    public void setDBManager(DBManager dbManager) {
+        this.dbManager = dbManager;
+    }
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -308,7 +314,8 @@ public class AddCustomer extends javax.swing.JInternalFrame {
     
     private void generateID() {
         try {
-            l_customer_id_value.setText(generateID(DbUtils.getMaxCustomerId()));
+            if (dbManager == null) dbManager = DbUtils.getDBManager();
+            l_customer_id_value.setText(generateID(dbManager.getMaxCustomerId()));
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Unable to connect to database");
@@ -366,27 +373,11 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         String passport = tf_passport.getText();
         String address = txtaddress.getText();
         String contact = tf_contact.getText();
+        Date date = dc_dob.getDate();
+        String gender = (rb_male.isSelected()) ? "Male" : "Female";
         
-        if (hasValidInputs(id, firstname, lastname, nic, passport, address,
-                dc_dob.getDate(), contact)) {
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            String date = formatter.format(dc_dob.getDate());
-            
-            String gender = (rb_male.isSelected()) ? "Male" : "Female";
-            
-            try {
-                DbUtils.insertCustomer(id, firstname, lastname, nic, passport, 
+        insertCustomer(id, firstname, lastname, nic, passport, 
                         address, date, contact, gender, userImage);
-                JOptionPane.showMessageDialog(null,"Registation Createdd...");
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this, "Unable to connect to database");
-            } catch (SQLException ex) {
-                Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this, "An error occurred "
-                    + "interacting with the database");
-            }
-        }
     }//GEN-LAST:event_b_addActionPerformed
 
     private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
@@ -427,7 +418,8 @@ public class AddCustomer extends javax.swing.JInternalFrame {
             return false;
         }
         try {
-            if (DbUtils.getCustomersByPassport(passport).next()) {
+            if (dbManager == null) dbManager = DbUtils.getDBManager();
+            if (dbManager.isPassportTaken(passport)) {
                 JOptionPane.showMessageDialog(this, "Passport is already associated with another customer");
                 return false;
             }
@@ -482,8 +474,33 @@ public class AddCustomer extends javax.swing.JInternalFrame {
     boolean hasValidInputs(String id, String firstname, String lastname, String nic, 
             String passport, String address, Date date, String contact) {
         return hasValidID(id) && isValidName(firstname) && isValidName(lastname)
-                && isValidNIC(nic) && isValidPassport(passport) && isValidAddress(address)
-                && isValidDate(date) && hasSelectedGender() && hasValidContact(contact);
+                && isValidNIC(nic) && isValidAddress(address)
+                && isValidDate(date) && hasValidContact(contact);
+    }
+    
+    void insertCustomer(String id, String firstname, String lastname, String nic, 
+        String passport, String address, Date date, String contact, String gender,
+        byte[] userImage) {
+        System.out.println("Insert customers");
+        if (hasValidInputs(id, firstname, lastname, nic, passport, address,
+                date, contact)) {
+            System.out.println("has valid inputs");
+            try {
+                if (dbManager == null) dbManager = DbUtils.getDBManager();
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String dateFormatted = formatter.format(date);
+                dbManager.insertCustomer(id, firstname, lastname, nic, passport, 
+                        address, dateFormatted, contact, gender, userImage);
+                JOptionPane.showMessageDialog(null,"Registation Createdd...");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Unable to connect to database");
+            } catch (SQLException ex) {
+                Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "An error occurred "
+                    + "interacting with the database");
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
