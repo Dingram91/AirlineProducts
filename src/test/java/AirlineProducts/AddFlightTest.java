@@ -5,6 +5,12 @@
  */
 package AirlineProducts;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -12,7 +18,6 @@ import org.junit.Test;
  *
  * @author Dingr
  */
-// TEMPLATE---------------------------------------------------------------------
 public class AddFlightTest {
 
     public AddFlightTest() {
@@ -48,28 +53,28 @@ public class AddFlightTest {
      */
     @Test
     public void testIsValidCost() {
-        AddFlight addFlight = new AddFlight();
-        System.out.println("tes");
-        System.out.println(addFlight.getComponentCount());
-        System.out.println(addFlight.getComponent(0).toString());
-//        assertEquals(false, AddFlight.isValidCost(" "));
-//        assertEquals(false, AddFlight.isValidCost(" "));
-//        assertEquals(false, AddFlight.isValidCost(" "));
+        assertEquals(false, AddFlight.isValidCost(" "));
+        assertEquals(true, AddFlight.isValidCost("200"));
+        assertEquals(false, AddFlight.isValidCost("asd"));
 
     }
-//
-//    /**
-//     * Test of validateDate method, of class AddFlight.
-//     */
-//    @Test
-//    public void testValidateDate() {
-//        System.out.println("validateDate");
-//        Date date = null;
-//        AddFlight instance = new AddFlight();
-//        String expResult = "";
-//        String result = instance.validateDate(date);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+
+    /**
+     * Test of validateDate method, of class AddFlight.
+     */
+    @Test
+    public void testValidateDate() {
+        AddFlight instance = new AddFlight();
+        String expResult = "2021-01-20";
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date testDate = new Date();
+        try {
+            testDate = df.parse("2021-01-20");
+        } catch (ParseException ex) {
+            Logger.getLogger(AddFlightTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String result = instance.validateDate(testDate);
+        assertEquals(expResult, result);
+    }
+
 }
