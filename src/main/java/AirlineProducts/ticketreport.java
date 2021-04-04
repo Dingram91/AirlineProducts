@@ -1,9 +1,5 @@
 package AirlineProducts;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -17,16 +13,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ticketreport extends javax.swing.JInternalFrame {
 
+    DBManager manager;
+
     /**
-     * Creates new form ticketreport
+     * Creates new form ticketReport
      */
     public ticketreport() {
         initComponents();
         LoadData();
     }
-
-    Connection con;
-    PreparedStatement pst;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,119 +85,21 @@ public class ticketreport extends javax.swing.JInternalFrame {
         this.hide();
     }//GEN-LAST:event_BtnClickedCancel
 
-    public void ShowDataInTable(Vector<TicketData> tableData) {
-        for ( )
-    }
-
     public void LoadData() {
+
         try {
-            con = DbUtils.getDbConnection();
-            pst = con.prepareStatement("SELECT * from ticket");
-            ResultSet rs = pst.executeQuery();
-
-            ResultSetMetaData rsm = rs.getMetaData();
-            int c;
-            c = rsm.getColumnCount();
-
-            DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
-            Df.setRowCount(0);
-
-            while (rs.next()) {
-                Vector v2 = new Vector();
-
-                for (int i = 1; i <= c; i++) {
-                    v2.add(rs.getString("id"));
-                    v2.add(rs.getString("flightid"));
-                    v2.add(rs.getString("custid"));
-                    v2.add(rs.getString("class"));
-                    v2.add(rs.getString("price"));
-                    v2.add(rs.getString("seats"));
-                    v2.add(rs.getString("date"));
-                }
-
-                Df.addRow(v2);
+            if (manager == null) {
+                manager = DbUtils.getDBManager();
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    protected Vector<TicketData> getTicketReportData() {
-        Vector<TicketData> ticketSalesData = new Vector<>();
-        try {
-            con = DbUtils.getDbConnection();
-            pst = con.prepareStatement("SELECT * from ticket");
-            ResultSet rs = pst.executeQuery();
-
-            while (rs.next()) {
-
-                String id = rs.getString("id");
-                String flightId = rs.getString("flightid");
-                String customerId = rs.getString("custid");
-                String className = rs.getString("class");
-                String ticketSalePrice = rs.getString("price");
-                String numberOfSeats = rs.getString("seats");
-                String flightDate = rs.getString("date");
-                TicketData ticketSaleData = new TicketData(id, flightId, customerId, className, ticketSalePrice, numberOfSeats, flightDate);
-                ticketSalesData.add(ticketSaleData);
+            Vector<Vector<String>> salesData = manager.getTicketReportData();
+            DefaultTableModel dF = (DefaultTableModel) jTable1.getModel();
+            dF.setRowCount(0);
+            for (Vector td : salesData) {
+                dF.addRow(td);
             }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ticketreport.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ticketSalesData;
-    }
-
-    // Class to hold all of the data for an entry in the tickets report
-    protected class TicketData {
-
-        private String id;
-        private String flightId;
-        private String customerId;
-        private String className;
-        private String ticketPrice;
-        private String numberOfSeats;
-        private String flightDate;
-
-        public TicketData(String id, String flightId, String customerId, String className, String ticketPrice, String numberOfSeats, String flightDate) {
-            this.id = id;
-            this.flightId = flightId;
-            this.customerId = customerId;
-            this.className = className;
-            this.ticketPrice = ticketPrice;
-            this.numberOfSeats = numberOfSeats;
-            this.flightDate = flightDate;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public String getFlightId() {
-            return flightId;
-        }
-
-        public String getCustomerId() {
-            return customerId;
-        }
-
-        public String getClassName() {
-            return className;
-        }
-
-        public String getTicketPrice() {
-            return ticketPrice;
-        }
-
-        public String getNumberOfSeats() {
-            return numberOfSeats;
-        }
-
-        public String getFlightDate() {
-            return flightDate;
-        }
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
