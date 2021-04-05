@@ -21,6 +21,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ticket extends javax.swing.JInternalFrame {
 
+    DBManager manager;
+
+    public void setManager(DBManager manager) {
+        this.manager = manager;
+    }
+
     /**
      * Creates new form ticket
      */
@@ -483,34 +489,40 @@ public class ticket extends javax.swing.JInternalFrame {
     }
 
     private void BtnClickedSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClickedSearchCustomerActionPerformed
-        // TODO add your handling code here:
+
         String id = txtCusIid.getText();
-
         try {
-            con = DbUtils.getDbConnection();
-            pst = con.prepareStatement("select * from customer where id = ?");
-            pst.setString(1, id);
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next() == false) {
-                JOptionPane.showMessageDialog(this, "Record not Found");
-            } else {
-                String fname = rs.getString("firstname");
-                String lname = rs.getString("lastname");
-
-                String passport = rs.getString("passport");
-
-                txtfirstname.setText(fname.trim());
-                txtlastname.setText(lname.trim());
-
-                txtpassport.setText(passport.trim());
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+            doCustomerSearch(id);
         } catch (SQLException ex) {
+            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BtnClickedSearchCustomerActionPerformed
+
+    public void doCustomerSearch(String id) throws SQLException, ClassNotFoundException {
+        if (manager == null) {
+            manager = DbUtils.getDBManager();
+        }
+        ResultSet rs = manager.getCustomerById(id);
+        boolean found = rs.next();
+
+        if (!found) {
+            JOptionPane.showMessageDialog(this, "Record not Found");
+        } else {
+
+            String fname = rs.getString("firstname");
+            String lname = rs.getString("lastname");
+
+            String passport = rs.getString("passport");
+
+            txtfirstname.setText(fname.trim());
+            txtlastname.setText(lname.trim());
+
+            txtpassport.setText(passport.trim());
+
+        }
+    }
 
     private void TableFlightSelected(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableFlightSelected
         // TODO add your handling code here:
@@ -537,41 +549,36 @@ public class ticket extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SeatsStateChanged
 
     private void BtnClickedBook(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClickedBook
-        // TODO add your handling code here:
-
-        String ticketid = txtTicketNum.getText();
-        String flightid = flightno.getText();
-        String custid = txtCusIid.getText();
-        String flightclass = txtClass.getSelectedItem().toString().trim();
-        String price = txtPrice.getText();
-        String seats = txtSeats.getValue().toString();
-        DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-        String date = da.format(txtDate.getDate());
 
         try {
-            con = DbUtils.getDbConnection();
-            pst = con.prepareStatement("insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
+            String ticketid = txtTicketNum.getText();
+            String flightid = flightno.getText();
+            String custid = txtCusIid.getText();
+            String flightclass = txtClass.getSelectedItem().toString().trim();
+            String price = txtPrice.getText();
+            String seats = txtSeats.getValue().toString();
+            DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+            String date = da.format(txtDate.getDate());
 
-            pst.setString(1, ticketid);
-            pst.setString(2, flightid);
-            pst.setString(3, custid);
-            pst.setString(4, flightclass);
-            pst.setString(5, price);
-            pst.setString(6, seats);
-            pst.setString(7, date);
+            if (bookFlight(ticketid, flightid, custid, flightclass, price, seats, date)) {
+                JOptionPane.showMessageDialog(null, "Ticket Booked!");
 
-            pst.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, "Ticket Bookeed.........");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ticket.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BtnClickedBook
 
+    public boolean bookFlight(String ticketid, String flightid, String custid, String flightclass, String price, String seats, String date) throws SQLException, ClassNotFoundException {
+        if (manager == null) {
+            manager = DbUtils.getDBManager();
+        }
+        return manager.addTicketToDB(ticketid, flightid, custid, flightclass, price, seats, date);
+
+    }
+
     private void BtnClickedCancel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClickedCancel
-        // TODO add your handling code here:
 
         this.hide();
     }//GEN-LAST:event_BtnClickedCancel
