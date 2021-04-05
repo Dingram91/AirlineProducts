@@ -142,7 +142,7 @@ public class Main extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
 
-        searchCustomer scus = new searchCustomer();
+        SearchCustomer scus = new SearchCustomer();
         jDesktopPane1.add(scus);
         scus.setVisible(true);
 
