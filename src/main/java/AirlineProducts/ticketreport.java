@@ -15,6 +15,10 @@ public class ticketreport extends javax.swing.JInternalFrame {
 
     DBManager manager;
 
+    public void setManager(DBManager manager) {
+        this.manager = manager;
+    }
+
     /**
      * Creates new form ticketReport
      */
@@ -82,7 +86,7 @@ public class ticketreport extends javax.swing.JInternalFrame {
 
     private void BtnClickedCancel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClickedCancel
         // TODO add your handling code here:
-        this.hide();
+        this.dispose();
     }//GEN-LAST:event_BtnClickedCancel
 
     public void LoadData() {

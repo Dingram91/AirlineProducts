@@ -63,9 +63,15 @@ public class DBManager {
         statement.executeUpdate();
     }
 
+    public ResultSet getCustomerById(String id) throws SQLException {
+        PreparedStatement pst = connection.prepareStatement("SELECT * FROM customer WHERE id = ?");
+        pst.setString(1, id);
+        return pst.executeQuery();
+    }
+
     public Vector<Vector<String>> getTicketReportData() throws SQLException {
         Vector<Vector<String>> ticketSalesData = new Vector<>();
-        PreparedStatement pst = connection.prepareStatement("SELECT * from ticket");
+        PreparedStatement pst = connection.prepareStatement("SELECT * FROM ticket");
         ResultSet rs = pst.executeQuery();
 
         while (rs.next()) {
@@ -81,5 +87,21 @@ public class DBManager {
 
         }
         return ticketSalesData;
+    }
+
+    public boolean addTicketToDB(String ticketId, String flightId, String custId,
+            String flightClass, String price, String numberOfSeats, String date) throws SQLException {
+
+        PreparedStatement pst = connection.prepareStatement("insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
+
+        pst.setString(1, ticketId);
+        pst.setString(2, flightId);
+        pst.setString(3, custId);
+        pst.setString(4, flightClass);
+        pst.setString(5, price);
+        pst.setString(6, numberOfSeats);
+        pst.setString(7, date);
+
+        return pst.execute();
     }
 }
