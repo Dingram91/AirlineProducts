@@ -6,6 +6,9 @@
 package AirlineProducts;
 
 import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -34,6 +37,18 @@ public class ticketTest {
         int ticketInt = Integer.parseInt(ticketNumber.substring(2));
         Assert.assertNotNull(ticketInt); // check that the number part of the
         // flightID is an actual number
+
+    }
+
+    @Test(expected = SQLException.class) // bad connection should throw an SQLException
+    public void doCustomerSearchExceptionTest() throws SQLException, ClassNotFoundException {
+        ticket instance = new ticket();
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection dummyConnection = DriverManager.getConnection("\"jdbc:mysql://localhost/airline\"", "FAKE", "CREDENTIALS");
+        DBManager dBManager = new DBManager(dummyConnection);
+        instance.setManager(dBManager);
+
+        instance.doCustomerSearch("CS001"); // should throw a SQLException
 
     }
 

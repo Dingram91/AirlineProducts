@@ -20,7 +20,7 @@ public class ticketreportTest {
 
     @Test
     public void LoadDataTest() throws SQLException {
-        System.out.println("generateID");
+        System.out.println("Load Data Test");
         ticketreport instance = new ticketreport();
         DBManager dbManager = mock(DBManager.class);
         instance.setManager(dbManager);
@@ -59,6 +59,17 @@ public class ticketreportTest {
         when(dbManager.getTicketReportData()).thenReturn(testWrapperVector);
         instance.LoadData();
         assertEquals(50, instance.jTable1.getModel().getRowCount());
+
+    }
+
+    @Test()
+    public void testLoadDataException() throws SQLException {
+        ticketreport instance = new ticketreport();
+        DBManager dbManager = mock(DBManager.class);
+        instance.setManager(dbManager);
+
+        when(dbManager.getTicketReportData()).thenThrow(SQLException.class);
+        instance.LoadData();
 
     }
 

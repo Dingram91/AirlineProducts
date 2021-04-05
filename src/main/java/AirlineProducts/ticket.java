@@ -503,25 +503,24 @@ public class ticket extends javax.swing.JInternalFrame {
     public void doCustomerSearch(String id) throws SQLException, ClassNotFoundException {
         if (manager == null) {
             manager = DbUtils.getDBManager();
+        }
+        ResultSet rs = manager.getCustomerById(id);
+        boolean found = rs.next();
 
-            ResultSet rs = manager.getCustomerById(id);
-            boolean found = rs.next();
+        if (!found) {
+            JOptionPane.showMessageDialog(this, "Record not Found");
+        } else {
 
-            if (!found) {
-                JOptionPane.showMessageDialog(this, "Record not Found");
-            } else {
+            String fname = rs.getString("firstname");
+            String lname = rs.getString("lastname");
 
-                String fname = rs.getString("firstname");
-                String lname = rs.getString("lastname");
+            String passport = rs.getString("passport");
 
-                String passport = rs.getString("passport");
+            txtfirstname.setText(fname.trim());
+            txtlastname.setText(lname.trim());
 
-                txtfirstname.setText(fname.trim());
-                txtlastname.setText(lname.trim());
+            txtpassport.setText(passport.trim());
 
-                txtpassport.setText(passport.trim());
-
-            }
         }
     }
 
