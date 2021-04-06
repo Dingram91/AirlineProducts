@@ -43,6 +43,8 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
     private byte[] userImage = null;
     private DBManager dbManager;
     
+    Connection con;
+    PreparedStatement pst;
     
     /**
      * Creates new form addCustomer
@@ -420,7 +422,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                 if (dbManager == null) dbManager = DbUtils.getDBManager();
                 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 String dateFormatted = formatter.format(date);
-                dbManager.updateCustomer(id, firstname, lastname, nic, passport, 
+                dbManager.insertCustomer(id, firstname, lastname, nic, passport, 
                         address, dateFormatted, contact, gender, userImage);
                 JOptionPane.showMessageDialog(null,"Registation Createdd...");
             } catch (ClassNotFoundException ex) {
