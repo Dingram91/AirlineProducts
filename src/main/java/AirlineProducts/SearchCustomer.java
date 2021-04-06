@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -36,20 +37,29 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * and open the template in the editor.
  */
 public class SearchCustomer extends javax.swing.JInternalFrame {
+    
+    private String path = null;
+    private byte[] userImage = null;
+    private DBManager dbManager;
 
+   
     /**
-     * Creates new form searchCustomer
+     * Creates new form SearchCustomer
      */
     public SearchCustomer() {
         initComponents();
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(rb_female);
+        group.add(rb_male);
     }
-
-    
+   
+        public void setDBManager(DBManager dbManager) {
+        this.dbManager = dbManager;
+    }
+        
     Connection con;
     PreparedStatement pst;
-    
-    String path=null;
-    byte[] userimage=null;
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,9 +71,9 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        l_first_name = new javax.swing.JLabel();
-        l_last_name = new javax.swing.JLabel();
+        l_firstName = new javax.swing.JPanel();
+        l_firstname = new javax.swing.JLabel();
+        l_lastName = new javax.swing.JLabel();
         l_nic = new javax.swing.JLabel();
         l_passport = new javax.swing.JLabel();
         l_address = new javax.swing.JLabel();
@@ -73,31 +83,31 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         txtpassport = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaddress = new javax.swing.JTextArea();
-        l_customer_id = new javax.swing.JLabel();
+        l_customerID = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         l_dob = new javax.swing.JLabel();
         l_gender = new javax.swing.JLabel();
         l_contact = new javax.swing.JLabel();
-        male = new javax.swing.JRadioButton();
-        female = new javax.swing.JRadioButton();
+        rb_male = new javax.swing.JRadioButton();
+        rb_female = new javax.swing.JRadioButton();
         txtcontact = new javax.swing.JTextField();
-        txtdob = new com.toedter.calendar.JDateChooser();
+        dc_dob = new com.toedter.calendar.JDateChooser();
         txtphoto = new javax.swing.JLabel();
         b_browse = new javax.swing.JButton();
         b_update = new javax.swing.JButton();
-        b_cancel = new javax.swing.JButton();
+        btnClickedCancel = new javax.swing.JButton();
         txtcustid = new javax.swing.JTextField();
-        b_search = new javax.swing.JButton();
+        b_find = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(51, 0, 255));
+        l_firstName.setBackground(new java.awt.Color(51, 0, 255));
 
-        l_first_name.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        l_first_name.setForeground(new java.awt.Color(255, 255, 255));
-        l_first_name.setText("FirstName");
+        l_firstname.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        l_firstname.setForeground(new java.awt.Color(255, 255, 255));
+        l_firstname.setText("FirstName");
 
-        l_last_name.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        l_last_name.setForeground(new java.awt.Color(255, 255, 255));
-        l_last_name.setText("LastName");
+        l_lastName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        l_lastName.setForeground(new java.awt.Color(255, 255, 255));
+        l_lastName.setText("LastName");
 
         l_nic.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_nic.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,64 +137,64 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         txtaddress.setRows(5);
         jScrollPane1.setViewportView(txtaddress);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout l_firstNameLayout = new javax.swing.GroupLayout(l_firstName);
+        l_firstName.setLayout(l_firstNameLayout);
+        l_firstNameLayout.setHorizontalGroup(
+            l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(l_firstNameLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(l_first_name)
+                .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(l_firstNameLayout.createSequentialGroup()
+                        .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(l_firstNameLayout.createSequentialGroup()
+                                .addComponent(l_firstname)
                                 .addGap(47, 47, 47)
                                 .addComponent(txtfirstname))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(l_firstNameLayout.createSequentialGroup()
+                                .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(l_address)
                                     .addComponent(l_passport)
                                     .addComponent(l_nic))
                                 .addGap(38, 38, 38)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane1)
                                     .addComponent(txtpassport)
                                     .addComponent(txtnic))))
                         .addContainerGap(20, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(l_last_name)
+                    .addGroup(l_firstNameLayout.createSequentialGroup()
+                        .addComponent(l_lastName)
                         .addGap(48, 48, 48)
                         .addComponent(txtlastname, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        l_firstNameLayout.setVerticalGroup(
+            l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(l_firstNameLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_first_name)
+                .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(l_firstname)
                     .addComponent(txtfirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_last_name)
+                .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(l_lastName)
                     .addComponent(txtlastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_nic)
                     .addComponent(txtnic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_passport)
                     .addComponent(txtpassport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(l_address)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
 
-        l_customer_id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        l_customer_id.setText("Customer ID");
+        l_customerID.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        l_customerID.setText("Customer ID");
 
         jPanel2.setBackground(new java.awt.Color(51, 0, 255));
 
@@ -200,9 +210,9 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         l_contact.setForeground(new java.awt.Color(255, 255, 255));
         l_contact.setText("Contact");
 
-        male.setText("Male");
+        rb_male.setText("Male");
 
-        female.setText("Female");
+        rb_female.setText("Female");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -214,7 +224,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(l_dob)
                         .addGap(43, 43, 43)
-                        .addComponent(txtdob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dc_dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(l_gender)
@@ -222,9 +232,9 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                         .addGap(43, 43, 43)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(male)
+                                .addComponent(rb_male)
                                 .addGap(18, 18, 18)
-                                .addComponent(female))
+                                .addComponent(rb_female))
                             .addComponent(txtcontact))))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
@@ -234,12 +244,12 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(l_dob)
-                    .addComponent(txtdob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dc_dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_gender)
-                    .addComponent(male)
-                    .addComponent(female))
+                    .addComponent(rb_male)
+                    .addComponent(rb_female))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_contact)
@@ -263,17 +273,17 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
             }
         });
 
-        b_cancel.setText("Cancel");
-        b_cancel.addActionListener(new java.awt.event.ActionListener() {
+        btnClickedCancel.setText("Cancel");
+        btnClickedCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_cancelActionPerformed(evt);
+                btnClickedCancelActionPerformed(evt);
             }
         });
 
-        b_search.setText("Find");
-        b_search.addActionListener(new java.awt.event.ActionListener() {
+        b_find.setText("Find");
+        b_find.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_searchActionPerformed(evt);
+                b_findActionPerformed(evt);
             }
         });
 
@@ -285,12 +295,12 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(l_customer_id)
+                        .addComponent(l_customerID)
                         .addGap(29, 29, 29)
                         .addComponent(txtcustid, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(l_firstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -306,10 +316,10 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                         .addGap(39, 39, 39)
                         .addComponent(b_update, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnClickedCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(b_search, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(b_find, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -317,12 +327,12 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_customer_id)
+                    .addComponent(l_customerID)
                     .addComponent(txtcustid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_search))
+                    .addComponent(b_find))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l_firstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -333,7 +343,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(b_update, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnClickedCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(49, 49, 49))
         );
 
@@ -341,11 +351,11 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtlastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtlastnameActionPerformed
-        // TODO add your handlcode here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtlastnameActionPerformed
 
     private void txtpassportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassportActionPerformed
-        // TODO adour handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtpassportActionPerformed
 
     private void b_browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_browseActionPerformed
@@ -371,9 +381,9 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
             for(int readNum; (readNum=fis.read(buff)) !=-1 ; ) {
                 baos.write(buff,0,readNum);
             }
-            userimage=baos.toByteArray();              
+            userImage=baos.toByteArray();              
         } catch (IOException ex) {
-            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_b_browseActionPerformed
 
@@ -386,51 +396,20 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         String nic = txtnic.getText(); 
         String passport = txtpassport.getText();
         String address = txtaddress.getText();
-        
-        DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-        String date = da.format(txtdob.getDate());
-        String Gender;
-        
-        if(male.isSelected()) {
-            Gender = "Male";
-        } else {
-            Gender = "FeMale";
-        }
-        
+        Date date = dc_dob.getDate();
         String contact = txtcontact.getText();
-         
-        try {
-            con = DbUtils.getDbConnection();
-            pst = con.prepareStatement("update customer set firstname = ?,lastname = ?,nic = ?,passport = ?,address= ?,dob = ?,gender = ?,contact = ?,photo = ? where id = ?");
-            
-
-            pst.setString(1, firstname);
-            pst.setString(2, lastname);
-            pst.setString(3, nic);
-            pst.setString(4, passport);
-            pst.setString(5, address);
-            pst.setString(6, date);
-            pst.setString(7, Gender);
-            pst.setString(8, contact);
-            pst.setBytes(9, userimage);
-            pst.setString(10, id);
-            pst.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Registation Updateddddd.........");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String gender = (rb_male.isSelected()) ? "Male" : "Female";
+        updateCustomer(id, firstname, lastname, nic, passport, 
+                        address, date, contact, gender, userImage);
     }//GEN-LAST:event_b_updateActionPerformed
 
-    private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
+    private void btnClickedCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClickedCancelActionPerformed
         // TODO add your handling code here:
-        
+      
         this.hide();
-    }//GEN-LAST:event_b_cancelActionPerformed
+    }//GEN-LAST:event_btnClickedCancelActionPerformed
 
-    private void b_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchActionPerformed
+    private void b_findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_findActionPerformed
         // TODO add your handling code here:
         
         String id = txtcustid.getText();
@@ -462,12 +441,12 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                 ImageIcon newImage = new ImageIcon(myImg);
                  
                 if(gender.equals("Female")) {
-                     male.setSelected(false);
-                     female.setSelected(true);
+                     rb_male.setSelected(false);
+                     rb_female.setSelected(true);
                 }
                 else {
-                    male.setSelected(true);
-                    female.setSelected(false);
+                    rb_male.setSelected(true);
+                    rb_female.setSelected(false);
                 }
                 String contact = rs.getString("contact");
                  
@@ -477,7 +456,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                 txtpassport.setText(passport.trim());
                 txtaddress.setText(address.trim());
                 txtcontact.setText(contact.trim());
-                txtdob.setDate(date1);
+                dc_dob.setDate(date1);
                 txtphoto.setIcon(newImage);
             }     
         } catch (ClassNotFoundException ex) {
@@ -487,35 +466,155 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         } catch (ParseException ex) {
             Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
         } 
-    }//GEN-LAST:event_b_searchActionPerformed
+    }//GEN-LAST:event_b_findActionPerformed
 
+       boolean isValidName(String name) {
+        if (name.length() < 2 || name.length() > 15) {
+            JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
+            return false;
+        }
+        if (!name.chars().allMatch(Character::isLetter)) {
+            JOptionPane.showMessageDialog(this, "Names may only contains letters");
+            return false;
+        }
+        return true;
+    }
+        
+    boolean isValidNIC(String nic) {
+        if (nic.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "There is no valid NIC");
+            return false;
+        }
+        return true;
+    }
+    
+    boolean hasValidID(String id) {
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "There is no valid ID");
+            return false;
+        }
+        return true;
+    }
+    
+    boolean isValidPassport(String passport) {
+        if (!passport.matches("^(?!^0+$)[a-zA-Z0-9]{3,20}$")) {
+            JOptionPane.showMessageDialog(this, "Passport is not valid");
+            return false;
+        }
+        try {
+            if (dbManager == null) dbManager = DbUtils.getDBManager();
+            if (dbManager.isPassportTaken(passport)) {
+                JOptionPane.showMessageDialog(this, "Passport is already associated with another customer");
+                return false;
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Unable to connect to database");
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "An error occurred "
+                    + "interacting with the database");
+        }
+        return true;
+    }
+    
+    boolean isValidAddress(String address) {
+        if (address.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Address is not valid");
+            return false;
+        }
+        return true;
+    }
+    
+    boolean isValidDate(Date date) {
+        DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            da.format(date);   
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Date is not formatted correctly");
+            return false;
+        }
+        return true;
+    }
+    
+    boolean hasSelectedGender() {
+        if (rb_female.isSelected() || rb_male.isSelected()) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Please selected a gender");
+            return false;
+        }
+    }
+    
+    boolean hasValidContact(String contact) {
+        if (contact.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a contact");
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    boolean hasValidInputs(String id, String firstname, String lastname, String nic, 
+            String passport, String address, Date date, String contact) {
+        return hasValidID(id) && isValidName(firstname) && isValidName(lastname)
+                && isValidNIC(nic) && isValidAddress(address)
+                && isValidDate(date) && hasValidContact(contact);
+    }
+    
+    void updateCustomer(String id, String firstname, String lastname, String nic, 
+        String passport, String address, Date date, String contact, String gender,
+        byte[] userImage) {
+        System.out.println("Update customers");
+        if (hasValidInputs(id, firstname, lastname, nic, passport, address,
+                date, contact)) {
+            System.out.println("has valid inputs");
+            try {
+                if (dbManager == null) dbManager = DbUtils.getDBManager();
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String dateFormatted = formatter.format(date);
+                dbManager.updateCustomer(id, firstname, lastname, nic, passport, 
+                        address, dateFormatted, contact, gender, userImage);
+                JOptionPane.showMessageDialog(null,"File Updated...");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Unable to connect to database");
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "An error occurred "
+                    + "interacting with the database");
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_browse;
-    private javax.swing.JButton b_cancel;
-    private javax.swing.JButton b_search;
+    private javax.swing.JButton b_find;
     private javax.swing.JButton b_update;
-    private javax.swing.JRadioButton female;
-    private javax.swing.JPanel jPanel1;
+    protected javax.swing.JButton btnClickedCancel;
+    private com.toedter.calendar.JDateChooser dc_dob;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel l_address;
     private javax.swing.JLabel l_contact;
-    private javax.swing.JLabel l_customer_id;
+    private javax.swing.JLabel l_customerID;
     private javax.swing.JLabel l_dob;
-    private javax.swing.JLabel l_first_name;
+    private javax.swing.JPanel l_firstName;
+    private javax.swing.JLabel l_firstname;
     private javax.swing.JLabel l_gender;
-    private javax.swing.JLabel l_last_name;
+    private javax.swing.JLabel l_lastName;
     private javax.swing.JLabel l_nic;
     private javax.swing.JLabel l_passport;
-    private javax.swing.JRadioButton male;
+    private javax.swing.JRadioButton rb_female;
+    private javax.swing.JRadioButton rb_male;
     private javax.swing.JTextArea txtaddress;
     private javax.swing.JTextField txtcontact;
     private javax.swing.JTextField txtcustid;
-    private com.toedter.calendar.JDateChooser txtdob;
     private javax.swing.JTextField txtfirstname;
     private javax.swing.JTextField txtlastname;
     private javax.swing.JTextField txtnic;
     private javax.swing.JTextField txtpassport;
     private javax.swing.JLabel txtphoto;
     // End of variables declaration//GEN-END:variables
+
+
 }
