@@ -43,19 +43,19 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="337" max="-2" attributes="0"/>
-                              <Component id="BtnClickedBrowse" min="-2" pref="87" max="-2" attributes="0"/>
+                              <Component id="b_browse" min="-2" pref="87" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="BtnClickedUpdate" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="b_update" min="-2" pref="105" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="BtnClickedCancel" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="btnClickedCancel" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="BtnClickedFind" min="-2" pref="81" max="-2" attributes="0"/>
+                      <Component id="b_find" min="-2" pref="81" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="24" max="32767" attributes="0"/>
@@ -69,7 +69,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="l_customerID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtcustid" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnClickedFind" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="b_find" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -81,11 +81,11 @@
                           <Component id="jPanel2" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="BtnClickedBrowse" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="b_browse" min="-2" pref="33" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="BtnClickedUpdate" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="BtnClickedCancel" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="b_update" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="btnClickedCancel" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -111,7 +111,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="l_firstname" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                   <Component id="txtfirstname" max="32767" attributes="0"/>
                               </Group>
@@ -146,7 +146,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="l_firstname" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtfirstname" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -175,7 +175,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="l_firstname">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="1"/>
@@ -390,34 +390,28 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BtnClickedBrowse">
+    <Component class="javax.swing.JButton" name="b_browse">
       <Properties>
         <Property name="text" type="java.lang.String" value="Browse"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnClickedBrowseActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_browseActionPerformed"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-      </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="BtnClickedUpdate">
+    <Component class="javax.swing.JButton" name="b_update">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnClickedUpdateActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_updateActionPerformed"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-      </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="BtnClickedCancel">
+    <Component class="javax.swing.JButton" name="btnClickedCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnClickedCancelActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClickedCancelActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
@@ -425,16 +419,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtcustid">
     </Component>
-    <Component class="javax.swing.JButton" name="BtnClickedFind">
+    <Component class="javax.swing.JButton" name="b_find">
       <Properties>
         <Property name="text" type="java.lang.String" value="Find"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnClickedFindActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_findActionPerformed"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

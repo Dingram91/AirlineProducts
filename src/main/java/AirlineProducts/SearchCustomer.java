@@ -37,17 +37,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * and open the template in the editor.
  */
 public class SearchCustomer extends javax.swing.JInternalFrame {
-
     
     private String path = null;
     private byte[] userImage = null;
     private DBManager dbManager;
-    
-    Connection con;
-    PreparedStatement pst;
-    
+
+   
     /**
-     * Creates new form addCustomer
+     * Creates new form SearchCustomer
      */
     public SearchCustomer() {
         initComponents();
@@ -56,10 +53,14 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         group.add(rb_female);
         group.add(rb_male);
     }
-    
-    public void setDBManager(DBManager dbManager) {
+   
+        public void setDBManager(DBManager dbManager) {
         this.dbManager = dbManager;
     }
+        
+    Connection con;
+    PreparedStatement pst;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,7 +72,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         l_firstName = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        l_firstname = new javax.swing.JLabel();
         l_lastName = new javax.swing.JLabel();
         l_nic = new javax.swing.JLabel();
         l_passport = new javax.swing.JLabel();
@@ -92,17 +93,17 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         txtcontact = new javax.swing.JTextField();
         dc_dob = new com.toedter.calendar.JDateChooser();
         txtphoto = new javax.swing.JLabel();
-        BtnClickedBrowse = new javax.swing.JButton();
-        BtnClickedUpdate = new javax.swing.JButton();
-        BtnClickedCancel = new javax.swing.JButton();
+        b_browse = new javax.swing.JButton();
+        b_update = new javax.swing.JButton();
+        btnClickedCancel = new javax.swing.JButton();
         txtcustid = new javax.swing.JTextField();
-        BtnClickedFind = new javax.swing.JButton();
+        b_find = new javax.swing.JButton();
 
         l_firstName.setBackground(new java.awt.Color(51, 0, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("FirstName");
+        l_firstname.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        l_firstname.setForeground(new java.awt.Color(255, 255, 255));
+        l_firstname.setText("FirstName");
 
         l_lastName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_lastName.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,7 +147,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                     .addGroup(l_firstNameLayout.createSequentialGroup()
                         .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(l_firstNameLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(l_firstname)
                                 .addGap(47, 47, 47)
                                 .addComponent(txtfirstname))
                             .addGroup(l_firstNameLayout.createSequentialGroup()
@@ -171,7 +172,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
             .addGroup(l_firstNameLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(l_firstname)
                     .addComponent(txtfirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(l_firstNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -258,31 +259,31 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 
         txtphoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        BtnClickedBrowse.setText("Browse");
-        BtnClickedBrowse.addActionListener(new java.awt.event.ActionListener() {
+        b_browse.setText("Browse");
+        b_browse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnClickedBrowseActionPerformed(evt);
+                b_browseActionPerformed(evt);
             }
         });
 
-        BtnClickedUpdate.setText("Update");
-        BtnClickedUpdate.addActionListener(new java.awt.event.ActionListener() {
+        b_update.setText("Update");
+        b_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnClickedUpdateActionPerformed(evt);
+                b_updateActionPerformed(evt);
             }
         });
 
-        BtnClickedCancel.setText("Cancel");
-        BtnClickedCancel.addActionListener(new java.awt.event.ActionListener() {
+        btnClickedCancel.setText("Cancel");
+        btnClickedCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnClickedCancelActionPerformed(evt);
+                btnClickedCancelActionPerformed(evt);
             }
         });
 
-        BtnClickedFind.setText("Find");
-        BtnClickedFind.addActionListener(new java.awt.event.ActionListener() {
+        b_find.setText("Find");
+        b_find.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnClickedFindActionPerformed(evt);
+                b_findActionPerformed(evt);
             }
         });
 
@@ -310,15 +311,15 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                                 .addComponent(txtphoto, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(337, 337, 337)
-                                .addComponent(BtnClickedBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(b_browse, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(BtnClickedUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(b_update, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(BtnClickedCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnClickedCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(BtnClickedFind, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(b_find, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -328,7 +329,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_customerID)
                     .addComponent(txtcustid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnClickedFind))
+                    .addComponent(b_find))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(l_firstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,11 +339,11 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                             .addComponent(txtphoto, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(BtnClickedBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(b_browse, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BtnClickedUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BtnClickedCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(b_update, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnClickedCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(49, 49, 49))
         );
 
@@ -357,7 +358,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpassportActionPerformed
 
-    private void BtnClickedBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClickedBrowseActionPerformed
+    private void b_browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_browseActionPerformed
         // TODO add your handling code here:
 
         try {
@@ -382,11 +383,11 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
             }
             userImage=baos.toByteArray();              
         } catch (IOException ex) {
-            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_BtnClickedBrowseActionPerformed
+    }//GEN-LAST:event_b_browseActionPerformed
 
-    private void BtnClickedUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClickedUpdateActionPerformed
+    private void b_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_updateActionPerformed
         // TODO add your handling code here:
         
         String id = txtcustid.getText();
@@ -395,54 +396,20 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         String nic = txtnic.getText(); 
         String passport = txtpassport.getText();
         String address = txtaddress.getText();
-        String contact = txtcontact.getText();
         Date date = dc_dob.getDate();
-        
+        String contact = txtcontact.getText();
         String gender = (rb_male.isSelected()) ? "Male" : "Female";
-        
-        updateCustomer(id, firstname, lastname, nic, passport, address, date, contact, gender, userImage);
+        updateCustomer(id, firstname, lastname, nic, passport, 
+                        address, date, contact, gender, userImage);
+    }//GEN-LAST:event_b_updateActionPerformed
 
-    }//GEN-LAST:event_BtnClickedUpdateActionPerformed
-    
-        boolean hasValidInputs(String id, String firstname, String lastname, String nic, 
-            String passport, String address, Date date, String contact) {
-        return hasValidID(id) && isValidName(firstname) && isValidName(lastname)
-                && isValidNIC(nic) && isValidAddress(address)
-                && isValidDate(date) && hasValidContact(contact);
-    }
-    
-    void updateCustomer(String id, String firstname, String lastname, String nic, 
-        String passport, String address, Date date, String contact, String gender,
-        byte[] userImage) {
-        System.out.println("Insert customers");
-        if (hasValidInputs(id, firstname, lastname, nic, passport, address,
-                date, contact)) {
-            System.out.println("has valid inputs");
-            try {
-                if (dbManager == null) dbManager = DbUtils.getDBManager();
-                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                String dateFormatted = formatter.format(date);
-                dbManager.insertCustomer(id, firstname, lastname, nic, passport, 
-                        address, dateFormatted, contact, gender, userImage);
-                JOptionPane.showMessageDialog(null,"Registation Createdd...");
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this, "Unable to connect to database");
-            } catch (SQLException ex) {
-                Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this, "An error occurred "
-                    + "interacting with the database");
-            }
-        }
-     
-    }
-    private void BtnClickedCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClickedCancelActionPerformed
+    private void btnClickedCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClickedCancelActionPerformed
         // TODO add your handling code here:
       
         this.hide();
-    }//GEN-LAST:event_BtnClickedCancelActionPerformed
+    }//GEN-LAST:event_btnClickedCancelActionPerformed
 
-    private void BtnClickedFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClickedFindActionPerformed
+    private void b_findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_findActionPerformed
         // TODO add your handling code here:
         
         String id = txtcustid.getText();
@@ -499,21 +466,21 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         } catch (ParseException ex) {
             Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
         } 
-    }//GEN-LAST:event_BtnClickedFindActionPerformed
+    }//GEN-LAST:event_b_findActionPerformed
 
-        boolean isValidName(String firstname) {
-        if (firstname.length() < 2 || firstname.length() > 15) {
+       boolean isValidName(String name) {
+        if (name.length() < 2 || name.length() > 15) {
             JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
             return false;
         }
-        if (!firstname.chars().allMatch(Character::isLetter)) {
+        if (!name.chars().allMatch(Character::isLetter)) {
             JOptionPane.showMessageDialog(this, "Names may only contains letters");
             return false;
         }
         return true;
     }
         
-         boolean isValidNIC(String nic) {
+    boolean isValidNIC(String nic) {
         if (nic.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid NIC");
             return false;
@@ -541,10 +508,10 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                 return false;
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Unable to connect to database");
         } catch (SQLException ex) {
-            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "An error occurred "
                     + "interacting with the database");
         }
@@ -559,7 +526,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         return true;
     }
     
-     boolean isValidDate(Date date) {
+    boolean isValidDate(Date date) {
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         try {
             da.format(date);   
@@ -569,9 +536,8 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         }
         return true;
     }
-        
-     
-     boolean hasSelectedGender() {
+    
+    boolean hasSelectedGender() {
         if (rb_female.isSelected() || rb_male.isSelected()) {
             return true;
         } else {
@@ -579,8 +545,8 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
             return false;
         }
     }
-     
-     boolean hasValidContact(String contact) {
+    
+    boolean hasValidContact(String contact) {
         if (contact.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a contact");
             return false;
@@ -588,15 +554,44 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
             return true;
         }
     }
-     
-     
+    
+    boolean hasValidInputs(String id, String firstname, String lastname, String nic, 
+            String passport, String address, Date date, String contact) {
+        return hasValidID(id) && isValidName(firstname) && isValidName(lastname)
+                && isValidNIC(nic) && isValidAddress(address)
+                && isValidDate(date) && hasValidContact(contact);
+    }
+    
+    void updateCustomer(String id, String firstname, String lastname, String nic, 
+        String passport, String address, Date date, String contact, String gender,
+        byte[] userImage) {
+        System.out.println("Update customers");
+        if (hasValidInputs(id, firstname, lastname, nic, passport, address,
+                date, contact)) {
+            System.out.println("has valid inputs");
+            try {
+                if (dbManager == null) dbManager = DbUtils.getDBManager();
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String dateFormatted = formatter.format(date);
+                dbManager.updateCustomer(id, firstname, lastname, nic, passport, 
+                        address, dateFormatted, contact, gender, userImage);
+                JOptionPane.showMessageDialog(null,"File Updated...");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Unable to connect to database");
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "An error occurred "
+                    + "interacting with the database");
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton BtnClickedBrowse;
-    protected javax.swing.JButton BtnClickedCancel;
-    protected javax.swing.JButton BtnClickedFind;
-    protected javax.swing.JButton BtnClickedUpdate;
+    private javax.swing.JButton b_browse;
+    private javax.swing.JButton b_find;
+    private javax.swing.JButton b_update;
+    protected javax.swing.JButton btnClickedCancel;
     private com.toedter.calendar.JDateChooser dc_dob;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel l_address;
@@ -604,6 +599,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
     private javax.swing.JLabel l_customerID;
     private javax.swing.JLabel l_dob;
     private javax.swing.JPanel l_firstName;
+    private javax.swing.JLabel l_firstname;
     private javax.swing.JLabel l_gender;
     private javax.swing.JLabel l_lastName;
     private javax.swing.JLabel l_nic;
