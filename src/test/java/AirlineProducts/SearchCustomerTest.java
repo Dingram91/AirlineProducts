@@ -7,12 +7,16 @@ package AirlineProducts;
 
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import junit.framework.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
@@ -148,5 +152,29 @@ public class SearchCustomerTest {
         
         // Test non-empty contact
         assertEquals(true, instance.hasValidContact("contact"));
+    }
+    
+        /**
+     * Test of insertCustomer method, of class SearchCustomer.
+     */
+    @Test
+    public void testUpdateCustomer() throws SQLException, ClassNotFoundException {
+        System.out.println("Updated Customer");
+        SearchCustomer instance = new SearchCustomer();
+        DBManager dbManager = mock(DBManager.class);
+        instance.setDBManager(dbManager);
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        
+        System.out.println("About to call update customer");
+        instance.updateCustomer("CS1000", "john", "doe", "nic", "02345", "address",
+                new Date(), "michael", "male", null);
+        verify(dbManager, times(1)).updateCustomer("CS1000", "john", "doe", "nic", "02345", "address",
+                formatter.format(new Date()), "michael", "male", null);
+        
+        instance.updateCustomer("", "", "", "", "", "",
+                new Date(), "", "", null);
+        verify(dbManager, times(0)).updateCustomer(null, null, null, null, null, null,
+                null, null, null, null);
+        
     }
 }
