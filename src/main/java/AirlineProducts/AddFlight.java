@@ -310,22 +310,22 @@ public class AddFlight extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_addFlightClicked
 
-    static boolean isValidFlightName(String name) {
+    public static boolean isValidFlightName(String name) {
         return (name.length() > 0) && (name.chars()
                 .allMatch(Character::isLetter));
     }
 
-    static boolean isValidateTime(String time) {
+    public static boolean isValidateTime(String time) {
         return time.matches("(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)(am|pm)");
 
     }
 
-    static boolean isValidCost(String cost) {
+    public static boolean isValidCost(String cost) {
         return (cost.length() > 0) && (cost.chars()
                 .allMatch(Character::isDigit));
     }
 
-    String validateDate(Date date) throws IllegalArgumentException {
+    public String validateDate(Date date) throws IllegalArgumentException {
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         String validDate = "";
 

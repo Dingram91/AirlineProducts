@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AirlineProducts;
+package AirlineProducts.Unit;
 
+import AirlineProducts.AddFlight;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +26,6 @@ public class AddFlightTest {
 
     @Test
     public void testIsValidFlightName() {
-//        boolean expResult = Boolean.parseBoolean(exp);
         assertEquals(false, AddFlight.isValidFlightName(" "));
         assertEquals(true, AddFlight.isValidFlightName("aa"));
         assertEquals(false, AddFlight.isValidFlightName("!"));

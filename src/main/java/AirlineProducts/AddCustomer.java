@@ -326,7 +326,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         }
     }
     
-    String generateID(String maxID) {
+    public String generateID(String maxID) {
         if (maxID == null) {
             return "CS001";
         } else {
@@ -384,7 +384,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_b_cancelActionPerformed
 
-    boolean isValidName(String name) {
+    public boolean isValidName(String name) {
         if (name.length() < 2 || name.length() > 15) {
             JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
             return false;
@@ -396,7 +396,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
     
-    boolean isValidNIC(String nic) {
+    public boolean isValidNIC(String nic) {
         if (nic.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid NIC");
             return false;
@@ -404,7 +404,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
     
-    boolean hasValidID(String id) {
+    public boolean hasValidID(String id) {
         if (id.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid ID");
             return false;
@@ -412,7 +412,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
     
-    boolean isValidPassport(String passport) {
+    public boolean isValidPassport(String passport) {
         if (!passport.matches("^(?!^0+$)[a-zA-Z0-9]{3,20}$")) {
             JOptionPane.showMessageDialog(this, "Passport is not valid");
             return false;
@@ -434,7 +434,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
     
-    boolean isValidAddress(String address) {
+    public boolean isValidAddress(String address) {
         if (address.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Address is not valid");
             return false;
@@ -442,7 +442,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
     
-    boolean isValidDate(Date date) {
+    public boolean isValidDate(Date date) {
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         try {
             da.format(date);   
@@ -453,7 +453,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
     
-    boolean hasSelectedGender() {
+    public boolean hasSelectedGender() {
         if (rb_female.isSelected() || rb_male.isSelected()) {
             return true;
         } else {
@@ -462,7 +462,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         }
     }
     
-    boolean hasValidContact(String contact) {
+    public boolean hasValidContact(String contact) {
         if (contact.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a contact");
             return false;
@@ -471,20 +471,18 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         }
     }
     
-    boolean hasValidInputs(String id, String firstname, String lastname, String nic, 
+    public boolean hasValidInputs(String id, String firstname, String lastname, String nic, 
             String passport, String address, Date date, String contact) {
         return hasValidID(id) && isValidName(firstname) && isValidName(lastname)
                 && isValidNIC(nic) && isValidAddress(address)
                 && isValidDate(date) && hasValidContact(contact);
     }
     
-    void insertCustomer(String id, String firstname, String lastname, String nic, 
+    public void insertCustomer(String id, String firstname, String lastname, String nic, 
         String passport, String address, Date date, String contact, String gender,
         byte[] userImage) {
-        System.out.println("Insert customers");
         if (hasValidInputs(id, firstname, lastname, nic, passport, address,
                 date, contact)) {
-            System.out.println("has valid inputs");
             try {
                 if (dbManager == null) dbManager = DbUtils.getDBManager();
                 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

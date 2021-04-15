@@ -155,11 +155,11 @@ public class Login extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_b_cancelActionPerformed
 
-    boolean hasValidInputs(String username, String password) {
+    public boolean hasValidInputs(String username, String password) {
         return !(username.isEmpty() ||  password.isEmpty());
     }
     
-    boolean isValidUser(String username, String password) throws SQLException, ClassNotFoundException {
+    public boolean isValidUser(String username, String password) throws SQLException, ClassNotFoundException {
         Connection connection = DbUtils.getDbConnection();
         PreparedStatement statement = 
                 connection.prepareStatement("select * from user where "

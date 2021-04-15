@@ -215,7 +215,7 @@ public class UserCreation extends javax.swing.JInternalFrame {
         }
     }
 
-    String generateID(String maxID) {
+    public String generateID(String maxID) {
         if (maxID == null) {
             return "UO001";
         } else {
@@ -224,7 +224,7 @@ public class UserCreation extends javax.swing.JInternalFrame {
         }
     }
 
-    boolean isValidName(String name) {
+    public boolean isValidName(String name) {
         if (name.length() < 2 || name.length() > 15) {
             JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
             return false;
@@ -236,7 +236,7 @@ public class UserCreation extends javax.swing.JInternalFrame {
         return true;
     }
 
-    boolean isValidUsername(String username) {
+    public boolean isValidUsername(String username) {
         if (username.length() < 2 || username.length() > 15) {
             JOptionPane.showMessageDialog(this, "Username must be between 2 and 15 characters");
             return false;
@@ -267,7 +267,7 @@ public class UserCreation extends javax.swing.JInternalFrame {
         return true;
     }
 
-    boolean isValidPassword(String password) {
+    public boolean isValidPassword(String password) {
         if (password.length() < 6 || password.length() > 15) {
             JOptionPane.showMessageDialog(this, "Password must be between 6 and 15 characters");
             return false;
@@ -283,7 +283,7 @@ public class UserCreation extends javax.swing.JInternalFrame {
         return true;
     }
 
-    boolean hasValidID(String id) {
+    public boolean hasValidID(String id) {
         if (id.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid ID");
             return false;
