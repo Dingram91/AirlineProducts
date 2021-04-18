@@ -584,9 +584,9 @@ public class ticket extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnClickedCancel
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton BtnClickedSearchCustomer;
-    protected javax.swing.JButton BtnClickedSearchFlights;
-    protected javax.swing.JButton CancelButton;
+    public javax.swing.JButton BtnClickedSearchCustomer;
+    public javax.swing.JButton BtnClickedSearchFlights;
+    public javax.swing.JButton CancelButton;
     private javax.swing.JLabel flightname;
     private javax.swing.JLabel flightno;
     protected javax.swing.JButton jButton1;
@@ -613,7 +613,7 @@ public class ticket extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextField txtPrice;
     protected javax.swing.JSpinner txtSeats;
-    protected javax.swing.JLabel txtTicketNum;
+    public javax.swing.JLabel txtTicketNum;
     private javax.swing.JLabel txtTotal;
     private javax.swing.JComboBox<String> txtdepart;
     private javax.swing.JLabel txtdept;
