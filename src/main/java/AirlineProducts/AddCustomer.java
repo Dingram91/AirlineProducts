@@ -339,29 +339,7 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         File picture = FileUtils.showFileChooser();
         if (picture != null) {
-            path = picture.getAbsolutePath();
-            BufferedImage imgBuff;
-            ByteArrayOutputStream output = new ByteArrayOutputStream();
-            try {                
-                imgBuff = ImageIO.read(picture);
-                if (imgBuff == null) {
-                    path = null;
-                    JOptionPane.showMessageDialog(this, "File is not an image");
-                    return;
-                }
-                FileInputStream input = new FileInputStream(picture);
-                byte[] buff = new byte[1024];
-                for(int readNum; (readNum = input.read(buff)) !=-1 ; ) {
-                    output.write(buff,0,readNum);
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this, "There was an issue processing the file");
-                return;
-            }
-            userImage = output.toByteArray();
-            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imgBuff).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
-            j_photo.setIcon(imageIcon);
+            processPicture(picture);
         }
     }//GEN-LAST:event_b_browseActionPerformed
 
@@ -384,6 +362,32 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_b_cancelActionPerformed
 
+    public void processPicture(File picture) {
+        path = picture.getAbsolutePath();
+        BufferedImage imgBuff;
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        try {                
+            imgBuff = ImageIO.read(picture);
+            if (imgBuff == null) {
+                path = null;
+                JOptionPane.showMessageDialog(this, "File is not an image");
+                return;
+            }
+            FileInputStream input = new FileInputStream(picture);
+            byte[] buff = new byte[1024];
+            for(int readNum; (readNum = input.read(buff)) !=-1 ; ) {
+                output.write(buff,0,readNum);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "There was an issue processing the file");
+            return;
+        }
+        userImage = output.toByteArray();
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon(imgBuff).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+        j_photo.setIcon(imageIcon);
+    }
+    
     public boolean isValidName(String name) {
         if (name.length() < 2 || name.length() > 15) {
             JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
