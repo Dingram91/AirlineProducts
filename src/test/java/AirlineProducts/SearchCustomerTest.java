@@ -177,4 +177,17 @@ public class SearchCustomerTest {
                 null, null, null, null);
         
     }
+    
+    @Test(timeout = 10000)
+    public void testDatePerformance(){
+ 
+        System.out.println("isValidDate");
+        SearchCustomer instance = new SearchCustomer();
+         // Test invalid date
+        assertEquals(false, instance.isValidDate(null));
+        
+        // Test valid date
+        assertEquals(true, instance.isValidDate(new Date()));
+    }
+   
 }
