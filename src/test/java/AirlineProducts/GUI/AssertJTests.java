@@ -3,7 +3,7 @@ package AirlineProducts.GUI;
 import AirlineProducts.Main;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
-import org.assertj.swing.fixture.JMenuItemFixture;
+import org.assertj.swing.fixture.JInternalFrameFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,15 +20,23 @@ public class AssertJTests {
     public void setUp() {
         Main frame = GuiActionRunner.execute(() -> new Main());
         window = new FrameFixture(frame);
-        window.show(); // shows the frame to test
+//        window.show(); // shows the frame to test
     }
 
     @Test
     public void firstTest() {
         System.out.println("test");
 
-        JMenuItemFixture addCustomer = window.menuItem("mi_add_customer");
+//        JMenuItemFixture addCustomer = window.menuItem("addCustomerComp").click();
+//        JInternalFrameFixture addCustomerFrame = window.internalFrame("AddCustomerFrame");
+        window.menuItem("searchCustomerMI").click();
+        JInternalFrameFixture searchCustomerFrame = window.internalFrame("searchCustomerFrame");
+        searchCustomerFrame.textBox("customerIDBox").enterText("CS001");
+        searchCustomerFrame.button("findButton").click();
 
+        System.out.println(searchCustomerFrame.textBox("firstNameBox").text());
+
+//        System.out.println("firstName = " );
 //        ComponentFinder finder = BasicComponentFinder.finderWithNewAwtHierarchy();
 //        finder.findByName("mi_add_customer");
 //        window.menuItem("Search Customer").click();
