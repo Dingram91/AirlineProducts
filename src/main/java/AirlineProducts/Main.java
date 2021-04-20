@@ -61,6 +61,7 @@ public class Main extends javax.swing.JFrame {
         jMenu1.setText("Customer");
 
         mi_add_customer.setText("Add Customer");
+        mi_add_customer.setName("mi_add_customer"); // NOI18N
         mi_add_customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_add_customerActionPerformed(evt);
@@ -69,6 +70,7 @@ public class Main extends javax.swing.JFrame {
         jMenu1.add(mi_add_customer);
 
         mi_search_customer.setText("Search Customer");
+        mi_search_customer.setName("mi_search_customer"); // NOI18N
         mi_search_customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_search_customerActionPerformed(evt);
@@ -81,6 +83,7 @@ public class Main extends javax.swing.JFrame {
         jMenu2.setText("Tickets");
 
         mi_book_ticket.setText("Book Ticket");
+        mi_book_ticket.setName("mi_book_ticket"); // NOI18N
         mi_book_ticket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_book_ticketActionPerformed(evt);
@@ -89,6 +92,7 @@ public class Main extends javax.swing.JFrame {
         jMenu2.add(mi_book_ticket);
 
         mi_ticket_report.setText("Ticket Report");
+        mi_ticket_report.setName("mi_ticket_report"); // NOI18N
         mi_ticket_report.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_ticket_reportActionPerformed(evt);
@@ -101,6 +105,7 @@ public class Main extends javax.swing.JFrame {
         jMenu3.setText("Flight");
 
         mi_add_flight.setText("Add Flight");
+        mi_add_flight.setName("mi_add_flight"); // NOI18N
         mi_add_flight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_add_flightActionPerformed(evt);
@@ -113,6 +118,7 @@ public class Main extends javax.swing.JFrame {
         jMenu4.setText("User");
 
         mi_user_creation.setText("UserCreation");
+        mi_user_creation.setName("mi_user_creation"); // NOI18N
         mi_user_creation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_user_creationActionPerformed(evt);

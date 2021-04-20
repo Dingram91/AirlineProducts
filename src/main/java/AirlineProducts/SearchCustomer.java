@@ -99,6 +99,8 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         txtcustid = new javax.swing.JTextField();
         b_find = new javax.swing.JButton();
 
+        setName("search_customer"); // NOI18N
+
         l_firstName.setBackground(new java.awt.Color(51, 0, 255));
 
         l_firstname.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

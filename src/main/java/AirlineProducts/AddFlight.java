@@ -59,6 +59,8 @@ public class AddFlight extends javax.swing.JInternalFrame {
         txtsource = new javax.swing.JComboBox<>();
         txtdepart = new javax.swing.JComboBox<>();
 
+        setName("add_flight"); // NOI18N
+
         jPanel1.setBackground(new java.awt.Color(51, 51, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

@@ -18,7 +18,7 @@ import java.sql.Statement;
  */
 public class DbUtils {
     
-    private static String DB_PASSWORD = "";
+    private static String DB_PASSWORD = "blink4141";
     
     private static Connection connection;
     

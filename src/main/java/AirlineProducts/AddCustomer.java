@@ -82,6 +82,8 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         b_add = new javax.swing.JButton();
         b_cancel = new javax.swing.JButton();
 
+        setName("add_customer"); // NOI18N
+
         p_one.setBackground(new java.awt.Color(51, 0, 255));
 
         l_first_name.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
