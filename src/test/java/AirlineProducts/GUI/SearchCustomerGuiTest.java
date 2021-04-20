@@ -1,5 +1,6 @@
 package AirlineProducts.GUI;
 
+import static AirlineProducts.GUI.GuiTestHelperUtils.calculateContrast;
 import AirlineProducts.Main;
 import java.awt.Color;
 import org.assertj.swing.edt.GuiActionRunner;
@@ -48,6 +49,30 @@ public class SearchCustomerGuiTest {
 
     }
 
+    /**
+     * Make sure only one gender can be selected at a time
+     *
+     * @throws InterruptedException
+     */
+    @Test
+    public void onlyOneGenerSelectable() throws InterruptedException {
+        System.out.println("Testing searching for a customer");
+
+        window.menuItem("searchCustomerMI").click();
+        JInternalFrameFixture searchCustomerFrame = window.internalFrame("searchCustomerFrame");
+
+        searchCustomerFrame.radioButton("maleRadioButton").click();
+
+        searchCustomerFrame.radioButton("maleRadioButton").requireSelected();
+        searchCustomerFrame.radioButton("femaleRadioButton").requireNotSelected();
+
+        searchCustomerFrame.radioButton("femaleRadioButton").click();
+
+        searchCustomerFrame.radioButton("maleRadioButton").requireNotSelected();
+        searchCustomerFrame.radioButton("femaleRadioButton").requireSelected();
+
+    }
+
     // just test that pressing the close button hides the window
     @Test
     public void checkCancelButton() {
@@ -79,33 +104,6 @@ public class SearchCustomerGuiTest {
     @After
     public void tearDown() {
         window.cleanUp();
-    }
-
-    // Calculates the relative luminance (birghtness based on the human eye)
-    double calculateColorLuminance(Color c) {
-
-        double normRed = c.getRed() / 255;
-        double normGreen = c.getGreen() / 255;
-        double normBlue = c.getBlue() / 255;
-
-        double r = (normRed <= 0.03928) ? (normRed * 12.92) : (Math.pow((normRed + 0.055) / 1.055, 2.4));
-        double g = (normGreen <= 0.03928) ? (normGreen * 12.92) : (Math.pow((normGreen + 0.055) / 1.055, 2.4));
-        double b = (normBlue <= 0.03928) ? (normBlue * 12.92) : (Math.pow((normBlue + 0.055) / 1.055, 2.4));
-//        return ((normRed * 0.299) + (normGreen * 0.587)
-//                + (normBlue * 0.114));
-        return (0.2126 * r) + (0.7152 * g) + (0.0722 * b);
-    }
-
-    double calculateContrast(Color c1, Color c2) {
-        double c1Luminance = calculateColorLuminance(c1) + 0.05;
-        double c2Luminance = calculateColorLuminance(c2) + 0.05;
-        System.out.println("c1 lum = " + c1Luminance);
-        System.out.println("c2 lum = " + c2Luminance);
-        double larger = Math.max(c1Luminance, c2Luminance);
-        double smaller = Math.min(c1Luminance, c2Luminance);
-        double ratio = larger / smaller;
-        return ratio;
-
     }
 
 }

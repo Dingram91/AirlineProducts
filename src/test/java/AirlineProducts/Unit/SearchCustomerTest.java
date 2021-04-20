@@ -5,32 +5,32 @@
  */
 package AirlineProducts.Unit;
 
-import AirlineProducts.DBManager;
 import AirlineProducts.SearchCustomer;
-import java.awt.event.ActionEvent;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import junit.framework.Assert;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 
 /**
  *
  * @author kcamp
  */
 public class SearchCustomerTest {
-    
-        public SearchCustomerTest() {
+
+    public SearchCustomerTest() {
     }
 
+    @Test
+    public void testhasValidInputs() {
+        SearchCustomer instance = new SearchCustomer();
+        assertEquals(instance.hasValidInputs("CS999", "john", "smith", "14145", "235235235", "123 somplace, nm 31313", new Date(), "5555555555"), true);
+
+        assertEquals(instance.hasValidInputs("", "john", "smith", "14145", "235235235", "123 somplace, nm 31313", new Date(), "5555555555"), false);
+        assertEquals(instance.hasValidInputs("CS999", "", "smith", "14145", "235235235", "123 somplace, nm 31313", new Date(), "5555555555"), false);
+        assertEquals(instance.hasValidInputs("CS999", "john", "", "14145", "235235235", "123 somplace, nm 31313", new Date(), "5555555555"), false);
+        assertEquals(instance.hasValidInputs("CS999", "john", "smith", "", "235235235", "123 somplace, nm 31313", new Date(), "5555555555"), false);
+        assertEquals(instance.hasValidInputs("CS999", "john", "smith", "14145", "235235235", "", new Date(), "5555555555"), false);
+        assertEquals(instance.hasValidInputs("CS999", "john", "smith", "14145", "235235235", "123 somplace, nm 31313", new Date(), ""), false);
+    }
 
     /**
      * Test of isValidName method, of class SearchCustomer.
@@ -39,7 +39,7 @@ public class SearchCustomerTest {
     public void testIsValidName() {
         System.out.println("isValidName");
         SearchCustomer instance = new SearchCustomer();
-        
+
         // Test name that is too short - length = 1
         String name = "j";
         assertEquals(false, instance.isValidName(name));
@@ -56,6 +56,7 @@ public class SearchCustomerTest {
         name = "john";
         assertEquals(true, instance.isValidName(name));
     }
+
     /**
      * Test of isValidNIC method, of class SearchCustomer.
      */
@@ -63,10 +64,10 @@ public class SearchCustomerTest {
     public void testIsValidNIC() {
         System.out.println("isValidNIC");
         SearchCustomer instance = new SearchCustomer();
-        
+
         // Test empty NIC
         assertEquals(false, instance.isValidNIC(""));
-        
+
         // Test non-empty NIC
         assertEquals(true, instance.isValidNIC("NIC"));
     }
@@ -78,10 +79,10 @@ public class SearchCustomerTest {
     public void testHasValidID() {
         System.out.println("hasValidID");
         SearchCustomer instance = new SearchCustomer();
-        
+
         // Test empty ID
         assertEquals(false, instance.hasValidID(""));
-        
+
         // Test non-empty ID
         assertEquals(true, instance.hasValidID("ID"));
     }
@@ -93,14 +94,14 @@ public class SearchCustomerTest {
     public void testIsValidAddress() {
         System.out.println("isValidAddress");
         SearchCustomer instance = new SearchCustomer();
-        
+
         // Test empty address
         assertEquals(false, instance.isValidAddress(""));
-        
+
         // Test non-empty address
         assertEquals(true, instance.isValidAddress("my address"));
     }
-    
+
     /**
      * Test of isValidDate method, of class SearchCustomer.
      */
@@ -108,12 +109,18 @@ public class SearchCustomerTest {
     public void testIsValidDate() {
         System.out.println("isValidDate");
         SearchCustomer instance = new SearchCustomer();
-        
+
         // Test invalid date
         assertEquals(false, instance.isValidDate(null));
-        
+
         // Test valid date
         assertEquals(true, instance.isValidDate(new Date()));
+    }
+
+    @Test
+    public void checkHasValidGener() {
+        SearchCustomer instance = new SearchCustomer();
+        assertEquals(instance.hasSelectedGender(), false);
     }
 
     /**
@@ -123,10 +130,10 @@ public class SearchCustomerTest {
     public void testHasValidContact() {
         System.out.println("hasValidContact");
         SearchCustomer instance = new SearchCustomer();
-        
+
         // Test empty contact
         assertEquals(false, instance.hasValidContact(""));
-        
+
         // Test non-empty contact
         assertEquals(true, instance.hasValidContact("contact"));
     }

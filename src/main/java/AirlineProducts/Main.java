@@ -103,6 +103,7 @@ public class Main extends javax.swing.JFrame {
         jMenu3.setText("Flight");
 
         mi_add_flight.setText("Add Flight");
+        mi_add_flight.setName("addFlightMI"); // NOI18N
         mi_add_flight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_add_flightActionPerformed(evt);
