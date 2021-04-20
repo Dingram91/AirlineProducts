@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
-    <Property name="name" type="java.lang.String" value="add_customer" noResource="true"/>
+    <Property name="name" type="java.lang.String" value="AddCustomerFrame" noResource="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -225,12 +225,24 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tf_last_name">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="lastNameBox" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tf_first_name">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="firstNameBox" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tf_nic">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="nicNoBox" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tf_passport">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="passportIDBox" noResource="true"/>
+          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="sp_address">
           <AuxValues>
@@ -243,6 +255,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="name" type="java.lang.String" value="addressBox" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
