@@ -29,14 +29,14 @@ public class MainTest {
     
     @Test
     public void testAddCustomer() {
-        window.menuItem("mi_add_customer").click();
-        window.internalFrame("add_customer").requireVisible();
+        window.menuItem("addCustomerComp").click();
+        window.internalFrame("AddCustomerFrame").requireVisible();
     }
     
     @Test
     public void testSearchCustomer() {
-        window.menuItem("mi_search_customer").click();
-        window.internalFrame("search_customer").requireVisible();
+        window.menuItem("searchCustomerMI").click();
+        window.internalFrame("searchCustomerFrame").requireVisible();
     }
     
     @Test

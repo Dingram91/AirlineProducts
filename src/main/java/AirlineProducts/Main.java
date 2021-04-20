@@ -102,6 +102,7 @@ public class Main extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Flight");
+        jMenu3.setName(""); // NOI18N
 
         mi_add_flight.setText("Add Flight");
         mi_add_flight.setName("mi_add_flight"); // NOI18N
