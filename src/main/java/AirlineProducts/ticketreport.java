@@ -40,6 +40,8 @@ public class ticketreport extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
+        setName("ticket_report"); // NOI18N
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

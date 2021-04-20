@@ -7,14 +7,13 @@ package AirlineProducts;
  * and open the template in the editor.
  */
 public class Main extends javax.swing.JFrame {
-    
+
     public AddCustomer addCustomer;
     public SearchCustomer searchCustomer;
     public AddFlight addFlight;
     public ticket ticket;
     public ticketreport ticketReport;
     public UserCreation userCreation;
-    
 
     /**
      * Creates new form Main
@@ -61,6 +60,7 @@ public class Main extends javax.swing.JFrame {
         jMenu1.setText("Customer");
 
         mi_add_customer.setText("Add Customer");
+        mi_add_customer.setName("addCustomerComp"); // NOI18N
         mi_add_customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_add_customerActionPerformed(evt);
@@ -69,6 +69,7 @@ public class Main extends javax.swing.JFrame {
         jMenu1.add(mi_add_customer);
 
         mi_search_customer.setText("Search Customer");
+        mi_search_customer.setName("searchCustomerMI"); // NOI18N
         mi_search_customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_search_customerActionPerformed(evt);
@@ -81,6 +82,7 @@ public class Main extends javax.swing.JFrame {
         jMenu2.setText("Tickets");
 
         mi_book_ticket.setText("Book Ticket");
+        mi_book_ticket.setName("mi_book_ticket"); // NOI18N
         mi_book_ticket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_book_ticketActionPerformed(evt);
@@ -89,6 +91,7 @@ public class Main extends javax.swing.JFrame {
         jMenu2.add(mi_book_ticket);
 
         mi_ticket_report.setText("Ticket Report");
+        mi_ticket_report.setName("mi_ticket_report"); // NOI18N
         mi_ticket_report.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_ticket_reportActionPerformed(evt);
@@ -99,8 +102,10 @@ public class Main extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Flight");
+        jMenu3.setName(""); // NOI18N
 
         mi_add_flight.setText("Add Flight");
+        mi_add_flight.setName("mi_add_flight"); // NOI18N
         mi_add_flight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_add_flightActionPerformed(evt);
@@ -113,6 +118,7 @@ public class Main extends javax.swing.JFrame {
         jMenu4.setText("User");
 
         mi_user_creation.setText("UserCreation");
+        mi_user_creation.setName("mi_user_creation"); // NOI18N
         mi_user_creation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_user_creationActionPerformed(evt);
@@ -141,7 +147,9 @@ public class Main extends javax.swing.JFrame {
     private void mi_add_customerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_add_customerActionPerformed
         // TODO add your handling code here:
 //        AddCustomer cus = new AddCustomer();
-        if (addCustomer == null) addCustomer = new AddCustomer();
+        if (addCustomer == null) {
+            addCustomer = new AddCustomer();
+        }
         jDesktopPane1.removeAll();
         jDesktopPane1.add(addCustomer);
         addCustomer.setVisible(true);
@@ -151,7 +159,9 @@ public class Main extends javax.swing.JFrame {
     private void mi_search_customerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_search_customerActionPerformed
         // TODO add your handling code here:
 
-        if (searchCustomer == null) searchCustomer = new SearchCustomer();
+        if (searchCustomer == null) {
+            searchCustomer = new SearchCustomer();
+        }
         jDesktopPane1.removeAll();
         jDesktopPane1.add(searchCustomer);
         searchCustomer.setVisible(true);
@@ -160,7 +170,9 @@ public class Main extends javax.swing.JFrame {
 
     private void mi_add_flightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_add_flightActionPerformed
         // TODO add your handling code here:
-        if (addFlight == null) addFlight = new AddFlight();
+        if (addFlight == null) {
+            addFlight = new AddFlight();
+        }
         jDesktopPane1.removeAll();
         jDesktopPane1.add(addFlight);
         addFlight.setVisible(true);
@@ -169,7 +181,9 @@ public class Main extends javax.swing.JFrame {
 
     private void mi_book_ticketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_book_ticketActionPerformed
         // TODO add your handling code here:
-        if (ticket == null) ticket = new ticket();
+        if (ticket == null) {
+            ticket = new ticket();
+        }
         jDesktopPane1.removeAll();
         jDesktopPane1.add(ticket);
         ticket.setVisible(true);
@@ -179,7 +193,9 @@ public class Main extends javax.swing.JFrame {
     private void mi_ticket_reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_ticket_reportActionPerformed
         // TODO add your handling code here:
 
-        if (ticketReport == null) ticketReport = new ticketreport();
+        if (ticketReport == null) {
+            ticketReport = new ticketreport();
+        }
         jDesktopPane1.removeAll();
         jDesktopPane1.add(ticketReport);
         ticketReport.setVisible(true);
@@ -189,7 +205,9 @@ public class Main extends javax.swing.JFrame {
     private void mi_user_creationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_user_creationActionPerformed
         // TODO add your handling code here:
 
-        if (userCreation == null) userCreation = new UserCreation();
+        if (userCreation == null) {
+            userCreation = new UserCreation();
+        }
         jDesktopPane1.removeAll();
         jDesktopPane1.add(userCreation);
         userCreation.setVisible(true);

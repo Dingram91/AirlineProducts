@@ -5,14 +5,10 @@
  */
 package AirlineProducts.GUI;
 
-import AirlineProducts.AddCustomer;
-import AirlineProducts.AddFlight;
 import AirlineProducts.Main;
-import AirlineProducts.SearchCustomer;
-import AirlineProducts.UserCreation;
-import AirlineProducts.ticket;
-import AirlineProducts.ticketreport;
-import static org.junit.Assert.assertEquals;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.fixture.FrameFixture;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,84 +18,54 @@ import org.junit.Test;
  */
 public class MainTest {
     
-    private Main main;
+    private FrameFixture window;
     
     @Before
     public void startMain() {
-        main = new Main();
-        main.addCustomer = new AddCustomer();
-        main.searchCustomer = new SearchCustomer();
-        main.addFlight = new AddFlight();
-        main.ticket = new ticket();
-        main.ticketReport = new ticketreport();
-        main.userCreation = new UserCreation();
-        main.setVisible(true);
+        Main main = GuiActionRunner.execute(() -> new Main());
+        window = new FrameFixture(main);
+        window.show();
     }
     
     @Test
     public void testAddCustomer() {
-        main.mi_add_customer.doClick();
-        assertEquals(true, main.addCustomer.isShowing());
-        assertEquals(false, main.searchCustomer.isShowing());
-        assertEquals(false, main.addFlight.isShowing());
-        assertEquals(false, main.ticket.isShowing());
-        assertEquals(false, main.ticketReport.isShowing());
-        assertEquals(false, main.userCreation.isShowing());
+        window.menuItem("addCustomerComp").click();
+        window.internalFrame("AddCustomerFrame").requireVisible();
     }
     
     @Test
     public void testSearchCustomer() {
-        main.mi_search_customer.doClick();
-        assertEquals(false, main.addCustomer.isShowing());
-        assertEquals(true, main.searchCustomer.isShowing());
-        assertEquals(false, main.addFlight.isShowing());
-        assertEquals(false, main.ticket.isShowing());
-        assertEquals(false, main.ticketReport.isShowing());
-        assertEquals(false, main.userCreation.isShowing());
+        window.menuItem("searchCustomerMI").click();
+        window.internalFrame("searchCustomerFrame").requireVisible();
     }
     
     @Test
     public void testAddFlight() {
-        main.mi_add_flight.doClick();
-        assertEquals(false, main.addCustomer.isShowing());
-        assertEquals(false, main.searchCustomer.isShowing());
-        assertEquals(true, main.addFlight.isShowing());
-        assertEquals(false, main.ticket.isShowing());
-        assertEquals(false, main.ticketReport.isShowing());
-        assertEquals(false, main.userCreation.isShowing());
+        window.menuItem("mi_add_flight").click();
+        window.internalFrame("add_flight").requireVisible();
     }
     
     @Test
     public void testBookTicket() {
-        main.mi_book_ticket.doClick();
-        assertEquals(false, main.addCustomer.isShowing());
-        assertEquals(false, main.searchCustomer.isShowing());
-        assertEquals(false, main.addFlight.isShowing());
-        assertEquals(true, main.ticket.isShowing());
-        assertEquals(false, main.ticketReport.isShowing());
-        assertEquals(false, main.userCreation.isShowing());
+        window.menuItem("mi_book_ticket").click();
+        window.internalFrame("ticket").requireVisible();
     }
     
     @Test
     public void testTicketReport() {
-        main.mi_ticket_report.doClick();
-        assertEquals(false, main.addCustomer.isShowing());
-        assertEquals(false, main.searchCustomer.isShowing());
-        assertEquals(false, main.addFlight.isShowing());
-        assertEquals(false, main.ticket.isShowing());
-        assertEquals(true, main.ticketReport.isShowing());
-        assertEquals(false, main.userCreation.isShowing());
+        window.menuItem("mi_ticket_report").click();
+        window.internalFrame("ticket_report").requireVisible();
     }
     
     @Test
     public void testUserCreation() {
-        main.mi_user_creation.doClick();
-        assertEquals(false, main.addCustomer.isShowing());
-        assertEquals(false, main.searchCustomer.isShowing());
-        assertEquals(false, main.addFlight.isShowing());
-        assertEquals(false, main.ticket.isShowing());
-        assertEquals(false, main.ticketReport.isShowing());
-        assertEquals(true, main.userCreation.isShowing());
+        window.menuItem("mi_user_creation").click();
+        window.internalFrame("user_creation").requireVisible();
+    }
+    
+    @After
+    public void tearDown() {
+        window.cleanUp();
     }
     
 }

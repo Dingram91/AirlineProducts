@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <Properties>
+    <Property name="name" type="java.lang.String" value="searchCustomerFrame" noResource="true"/>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -100,6 +103,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="0" red="33" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="textPanel1" noResource="true"/>
       </Properties>
 
       <Layout>
@@ -184,6 +188,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="FirstName"/>
+            <Property name="name" type="java.lang.String" value="firstNameLabel" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="l_lastName">
@@ -195,6 +200,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="LastName"/>
+            <Property name="name" type="java.lang.String" value="lastNameLabel" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="l_nic">
@@ -206,6 +212,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nic No"/>
+            <Property name="name" type="java.lang.String" value="nicNoLabel" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="l_passport">
@@ -217,6 +224,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Passport ID"/>
+            <Property name="name" type="java.lang.String" value="passportIdLabel" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="l_address">
@@ -228,21 +236,28 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Address"/>
+            <Property name="name" type="java.lang.String" value="addressLabel" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtlastname">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtlastnameActionPerformed"/>
-          </Events>
+          <Properties>
+            <Property name="name" type="java.lang.String" value="lastNameBox" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtfirstname">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="firstNameBox" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtnic">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="nicNoBox" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtpassport">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtpassportActionPerformed"/>
-          </Events>
+          <Properties>
+            <Property name="name" type="java.lang.String" value="passportIdBox" noResource="true"/>
+          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -255,6 +270,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="name" type="java.lang.String" value="addressBox" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -368,14 +384,19 @@
         <Component class="javax.swing.JRadioButton" name="rb_male">
           <Properties>
             <Property name="text" type="java.lang.String" value="Male"/>
+            <Property name="name" type="java.lang.String" value="maleRadioButton" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rb_female">
           <Properties>
             <Property name="text" type="java.lang.String" value="Female"/>
+            <Property name="name" type="java.lang.String" value="femaleRadioButton" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtcontact">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="contactBox" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="dc_dob">
         </Component>
@@ -393,6 +414,7 @@
     <Component class="javax.swing.JButton" name="b_browse">
       <Properties>
         <Property name="text" type="java.lang.String" value="Browse"/>
+        <Property name="name" type="java.lang.String" value="photoFileBrowserButton" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_browseActionPerformed"/>
@@ -401,6 +423,7 @@
     <Component class="javax.swing.JButton" name="b_update">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update"/>
+        <Property name="name" type="java.lang.String" value="updateButton" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_updateActionPerformed"/>
@@ -409,6 +432,7 @@
     <Component class="javax.swing.JButton" name="btnClickedCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
+        <Property name="name" type="java.lang.String" value="cancelButton" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClickedCancelActionPerformed"/>
@@ -418,10 +442,14 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtcustid">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="customerIDBox" noResource="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="b_find">
       <Properties>
         <Property name="text" type="java.lang.String" value="Find"/>
+        <Property name="name" type="java.lang.String" value="findButton" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_findActionPerformed"/>

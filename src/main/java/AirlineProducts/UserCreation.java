@@ -47,6 +47,8 @@ public class UserCreation extends javax.swing.JInternalFrame {
         b_cancel = new javax.swing.JButton();
         pwf_password = new javax.swing.JPasswordField();
 
+        setName("user_creation"); // NOI18N
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("User Creation"));
 
         l_user_id.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

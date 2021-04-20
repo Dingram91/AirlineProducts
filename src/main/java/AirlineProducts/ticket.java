@@ -85,6 +85,8 @@ public class ticket extends javax.swing.JInternalFrame {
         txtTotal = new javax.swing.JLabel();
         txtDate = new com.toedter.calendar.JDateChooser();
 
+        setName("ticket"); // NOI18N
+
         txtsource.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "India", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
 
         txtdepart.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
