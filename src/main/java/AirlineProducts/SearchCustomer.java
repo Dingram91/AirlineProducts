@@ -95,43 +95,44 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         setName("searchCustomerFrame"); // NOI18N
 
         l_firstName.setBackground(new java.awt.Color(51, 0, 255));
+        l_firstName.setName("textPanel1"); // NOI18N
 
         l_firstname.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_firstname.setForeground(new java.awt.Color(255, 255, 255));
         l_firstname.setText("FirstName");
+        l_firstname.setName("firstNameLabel"); // NOI18N
 
         l_lastName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_lastName.setForeground(new java.awt.Color(255, 255, 255));
         l_lastName.setText("LastName");
+        l_lastName.setName("lastNameLabel"); // NOI18N
 
         l_nic.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_nic.setForeground(new java.awt.Color(255, 255, 255));
         l_nic.setText("Nic No");
+        l_nic.setName("nicNoLabel"); // NOI18N
 
         l_passport.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_passport.setForeground(new java.awt.Color(255, 255, 255));
         l_passport.setText("Passport ID");
+        l_passport.setName("passportIdLabel"); // NOI18N
 
         l_address.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_address.setForeground(new java.awt.Color(255, 255, 255));
         l_address.setText("Address");
+        l_address.setName("addressLabel"); // NOI18N
 
-        txtlastname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtlastnameActionPerformed(evt);
-            }
-        });
+        txtlastname.setName("lastNameBox"); // NOI18N
 
         txtfirstname.setName("firstNameBox"); // NOI18N
 
-        txtpassport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpassportActionPerformed(evt);
-            }
-        });
+        txtnic.setName("nicNoBox"); // NOI18N
+
+        txtpassport.setName("passportIdBox"); // NOI18N
 
         txtaddress.setColumns(20);
         txtaddress.setRows(5);
+        txtaddress.setName("addressBox"); // NOI18N
         jScrollPane1.setViewportView(txtaddress);
 
         javax.swing.GroupLayout l_firstNameLayout = new javax.swing.GroupLayout(l_firstName);
@@ -208,8 +209,12 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         l_contact.setText("Contact");
 
         rb_male.setText("Male");
+        rb_male.setName("maleRadioButton"); // NOI18N
 
         rb_female.setText("Female");
+        rb_female.setName("femaleRadioButton"); // NOI18N
+
+        txtcontact.setName("contactBox"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -257,6 +262,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         txtphoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         b_browse.setText("Browse");
+        b_browse.setName("photoFileBrowserButton"); // NOI18N
         b_browse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_browseActionPerformed(evt);
@@ -264,6 +270,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         });
 
         b_update.setText("Update");
+        b_update.setName("updateButton"); // NOI18N
         b_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_updateActionPerformed(evt);
@@ -271,6 +278,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         });
 
         btnClickedCancel.setText("Cancel");
+        btnClickedCancel.setName("cancelButton"); // NOI18N
         btnClickedCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClickedCancelActionPerformed(evt);
@@ -350,19 +358,12 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtlastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtlastnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtlastnameActionPerformed
-
-    private void txtpassportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpassportActionPerformed
-
     private void b_browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_browseActionPerformed
         // TODO add your handling code here:
 
         try {
             JFileChooser picchooser = new JFileChooser();
+
             picchooser.showOpenDialog(null);
             File pic = picchooser.getSelectedFile();
             FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
