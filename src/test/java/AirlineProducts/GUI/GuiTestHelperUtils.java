@@ -16,9 +16,9 @@ public class GuiTestHelperUtils {
     // Calculates the relative luminance (birghtness based on the human eye)
     static double calculateColorLuminance(Color c) {
 
-        double normRed = c.getRed() / 255;
-        double normGreen = c.getGreen() / 255;
-        double normBlue = c.getBlue() / 255;
+        double normRed = c.getRed() / 255.0;
+        double normGreen = c.getGreen() / 255.0;
+        double normBlue = c.getBlue() / 255.0;
 
         double r = (normRed <= 0.03928) ? (normRed * 12.92) : (Math.pow((normRed + 0.055) / 1.055, 2.4));
         double g = (normGreen <= 0.03928) ? (normGreen * 12.92) : (Math.pow((normGreen + 0.055) / 1.055, 2.4));

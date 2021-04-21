@@ -43,6 +43,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mi_book_ticket">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Book Ticket"/>
+                <Property name="name" type="java.lang.String" value="bookTickitMI" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mi_book_ticketActionPerformed"/>
@@ -54,7 +55,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mi_ticket_report">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ticket Report"/>
-                <Property name="name" type="java.lang.String" value="" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="ticketReportMI" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mi_ticket_reportActionPerformed"/>

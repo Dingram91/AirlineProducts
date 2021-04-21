@@ -85,11 +85,16 @@ public class ticket extends javax.swing.JInternalFrame {
         txtTotal = new javax.swing.JLabel();
         txtDate = new com.toedter.calendar.JDateChooser();
 
+        setName("TicketFrame"); // NOI18N
+
+        jPanel1.setName("ticketPanel1"); // NOI18N
+
         txtsource.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "India", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
 
         txtdepart.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
 
         jLabel1.setText("Source");
+        jLabel1.setName("sourceLabel"); // NOI18N
 
         jLabel2.setText("Departure");
 
@@ -344,6 +349,7 @@ public class ticket extends javax.swing.JInternalFrame {
         txtTotal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(255, 0, 0));
         txtTotal.setText("jLabel4");
+        txtTotal.setName("totalLabel"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
