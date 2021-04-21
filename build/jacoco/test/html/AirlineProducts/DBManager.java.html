@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DBManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">AirlineProduct</a> &gt; <a href="index.source.html" class="el_package">AirlineProducts</a> &gt; <span class="el_source">DBManager.java</span></div><h1>DBManager.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package AirlineProducts;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+
+/**
+ *
+ * @author alexa
+ */
+public class DBManager {
+
+    final private Connection connection;
+
+<span class="nc" id="L23">    public DBManager(Connection connection) {</span>
+<span class="nc" id="L24">        this.connection = connection;</span>
+<span class="nc" id="L25">    }</span>
+
+    public String getMaxCustomerId() throws SQLException, ClassNotFoundException {
+<span class="nc" id="L28">        Statement statement = connection.createStatement();</span>
+<span class="nc" id="L29">        ResultSet result = statement.executeQuery(&quot;select MAX(id) from customer;&quot;);</span>
+<span class="nc" id="L30">        result.next();</span>
+<span class="nc" id="L31">        return result.getString(&quot;MAX(id)&quot;);</span>
+    }
+
+    public ResultSet getCustomersByPassport(String passport) throws SQLException, ClassNotFoundException {
+<span class="nc" id="L35">        PreparedStatement statement = connection.prepareStatement(&quot;SELECT * FROM customer WHERE passport = ?;&quot;);</span>
+<span class="nc" id="L36">        statement.setString(1, passport);</span>
+<span class="nc" id="L37">        return statement.executeQuery();</span>
+    }
+
+    public boolean isPassportTaken(String passport) throws SQLException, ClassNotFoundException {
+<span class="nc" id="L41">        PreparedStatement statement = connection.prepareStatement(&quot;SELECT * FROM customer WHERE passport = ?;&quot;);</span>
+<span class="nc" id="L42">        statement.setString(1, passport);</span>
+<span class="nc" id="L43">        return statement.executeQuery().next();</span>
+    }
+
+    public void insertCustomer(String id, String firstname, String lastname, String nic,
+            String passport, String address, String date, String contact, String gender,
+            byte[] userImage) throws SQLException, ClassNotFoundException {
+<span class="nc" id="L49">        PreparedStatement statement = connection.prepareStatement(&quot;insert &quot;</span>
+                + &quot;into customer(id,firstname,lastname,nic,passport,address,&quot;
+                + &quot;dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)&quot;);
+
+<span class="nc" id="L53">        statement.setString(1, id);</span>
+<span class="nc" id="L54">        statement.setString(2, firstname);</span>
+<span class="nc" id="L55">        statement.setString(3, lastname);</span>
+<span class="nc" id="L56">        statement.setString(4, nic);</span>
+<span class="nc" id="L57">        statement.setString(5, passport);</span>
+<span class="nc" id="L58">        statement.setString(6, address);</span>
+<span class="nc" id="L59">        statement.setString(7, date);</span>
+<span class="nc" id="L60">        statement.setString(8, gender);</span>
+<span class="nc" id="L61">        statement.setString(9, contact);</span>
+<span class="nc" id="L62">        statement.setBytes(10, userImage);</span>
+<span class="nc" id="L63">        statement.executeUpdate();</span>
+<span class="nc" id="L64">    }</span>
+
+    public ResultSet getCustomerById(String id) throws SQLException {
+<span class="nc" id="L67">        PreparedStatement pst = connection.prepareStatement(&quot;SELECT * FROM customer WHERE id = ?&quot;);</span>
+<span class="nc" id="L68">        pst.setString(1, id);</span>
+<span class="nc" id="L69">        return pst.executeQuery();</span>
+    }
+
+    public Vector&lt;Vector&lt;String&gt;&gt; getTicketReportData() throws SQLException {
+<span class="nc" id="L73">        Vector&lt;Vector&lt;String&gt;&gt; ticketSalesData = new Vector&lt;&gt;();</span>
+<span class="nc" id="L74">        PreparedStatement pst = connection.prepareStatement(&quot;SELECT * FROM ticket&quot;);</span>
+<span class="nc" id="L75">        ResultSet rs = pst.executeQuery();</span>
+
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L78">            Vector&lt;String&gt; ticketSale = new Vector&lt;&gt;();</span>
+<span class="nc" id="L79">            ticketSale.add(rs.getString(&quot;id&quot;));</span>
+<span class="nc" id="L80">            ticketSale.add(rs.getString(&quot;flightid&quot;));</span>
+<span class="nc" id="L81">            ticketSale.add(rs.getString(&quot;custid&quot;));</span>
+<span class="nc" id="L82">            ticketSale.add(rs.getString(&quot;class&quot;));</span>
+<span class="nc" id="L83">            ticketSale.add(rs.getString(&quot;price&quot;));</span>
+<span class="nc" id="L84">            ticketSale.add(rs.getString(&quot;seats&quot;));</span>
+<span class="nc" id="L85">            ticketSale.add(rs.getString(&quot;date&quot;));</span>
+<span class="nc" id="L86">            ticketSalesData.add(ticketSale);</span>
+
+<span class="nc" id="L88">        }</span>
+<span class="nc" id="L89">        return ticketSalesData;</span>
+    }
+
+    public boolean addTicketToDB(String ticketId, String flightId, String custId,
+            String flightClass, String price, String numberOfSeats, String date) throws SQLException {
+
+<span class="nc" id="L95">        PreparedStatement pst = connection.prepareStatement(&quot;insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)&quot;);</span>
+
+<span class="nc" id="L97">        pst.setString(1, ticketId);</span>
+<span class="nc" id="L98">        pst.setString(2, flightId);</span>
+<span class="nc" id="L99">        pst.setString(3, custId);</span>
+<span class="nc" id="L100">        pst.setString(4, flightClass);</span>
+<span class="nc" id="L101">        pst.setString(5, price);</span>
+<span class="nc" id="L102">        pst.setString(6, numberOfSeats);</span>
+<span class="nc" id="L103">        pst.setString(7, date);</span>
+
+<span class="nc" id="L105">        return pst.execute();</span>
+    }
+    
+        public void updateCustomer(String id, String firstname, String lastname, String nic,
+            String passport, String address, String date, String contact, String gender,
+            byte[] userImage) throws SQLException, ClassNotFoundException {
+<span class="nc" id="L111">        PreparedStatement statement = connection.prepareStatement(&quot;insert &quot;</span>
+                + &quot;into customer(id,firstname,lastname,nic,passport,address,&quot;
+                + &quot;dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)&quot;);
+
+<span class="nc" id="L115">        statement.setString(1, id);</span>
+<span class="nc" id="L116">        statement.setString(2, firstname);</span>
+<span class="nc" id="L117">        statement.setString(3, lastname);</span>
+<span class="nc" id="L118">        statement.setString(4, nic);</span>
+<span class="nc" id="L119">        statement.setString(5, passport);</span>
+<span class="nc" id="L120">        statement.setString(6, address);</span>
+<span class="nc" id="L121">        statement.setString(7, date);</span>
+<span class="nc" id="L122">        statement.setString(8, gender);</span>
+<span class="nc" id="L123">        statement.setString(9, contact);</span>
+<span class="nc" id="L124">        statement.setBytes(10, userImage);</span>
+<span class="nc" id="L125">        statement.executeUpdate();</span>
+<span class="nc" id="L126">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
