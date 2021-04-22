@@ -45,7 +45,7 @@ public class AddFlightGuiTest {
         JInternalFrameFixture addFlightFrame = window.internalFrame("addFlightFrame");
         addFlightFrame.comboBox("sourceComboBox").selectItem(3);
         addFlightFrame.comboBox("departComboBox").selectItem(3);
-        addFlightFrame.textBox("flightNameBox").enterText("Delta");
+        addFlightFrame.textBox("FlightNameBox").enterText("Delta");
         addFlightFrame.textBox("departTimeBox").enterText("12:00am");
         addFlightFrame.textBox("arrTimeBox").enterText("2:00am");
         addFlightFrame.textBox("flightChargeBox").enterText("120");
