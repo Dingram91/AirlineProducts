@@ -52,10 +52,10 @@ public class AddFlightTest {
      * valid Flight Time for a new flight
      * Purpose: To test the input passed to the method isValidateTime,
      * ensures the time entered is valid and accurate
-     * Test Setup: 
-     * Test Strategy:
-     * Input: 
-     * Expected Output:
+     * Test Setup: This test is setup to determine if the time entered is valid
+     * Test Strategy: Equivalence Class Testing
+     * Input:    , 12:00 am, 12:00, \n, 6:00 pm, 12:60 am
+     * Expected Output:false, true, false, false, true, false
      * Test of isValidateTime method, of class AddFlight.
      */
     @Test
@@ -71,12 +71,12 @@ public class AddFlightTest {
 
     /**
      * Test Case ID: UnitTest-Cost-009
-     * Requirement: 
-     * Purpose: 
-     * Test Setup: 
-     * Test Strategy:
-     * Input: 
-     * Expected Output:
+     * Requirement: R-30 A user must be required to enter a valid cost for a flight
+     * Purpose: To test if the amount entered is in the valid cost format
+     * Test Setup: assertEquals is used to check if the conditions are true or false
+     * Test Strategy: Equivalence Class testing
+     * Input:     , 200, abc
+     * Expected Output:false, true, false
      * Test of isValidCost method, of class AddFlight.
      */
     @Test
@@ -89,8 +89,8 @@ public class AddFlightTest {
 
     /**
      * Test Case ID: UnitTest-Date-010
-     * Requirement: 
-     * Purpose: 
+     * Requirement: R-31 A user must enter a valid flight date
+     * Purpose: To check that the date entered follow the proper format
      * Test Setup: 
      * Test Strategy:
      * Input: 
