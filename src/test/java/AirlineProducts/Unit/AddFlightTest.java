@@ -29,11 +29,11 @@ public class AddFlightTest {
      * Requirement: R-27: Users must be required to enter a 
      * valid Flight Name for a new flight
      * Purpose: To test the input passed to the method isValidFlightName,
-     * ensures the name does not include escape sequences, !, or duplicate letters
-     * Test Setup: 
-     * Test Strategy:
-     * Input: 
-     * Expected Output:
+     * ensures the name does not include escape sequence
+     * Test Setup: assertEquals is used to check if the conditions are true or false
+     * Test Strategy:Condition Test
+     * Input: Jet Blue
+     * Expected Output: True, true, true, true, true
      * Test of isValidFlightName method, of class AddFlight.
      */
     @Test
