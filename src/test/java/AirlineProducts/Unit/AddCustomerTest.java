@@ -27,6 +27,15 @@ public class AddCustomerTest {
     }
 
     /**
+     * Test Case ID: UnitTest-FirstName-001
+     * Requirement: R-6: Users must be required to enter a 
+     * valid First name for a new customer record
+     * Purpose: To test the input passed to the method isValidName,
+     * ensures the name is between 2 and 15 characters
+     * Test Setup: 
+     * Test Strategy:
+     * Input: 
+     * Expected Output: 
      * Test of isValidName method, of class AddCustomer.
      */
     @Test
@@ -52,6 +61,15 @@ public class AddCustomerTest {
     }
 
     /**
+     * Test Case ID: UnitTest-NIC-002
+     * Requirement:R-9 Users must be required to enter a valid (National Identity Card) 
+     * number for a new customer record
+     * Purpose: To test the input passed to the method isValidNic,
+     * this test shows that the user has not left the field 
+     * Test Setup: 
+     * Test Strategy:
+     * Input: 
+     * Expected Output:
      * Test of isValidNIC method, of class AddCustomer.
      */
     @Test
@@ -67,7 +85,15 @@ public class AddCustomerTest {
     }
 
     /**
-     * Test of hasValidID method, of class AddCustomer.
+     * Test Case ID: UnitTest-ID-003
+     * Requirement: R-25 A user must be required to enter a valid ID 
+     * for a new customer record
+     * Purpose: 
+     * Test Setup: 
+     * Test Strategy:
+     * Input: 
+     * Expected Output:
+     * Test of hasValidId method, of class AddCustomer.
      */
     @Test
     public void testHasValidID() {
@@ -82,6 +108,14 @@ public class AddCustomerTest {
     }
     
     /**
+     * Test Case ID: UnitTest-Address-004
+     * Requirement:R-10 Users must be required to enter 
+     * a valid address for a new customer record
+     * Purpose: 
+     * Test Setup: 
+     * Test Strategy:
+     * Input: 
+     * Expected Output:
      * Test of isValidAddress method, of class AddCustomer.
      */
     @Test
@@ -97,6 +131,14 @@ public class AddCustomerTest {
     }
 
     /**
+     * Test Case ID: UnitTest-Date-005
+     * Requirement:R-20 A user shall be able to select a new date of birth in the 
+     * graphical interface for a customer record
+     * Purpose: 
+     * Test Setup: 
+     * Test Strategy:
+     * Input: 
+     * Expected Output:
      * Test of isValidDate method, of class AddCustomer.
      */
     @Test
@@ -112,6 +154,14 @@ public class AddCustomerTest {
     }
 
     /**
+     * Test Case ID: UnitTest-Contact-006
+     * Requirement:R-11 Users must be required to enter a 
+     * valid phone number for a new customer record
+     * Purpose: 
+     * Test Setup: 
+     * Test Strategy:
+     * Input: 
+     * Expected Output:
      * Test of hasValidContact method, of class AddCustomer.
      */
     @Test

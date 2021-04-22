@@ -36,7 +36,7 @@ public class AddFlightGuiTest {
     public void tearDown() {
         window.cleanUp();
     }
-
+ 
     @Test
     public void customerSearchTest() throws InterruptedException {
         System.out.println("Add Flight searching for a flight");

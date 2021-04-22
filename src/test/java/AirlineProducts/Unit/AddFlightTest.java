@@ -24,6 +24,18 @@ public class AddFlightTest {
     public AddFlightTest() {
     }
 
+    /**
+     * Test Case ID: UnitTest-FlightName-007
+     * Requirement: R-27: Users must be required to enter a 
+     * valid Flight Name for a new flight
+     * Purpose: To test the input passed to the method isValidFlightName,
+     * ensures the name does not include escape sequences, !, or duplicate letters
+     * Test Setup: 
+     * Test Strategy:
+     * Input: 
+     * Expected Output:
+     * Test of isValidFlightName method, of class AddFlight.
+     */
     @Test
     public void testIsValidFlightName() {
         assertEquals(false, AddFlight.isValidFlightName(" "));
@@ -35,6 +47,15 @@ public class AddFlightTest {
     }
 
     /**
+     * Test Case ID: UnitTest-Time-008
+     * Requirement: R-27: Users must be required to enter a 
+     * valid Flight Time for a new flight
+     * Purpose: To test the input passed to the method isValidateTime,
+     * ensures the time entered is valid and accurate
+     * Test Setup: 
+     * Test Strategy:
+     * Input: 
+     * Expected Output:
      * Test of isValidateTime method, of class AddFlight.
      */
     @Test
@@ -49,6 +70,13 @@ public class AddFlightTest {
 //
 
     /**
+     * Test Case ID: UnitTest-Cost-009
+     * Requirement: 
+     * Purpose: 
+     * Test Setup: 
+     * Test Strategy:
+     * Input: 
+     * Expected Output:
      * Test of isValidCost method, of class AddFlight.
      */
     @Test
@@ -60,6 +88,13 @@ public class AddFlightTest {
     }
 
     /**
+     * Test Case ID: UnitTest-Date-010
+     * Requirement: 
+     * Purpose: 
+     * Test Setup: 
+     * Test Strategy:
+     * Input: 
+     * Expected Output:
      * Test of validateDate method, of class AddFlight.
      */
     @Test
