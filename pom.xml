@@ -221,8 +221,8 @@
                     <excludes>
                         <!--<exclude>**/**/Integration/*</exclude>-->
                         <exclude>**/**/GUI/*</exclude>
-                        <exclude>**/**/Performance/*</exclude>
-                        <exclude>**/**/Unit/*</exclude>
+                        <!--<exclude>**/**/Performance/*</exclude>-->
+                        <!--<exclude>**/**/Unit/*</exclude>-->
                     </excludes>
                 </configuration>
             </plugin>
