@@ -21,9 +21,16 @@ import org.junit.Test;
  * @author AliT
  */
 public class MainTest {
-    
+
     private Main main;
-    
+
+    /**
+     * Test Case ID: GUITest-MenusShow-001 Requirement: R-39: Windows should be
+     * accessible through the menu at all times. Purpose: To test that menus are
+     * always accessible. Test Setup: Run the application and check that windows
+     * are accessible through the menu. Strategy: White Box Testing Input: Mouse
+     * and keyboard commands. Expected Output: N/A
+     */
     @Before
     public void startMain() {
         main = new Main();
@@ -35,7 +42,14 @@ public class MainTest {
         main.userCreation = new UserCreation();
         main.setVisible(true);
     }
-    
+
+    /**
+     * Test Case ID: GUITest-MenusShow-002 Requirement: R-39: Windows should be
+     * accessible through the menu at all times. Purpose: To test that menus are
+     * always accessible. Test Setup: Run the application and check that windows
+     * are accessible through the menu. Strategy: White Box Testing Input: Mouse
+     * and keyboard commands. Expected Output: N/A
+     */
     @Test
     public void testAddCustomer() {
         main.mi_add_customer.doClick();
@@ -46,7 +60,14 @@ public class MainTest {
         assertEquals(false, main.ticketReport.isShowing());
         assertEquals(false, main.userCreation.isShowing());
     }
-    
+
+    /**
+     * Test Case ID: GUITest-MenusShow-003 Requirement: R-39: Windows should be
+     * accessible through the menu at all times. Purpose: To test that menus are
+     * always accessible. Test Setup: Run the application and check that windows
+     * are accessible through the menu. Strategy: White Box Testing Input: Mouse
+     * and keyboard commands. Expected Output: N/A
+     */
     @Test
     public void testSearchCustomer() {
         main.mi_search_customer.doClick();
@@ -57,7 +78,14 @@ public class MainTest {
         assertEquals(false, main.ticketReport.isShowing());
         assertEquals(false, main.userCreation.isShowing());
     }
-    
+
+    /**
+     * Test Case ID: GUITest-MenusShow-004 Requirement: R-39: Windows should be
+     * accessible through the menu at all times. Purpose: To test that menus are
+     * always accessible. Test Setup: Run the application and check that windows
+     * are accessible through the menu. Strategy: White Box Testing Input: Mouse
+     * and keyboard commands. Expected Output: N/A
+     */
     @Test
     public void testAddFlight() {
         main.mi_add_flight.doClick();
@@ -68,7 +96,14 @@ public class MainTest {
         assertEquals(false, main.ticketReport.isShowing());
         assertEquals(false, main.userCreation.isShowing());
     }
-    
+
+    /**
+     * Test Case ID: GUITest-MenusShow-005 Requirement: R-39: Windows should be
+     * accessible through the menu at all times. Purpose: To test that menus are
+     * always accessible. Test Setup: Run the application and check that windows
+     * are accessible through the menu. Strategy: White Box Testing Input: Mouse
+     * and keyboard commands. Expected Output: N/A
+     */
     @Test
     public void testBookTicket() {
         main.mi_book_ticket.doClick();
@@ -79,7 +114,14 @@ public class MainTest {
         assertEquals(false, main.ticketReport.isShowing());
         assertEquals(false, main.userCreation.isShowing());
     }
-    
+
+    /**
+     * Test Case ID: GUITest-MenusShow-006 Requirement: R-39: Windows should be
+     * accessible through the menu at all times. Purpose: To test that menus are
+     * always accessible. Test Setup: Run the application and check that windows
+     * are accessible through the menu. Strategy: White Box Testing Input: Mouse
+     * and keyboard commands. Expected Output: N/A
+     */
     @Test
     public void testTicketReport() {
         main.mi_ticket_report.doClick();
@@ -90,7 +132,14 @@ public class MainTest {
         assertEquals(true, main.ticketReport.isShowing());
         assertEquals(false, main.userCreation.isShowing());
     }
-    
+
+    /**
+     * Test Case ID: GUITest-MenusShow-007 Requirement: R-39: Windows should be
+     * accessible through the menu at all times. Purpose: To test that menus are
+     * always accessible. Test Setup: Run the application and check that windows
+     * are accessible through the menu. Strategy: White Box Testing Input: Mouse
+     * and keyboard commands. Expected Output: N/A
+     */
     @Test
     public void testUserCreation() {
         main.mi_user_creation.doClick();
@@ -101,5 +150,5 @@ public class MainTest {
         assertEquals(false, main.ticketReport.isShowing());
         assertEquals(true, main.userCreation.isShowing());
     }
-    
+
 }

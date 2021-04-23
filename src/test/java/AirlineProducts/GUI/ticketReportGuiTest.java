@@ -37,6 +37,15 @@ public class ticketReportGuiTest {
         window.cleanUp();
     }
 
+    /**
+     * Test Case ID: GUITest-Inputs-011 Requirement: R-2 Users shall be required
+     * to enter a valid username and password before being allowed to access the
+     * various system tools Purpose: This test will check that both the username
+     * and password have a valid character inputs Test Strategy: Equivalence
+     * Class Testing Input: Username: Joe Password: 098, Username: Password:
+     * 098, Username: Password: , Username: Joe Password: Expected Output: True,
+     * False, False, False Test of hasValidInputs method, of class Login.
+     */
     @Test
     public void checkTextContrast() {
         window.menuItem("ticketReportMI").click();
