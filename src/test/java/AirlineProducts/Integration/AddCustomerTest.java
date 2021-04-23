@@ -24,6 +24,16 @@ import static org.mockito.Mockito.when;
  */
 public class AddCustomerTest {
     
+    /**
+     * Test Case ID: IntegrationTest-ID-1
+     * Requirement: R-25 The software shall generate a new customer ID
+     * Purpose: To check that the ID generated is valid
+     * Test Setup: Verify that the AddCustomer class interacts with the DBManager to retrieve
+     * the last maximum ID and increments it correctly
+     * Test Strategy:Mock
+     * Input: AddCustomer class and DBManager mock
+     * Expected Output: CS1000 & CS1001
+     */
     @Test
     public void testGenerateID() throws SQLException, ClassNotFoundException {
         System.out.println("generateID");
@@ -46,7 +56,14 @@ public class AddCustomerTest {
     }
     
     /**
-     * Test of isValidPassport method, of class AddCustomer.
+     * Test Case ID: IntegrationTest-isValidPassport-2
+     * Requirement: R-8 Users must be required to enter a valid passport 
+     * number for a new customer record
+     * Test Setup: Verify that the AddCustomer class interacts with the DBManager and only 
+     * requests to add a new customer if the inputs are valid
+     * Test Strategy: Mock
+     * Input: AddCustomer class and DBManager mock
+     * Expected Output: true, true, false, false
      */
     @Test
     public void testIsValidPassport() throws SQLException, ClassNotFoundException {
@@ -73,7 +90,14 @@ public class AddCustomerTest {
     }
     
     /**
-     * Test of insertCustomer method, of class AddCustomer.
+     * Test Case ID: IntegrationTest-ID-3
+     * Requirement: R-28 Only insert a new customer that has provided valid inputs
+     * Purpose: To check the class interaction
+     * Test Setup: Verify that the AddCustomer class interacts with the DBManager 
+     * and only requests to add a new customer if the inputs are valid 
+     * Test Strategy:Mock
+     * Input: AddCustomer class and DBManager mock
+     * Expected Output: 1 & 0
      */
     @Test
     public void testInsertCustomer() throws SQLException, ClassNotFoundException {
