@@ -36,7 +36,15 @@ public class AddFlightGuiTest {
     public void tearDown() {
         window.cleanUp();
     }
- 
+
+    /**
+     * Test Case ID: GUITest-MenusShow-001 Requirement: R-35: Inputs into text
+     * fields or any other type of input fields shall be verified to be valid.
+     * Purpose: To test that user information can be entered and checked for
+     * validity. Test Setup: Run the application and attempt to enter user
+     * information and submit the form. Strategy: White Box Testing Input: Mouse
+     * and keyboard commands. Expected Output: N/A
+     */
     @Test
     public void customerSearchTest() throws InterruptedException {
         System.out.println("Add Flight searching for a flight");
@@ -54,6 +62,16 @@ public class AddFlightGuiTest {
 
     }
 
+    /**
+     * Test Case ID: GUITest-Contrast-001 Requirement: R-36: The GUI shall use
+     * colors that make text easily legible and different parts of the current
+     * screen distinguishable. Purpose: To test that the screen background and
+     * font colors. input passed to the method mouse and keyboard commands,
+     * ensures the font and background have a sufficient amount of contrast.
+     * Test Setup: This test is setup to determine if the font and background
+     * have a sufficient level of contrast. Test Strategy: Equivalence Class
+     * Testing Input: Mouse and keyboard commands. Expected Output: true
+     */
     @Test
     public void checkTextContrast() {
         window.menuItem("addFlightMI").click();

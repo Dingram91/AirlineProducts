@@ -27,6 +27,14 @@ public class SearchCustomerGuiTest {
         window.maximize();
     }
 
+    /**
+     * Test Case ID: GUITest-MenusShow-001 Requirement: R-4: Users shall be able
+     * to search the centralized database for customer information via customer
+     * ID or passport. Purpose: To test that user information can be searched
+     * for by user ID. Test Setup: Run the application and attempt to search for
+     * a user by id. Strategy: White Box Testing Input: Mouse and keyboard
+     * commands. Expected Output: N/A
+     */
     @Test
     public void customerSearchTest() throws InterruptedException {
         System.out.println("Testing searching for a customer");
@@ -50,9 +58,11 @@ public class SearchCustomerGuiTest {
     }
 
     /**
-     * Make sure only one gender can be selected at a time
-     *
-     * @throws InterruptedException
+     * Test Case ID: GUITest-MenusShow-001 Requirement: R-32: Users should be
+     * able to choose one gender. Purpose: To test that user can select only one
+     * gender. Test Setup: Run the application and attempt to select multiple
+     * genders. Strategy: White Box Testing Input: Mouse and keyboard commands.
+     * Expected Output: N/A
      */
     @Test
     public void onlyOneGenerSelectable() throws InterruptedException {
@@ -85,6 +95,14 @@ public class SearchCustomerGuiTest {
         searchCustomerFrame.requireNotVisible();
     }
 
+    /**
+     * Test Case ID: GUITest-Contrast-003 Requirement: R-33: Windows should no
+     * longer be visible after selecting cancel. Purpose: To test that the
+     * cancel button closes the window. Test Setup: Runs the application, opens
+     * the window, then clicks cancel and checks for visibility. Test Strategy:
+     * Equivalence Class Testing Input: Mouse and keyboard commands. Expected
+     * Output: true
+     */
     @Test
     public void checkTextContrast() {
         window.menuItem("searchCustomerMI").click();
