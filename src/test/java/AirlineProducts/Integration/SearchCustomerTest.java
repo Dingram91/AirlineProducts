@@ -35,7 +35,14 @@ import static org.mockito.Mockito.when;
 public class SearchCustomerTest {
 
     /**
-     * Test of isValidPassport method, of class SearchCustomer.
+     * Test Case ID: IntegrationTest-isValidPassport-
+     * Requirement: R-8 Users must be required to enter a valid passport 
+     * number for a new customer record
+     * Test Setup: Verify that the SearchCustomer class interacts with the DBManager and only 
+     * requests to add a new customer if the inputs are valid
+     * Test Strategy: Mock
+     * Input: SearchCustomer class and DBManager mock
+     * Expected Output: true, true, false, false
      */
     @Test
     public void testIsValidPassport() throws SQLException, ClassNotFoundException {
