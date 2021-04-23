@@ -35,7 +35,7 @@ import static org.mockito.Mockito.when;
 public class SearchCustomerTest {
 
     /**
-     * Test Case ID: IntegrationTest-isValidPassport-
+     * Test Case ID: IntegrationTest-isValidPassport-4
      * Requirement: R-8 Users must be required to enter a valid passport 
      * number for a new customer record
      * Test Setup: Verify that the SearchCustomer class interacts with the DBManager and only 
@@ -69,7 +69,15 @@ public class SearchCustomerTest {
     }
 
     /**
-     * Test of insertCustomer method, of class SearchCustomer.
+     * Test Case ID: IntegrationTest-updateCustomer-
+     * Requirement: R-5 Users shall be able to edit customer information 
+     * in the central database through a Graphical interface
+     * Test Setup: Verify that the SearchCustomer class interacts with the DBManager and only 
+     * requests to update a customer if the inputs are valid
+     * Test Strategy: Mock
+     * Input: SearchCustomer class and DBManager mock
+     * Expected Output: true, true, false, false
+     * Test of updateCustomer method, of class SearchCustomer.
      */
     @Test
     public void testUpdateCustomer() throws SQLException, ClassNotFoundException {
