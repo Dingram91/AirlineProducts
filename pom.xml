@@ -219,10 +219,10 @@
                     <skipTests>${skip.unit.tests}</skipTests>
                     <!-- Excludes integration tests when unit tests are run. -->
                     <excludes>
-                        <exclude>**/**/Integration/*</exclude>
-                        <!--<exclude>**/**/GUI/*</exclude>-->
-                        <exclude>**/**/Performance/*</exclude>
-                        <exclude>**/**/Unit/*</exclude>
+                        <!--<exclude>**/**/Integration/*</exclude>-->
+                        <exclude>**/**/GUI/*</exclude>
+                        <!--<exclude>**/**/Performance/*</exclude>-->
+                        <!--<exclude>**/**/Unit/*</exclude>-->
                     </excludes>
                 </configuration>
             </plugin>

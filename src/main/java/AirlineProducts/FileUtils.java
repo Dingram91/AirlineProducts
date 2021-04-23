@@ -9,19 +9,23 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author alexa
  */
 public class FileUtils {
-    
+
+    /**
+     * Shows a file chooser popup window and gets the user selection.
+     *
+     * @return
+     */
     public static File showFileChooser() {
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images","png","jpg");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
         fileChooser.addChoosableFileFilter(filter);
-        fileChooser.showOpenDialog(null);  
+        fileChooser.showOpenDialog(null);
         return fileChooser.getSelectedFile();
     }
-    
+
 }
