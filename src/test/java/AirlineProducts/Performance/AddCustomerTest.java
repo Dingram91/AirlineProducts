@@ -33,14 +33,7 @@ public class AddCustomerTest {
     private Main main;
 
     /**
-     * Test Case ID: UnitTest-AutoId-026
-     * Requirement:
-     * Purpose:
-     * Test Setup: 
-     * Test Strategy: 
-     * Input:
-     * Expected Output: 
-     * Test of autoID method, of class ticket
+     * Brings up the AddCustomer screen before each test
      */
     @Before
     public void startMain() {
@@ -50,6 +43,15 @@ public class AddCustomerTest {
         main.mi_add_customer.doClick();
     }
 
+    /**
+     * Test Case ID: GUITest-Contrast-002
+     * Requirement: R-38: Image sizes shall be scaled down if necessary to reduce storage size and improve load times.
+     * Purpose: Makes sure that 480p images loads within 1 second
+     * Test Setup: Display AddCustomer window
+     * Test Strategy: Insert an image of size 480p
+     * Input: 480p image
+     * Expected Output: Loads within 1 second
+     */
     @Test
     public void test480pImage() throws InterruptedException {
         main.addCustomer.setVisible(true);
@@ -62,6 +64,15 @@ public class AddCustomerTest {
         assertEquals(true, Duration.between(start, end).toMillis() < 1000);
     }
 
+    /**
+     * Test Case ID: GUITest-Contrast-003
+     * Requirement: R-38: Image sizes shall be scaled down if necessary to reduce storage size and improve load times.
+     * Purpose: Makes sure that 720p images loads within 1 second
+     * Test Setup: Display AddCustomer window
+     * Test Strategy: Insert an image of size 720p
+     * Input: 720p image
+     * Expected Output: Loads within 1 second
+     */
     @Test
     public void test720pImage() throws InterruptedException {
         main.addCustomer.setVisible(true);
@@ -74,6 +85,15 @@ public class AddCustomerTest {
         assertEquals(true, Duration.between(start, end).toMillis() < 1000);
     }
 
+    /**
+     * Test Case ID: GUITest-Contrast-004
+     * Requirement: R-38: Image sizes shall be scaled down if necessary to reduce storage size and improve load times.
+     * Purpose: Makes sure that 1080p images loads within 1 second
+     * Test Setup: Display AddCustomer window
+     * Test Strategy: Insert an image of size 1080p
+     * Input: 1080p image
+     * Expected Output: Loads within 1 second
+     */
     @Test
     public void test1080pImage() throws InterruptedException {
         main.addCustomer.setVisible(true);
@@ -86,6 +106,15 @@ public class AddCustomerTest {
         assertEquals(true, Duration.between(start, end).toMillis() < 1000);
     }
 
+    /**
+     * Test Case ID: GUITest-Contrast-005
+     * Requirement: R-38: Image sizes shall be scaled down if necessary to reduce storage size and improve load times.
+     * Purpose: Makes sure that 1440p images loads within 1 second
+     * Test Setup: Display AddCustomer window
+     * Test Strategy: Insert an image of size 1440p
+     * Input: 1440p image
+     * Expected Output: Loads within 1 second
+     */
     @Test
     public void test1440pImage() throws InterruptedException {
         main.addCustomer.setVisible(true);
