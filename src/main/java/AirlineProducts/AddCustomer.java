@@ -338,6 +338,12 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         }
     }
 
+    /**
+     * Generates a new customer id based on previous max id
+     *
+     * @param maxID max id number in system
+     * @return new id of maxID+1
+     */
     public String generateID(String maxID) {
         if (maxID == null) {
             return "CS001";
@@ -347,6 +353,11 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         }
     }
 
+    /**
+     * Event handler for clicking an action button.
+     *
+     * @param evt
+     */
     private void b_browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_browseActionPerformed
         // TODO add your handling code here:
         File picture = FileUtils.showFileChooser();
@@ -355,6 +366,11 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_b_browseActionPerformed
 
+    /**
+     * Event handler for clicking the add button.
+     *
+     * @param evt
+     */
     private void b_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_addActionPerformed
         String id = l_customer_id_value.getText();
         String firstname = tf_first_name.getText();
@@ -370,10 +386,20 @@ public class AddCustomer extends javax.swing.JInternalFrame {
                 address, date, contact, gender, userImage);
     }//GEN-LAST:event_b_addActionPerformed
 
+    /**
+     * Event handler for clicking the cancel button.
+     *
+     * @param evt
+     */
     private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
         dispose();
     }//GEN-LAST:event_b_cancelActionPerformed
 
+    /**
+     * Reads a picture from a file and displays it in the graphical interface.
+     *
+     * @param picture file
+     */
     public void processPicture(File picture) {
         path = picture.getAbsolutePath();
         BufferedImage imgBuff;
@@ -400,6 +426,12 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         j_photo.setIcon(imageIcon);
     }
 
+    /**
+     * Checks if a name is greater than 2 and less than 15 characters.
+     *
+     * @param name String
+     * @return Boolean
+     */
     public boolean isValidName(String name) {
         if (name.length() < 2 || name.length() > 15) {
             JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
@@ -412,6 +444,12 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Checks if a NIC number has been entered in the interface.
+     *
+     * @param nic String
+     * @return Boolean
+     */
     public boolean isValidNIC(String nic) {
         if (nic.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid NIC");
@@ -420,6 +458,12 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Checks if an ID number has been entered into the graphical interface.
+     *
+     * @param id string
+     * @return Boolean
+     */
     public boolean hasValidID(String id) {
         if (id.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid ID");
@@ -428,6 +472,13 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Checks if a string meets the requirements for a passport number. ir valid
+     * ascii characters.
+     *
+     * @param passport string
+     * @return Boolean
+     */
     public boolean isValidPassport(String passport) {
         if (!passport.matches("^(?!^0+$)[a-zA-Z0-9]{3,20}$")) {
             JOptionPane.showMessageDialog(this, "Passport is not valid");
@@ -452,6 +503,13 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Checks if an address number has been entered into the graphical
+     * interface.
+     *
+     * @param address String
+     * @return Boolean
+     */
     public boolean isValidAddress(String address) {
         if (address.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Address is not valid");
@@ -460,6 +518,12 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Checks if a date is valid and formatted correctly.
+     *
+     * @Date id string
+     * @return Boolean
+     */
     public boolean isValidDate(Date date) {
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -471,6 +535,12 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Checks if an gender has been selected in the graphical interface.
+     *
+     * @param
+     * @return Boolean
+     */
     public boolean hasSelectedGender() {
         if (rb_female.isSelected() || rb_male.isSelected()) {
             return true;
@@ -480,6 +550,12 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         }
     }
 
+    /**
+     * Checks if a contact number has been entered into the graphical interface.
+     *
+     * @param contact string
+     * @return Boolean
+     */
     public boolean hasValidContact(String contact) {
         if (contact.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a contact");
@@ -489,6 +565,20 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         }
     }
 
+    /**
+     * Checks if the information in the graphical interface passes all
+     * verification methods.
+     *
+     * @param id String
+     * @param firstname String
+     * @param lastname String
+     * @param nic String
+     * @param passport String
+     * @param address String
+     * @param date Date
+     * @param contact String
+     * @return Boolean
+     */
     public boolean hasValidInputs(String id, String firstname, String lastname, String nic,
             String passport, String address, Date date, String contact) {
         return hasValidID(id) && isValidName(firstname) && isValidName(lastname)
@@ -496,6 +586,20 @@ public class AddCustomer extends javax.swing.JInternalFrame {
                 && isValidDate(date) && hasValidContact(contact);
     }
 
+    /**
+     * Inserts a new customer record into the database.
+     *
+     * @param id String
+     * @param firstname String
+     * @param lastname String
+     * @param nic String
+     * @param passport String
+     * @param address String
+     * @param date Date
+     * @param contact String
+     * @param gender String
+     * @param userImage String
+     */
     public void insertCustomer(String id, String firstname, String lastname, String nic,
             String passport, String address, Date date, String contact, String gender,
             byte[] userImage) {
