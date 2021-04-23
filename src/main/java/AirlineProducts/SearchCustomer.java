@@ -47,6 +47,11 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         group.add(rb_male);
     }
 
+    /**
+     * Sets the DBManager to be used for interacting with the database.
+     * 
+     * @param manager 
+     */
     public void setDBManager(DBManager dbManager) {
         this.dbManager = dbManager;
     }
@@ -467,6 +472,13 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_b_findActionPerformed
 
+    /**
+     * Verifies that a entered name is valid else it will display an error
+     * via a dialog
+     * 
+     * @param name
+     * @return true if name is valid
+     */
     public boolean isValidName(String name) {
         if (name.length() < 2 || name.length() > 15) {
             JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
@@ -479,6 +491,13 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Verifies that the National Identity Card is valid else it will display
+     * an error message via a dialog
+     * 
+     * @param nic
+     * @return true if the NIC is valid
+     */
     public boolean isValidNIC(String nic) {
         if (nic.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid NIC");
@@ -487,6 +506,12 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Verifies that the ID is valid else it will show an error dialog.
+     * 
+     * @param id
+     * @return true if the ID is valid
+     */
     public boolean hasValidID(String id) {
         if (id.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid ID");
@@ -495,6 +520,12 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Verifies that the passport is valid else it will show an error dialog.
+     * 
+     * @param passport
+     * @return true if the passport is valid
+     */
     public boolean isValidPassport(String passport) {
         if (!passport.matches("^(?!^0+$)[a-zA-Z0-9]{3,20}$")) {
             JOptionPane.showMessageDialog(this, "Passport is not valid");
@@ -519,6 +550,13 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Verifies that the entered address is valid else it will display an
+     * error dialog.
+     * 
+     * @param address
+     * @return true if the address is valid
+     */
     public boolean isValidAddress(String address) {
         if (address.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Address is not valid");
@@ -527,6 +565,13 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Verifies that the entered date is valid else it will show an error
+     * dialog
+     * 
+     * @param date
+     * @return true if the date is valid.
+     */
     public boolean isValidDate(Date date) {
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -538,6 +583,12 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Verifies that the user has selected a gender else it will display
+     * an error dialog
+     * 
+     * @return true if a gender was selected.
+     */
     public boolean hasSelectedGender() {
         if (rb_female.isSelected() || rb_male.isSelected()) {
             return true;
@@ -547,6 +598,13 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         }
     }
 
+    /**
+     * Verifies that a valid contact was entered else it will display an
+     * error dialog
+     * 
+     * @param contact
+     * @return true if a valid contact was entered
+     */
     public boolean hasValidContact(String contact) {
         if (contact.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a contact");
@@ -556,6 +614,19 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         }
     }
 
+    /**
+     * Verifies that all inputs are valid
+     * 
+     * @param id
+     * @param firstname
+     * @param lastname
+     * @param nic
+     * @param passport
+     * @param address
+     * @param date
+     * @param contact
+     * @return 
+     */
     public boolean hasValidInputs(String id, String firstname, String lastname, String nic,
             String passport, String address, Date date, String contact) {
         return hasValidID(id) && isValidName(firstname) && isValidName(lastname)
@@ -563,6 +634,20 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                 && isValidDate(date) && hasValidContact(contact);
     }
 
+    /**
+     * Updates the user in the database if all user inputs were valid
+     * 
+     * @param id
+     * @param firstname
+     * @param lastname
+     * @param nic
+     * @param passport
+     * @param address
+     * @param date
+     * @param contact
+     * @param gender
+     * @param userImage 
+     */
     public void updateCustomer(String id, String firstname, String lastname, String nic,
             String passport, String address, Date date, String contact, String gender,
             byte[] userImage) {

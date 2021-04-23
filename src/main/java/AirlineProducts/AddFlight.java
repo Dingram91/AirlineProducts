@@ -326,21 +326,46 @@ public class AddFlight extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_addFlightClicked
 
+    /**
+     * Verifies that the flight name is valid
+     * 
+     * @param name
+     * @return true if the flight name is valid
+     */
     public static boolean isValidFlightName(String name) {
         return (name.length() > 0) && (name.chars()
                 .allMatch(Character::isLetter));
     }
 
+    /**
+     * Verifies that the time provided is valid
+     * 
+     * @param time
+     * @return true if the time provided is valid
+     */
     public static boolean isValidateTime(String time) {
         return time.matches("(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)(am|pm)");
 
     }
 
+    /**
+     * Verifies that the cost for the ticket is valid
+     * 
+     * @param cost
+     * @return true if the cost is valid
+     */
     public static boolean isValidCost(String cost) {
         return (cost.length() > 0) && (cost.chars()
                 .allMatch(Character::isDigit));
     }
 
+    /**
+     * Verifies that the date on the ticket is valid
+     * 
+     * @param date
+     * @return true if the date on the ticket is valid
+     * @throws IllegalArgumentException 
+     */
     public String validateDate(Date date) throws IllegalArgumentException {
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         String validDate = "";

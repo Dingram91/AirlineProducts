@@ -23,6 +23,11 @@ public class ticket extends javax.swing.JInternalFrame {
 
     DBManager manager;
 
+    /**
+     * Sets the DBManager to be used for interacting with the database.
+     * 
+     * @param manager 
+     */
     public void setManager(DBManager manager) {
         this.manager = manager;
     }
@@ -473,6 +478,10 @@ public class ticket extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_BtnClickedSearchFlightsActionPerformed
 
+    /**
+     * Generates a new ID for the ticket.
+     *
+     */
     public void autoID() {
         try {
             con = DbUtils.getDbConnection();
@@ -506,6 +515,14 @@ public class ticket extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_BtnClickedSearchCustomerActionPerformed
 
+    /**
+     * Searches for the customer based on the provided customer ID. Displays
+     * an error message if the customer is not found.
+     * 
+     * @param id
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public void doCustomerSearch(String id) throws SQLException, ClassNotFoundException {
         if (manager == null) {
             manager = DbUtils.getDBManager();

@@ -13,7 +13,6 @@ import AirlineProducts.FileUtils;
 import AirlineProducts.Login;
 import AirlineProducts.Main;
 import AirlineProducts.SearchCustomer;
-import AirlineProducts.SecurityUtils;
 import AirlineProducts.UserCreation;
 import AirlineProducts.ticket;
 import AirlineProducts.ticketreport;
@@ -106,7 +105,6 @@ public class SearchCustomerTest {
         Login l = new Login();
         FileUtils fu = new FileUtils();
         UserCreation uc = new UserCreation();
-        SecurityUtils su = new SecurityUtils();
 
     }
 

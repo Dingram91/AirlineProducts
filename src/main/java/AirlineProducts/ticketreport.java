@@ -15,6 +15,11 @@ public class ticketreport extends javax.swing.JInternalFrame {
 
     DBManager manager;
 
+    /**
+     * Sets the DBManager to be used for interacting with the database.
+     * 
+     * @param manager 
+     */
     public void setManager(DBManager manager) {
         this.manager = manager;
     }
@@ -92,6 +97,10 @@ public class ticketreport extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_BtnClickedCancel
 
+    /**
+     * Loads all of the tickets into the table.
+     * 
+     */
     public void LoadData() {
 
         try {

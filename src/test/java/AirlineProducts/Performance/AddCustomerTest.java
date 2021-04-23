@@ -13,7 +13,6 @@ import AirlineProducts.FileUtils;
 import AirlineProducts.Login;
 import AirlineProducts.Main;
 import AirlineProducts.SearchCustomer;
-import AirlineProducts.SecurityUtils;
 import AirlineProducts.UserCreation;
 import AirlineProducts.ticket;
 import AirlineProducts.ticketreport;
@@ -33,6 +32,16 @@ public class AddCustomerTest {
 
     private Main main;
 
+    /**
+     * Test Case ID: UnitTest-AutoId-026
+     * Requirement:
+     * Purpose:
+     * Test Setup: 
+     * Test Strategy: 
+     * Input:
+     * Expected Output: 
+     * Test of autoID method, of class ticket
+     */
     @Before
     public void startMain() {
         main = new Main();
@@ -111,7 +120,6 @@ public class AddCustomerTest {
         Login l = new Login();
         FileUtils fu = new FileUtils();
         UserCreation uc = new UserCreation();
-        SecurityUtils su = new SecurityUtils();
 
         Thread.sleep(1000);
     }

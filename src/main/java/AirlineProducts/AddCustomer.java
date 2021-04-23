@@ -40,6 +40,11 @@ public class AddCustomer extends javax.swing.JInternalFrame {
         group.add(rb_male);
     }
 
+    /**
+     * Sets the DBManager to be used for interacting with the database.
+     * 
+     * @param manager 
+     */
     public void setDBManager(DBManager dbManager) {
         this.dbManager = dbManager;
     }

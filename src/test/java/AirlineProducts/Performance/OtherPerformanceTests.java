@@ -37,7 +37,6 @@ public class OtherPerformanceTests {
         Login l = new Login();
         FileUtils fu = new FileUtils();
         UserCreation uc = new UserCreation();
-        SecurityUtils su = new SecurityUtils();
 
         Thread.sleep(1000);
     }
