@@ -20,10 +20,22 @@ public class DBManager {
 
     final private Connection connection;
 
+    /**
+     * Constructor, takes a sql database connection
+     *
+     * @param connection
+     */
     public DBManager(Connection connection) {
         this.connection = connection;
     }
 
+    /**
+     * Gets the max customer ID in the database
+     *
+     * @return max customer id
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public String getMaxCustomerId() throws SQLException, ClassNotFoundException {
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery("select MAX(id) from customer;");
@@ -31,18 +43,50 @@ public class DBManager {
         return result.getString("MAX(id)");
     }
 
+    /**
+     * Gets an sql result object for a customer search by passport number.
+     *
+     * @param passport
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ResultSet getCustomersByPassport(String passport) throws SQLException, ClassNotFoundException {
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer WHERE passport = ?;");
         statement.setString(1, passport);
         return statement.executeQuery();
     }
 
+    /**
+     * Checks if a passport number is already in the database.
+     *
+     * @param passport
+     * @return Boolean
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isPassportTaken(String passport) throws SQLException, ClassNotFoundException {
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer WHERE passport = ?;");
         statement.setString(1, passport);
         return statement.executeQuery().next();
     }
 
+    /**
+     * inserts a new customer into the database.
+     *
+     * @param id
+     * @param firstname
+     * @param lastname
+     * @param nic
+     * @param passport
+     * @param address
+     * @param date
+     * @param contact
+     * @param gender
+     * @param userImage
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void insertCustomer(String id, String firstname, String lastname, String nic,
             String passport, String address, String date, String contact, String gender,
             byte[] userImage) throws SQLException, ClassNotFoundException {
@@ -63,12 +107,25 @@ public class DBManager {
         statement.executeUpdate();
     }
 
+    /**
+     * Gets an sql result object for a customer search by customer ID.
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public ResultSet getCustomerById(String id) throws SQLException {
         PreparedStatement pst = connection.prepareStatement("SELECT * FROM customer WHERE id = ?");
         pst.setString(1, id);
         return pst.executeQuery();
     }
 
+    /**
+     * Gets a vector containing all the tickets in the database.
+     *
+     * @return vector containing all the tickets in the database
+     * @throws SQLException
+     */
     public Vector<Vector<String>> getTicketReportData() throws SQLException {
         Vector<Vector<String>> ticketSalesData = new Vector<>();
         PreparedStatement pst = connection.prepareStatement("SELECT * FROM ticket");
@@ -89,6 +146,19 @@ public class DBManager {
         return ticketSalesData;
     }
 
+    /**
+     * Adds a new ticket to the database.
+     *
+     * @param ticketId
+     * @param flightId
+     * @param custId
+     * @param flightClass
+     * @param price
+     * @param numberOfSeats
+     * @param date
+     * @return Boolean success/fail
+     * @throws SQLException
+     */
     public boolean addTicketToDB(String ticketId, String flightId, String custId,
             String flightClass, String price, String numberOfSeats, String date) throws SQLException {
 
@@ -104,8 +174,24 @@ public class DBManager {
 
         return pst.execute();
     }
-    
-        public void updateCustomer(String id, String firstname, String lastname, String nic,
+
+    /**
+     * Updates a customers information in the database.
+     *
+     * @param id
+     * @param firstname
+     * @param lastname
+     * @param nic
+     * @param passport
+     * @param address
+     * @param date
+     * @param contact
+     * @param gender
+     * @param userImage
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public void updateCustomer(String id, String firstname, String lastname, String nic,
             String passport, String address, String date, String contact, String gender,
             byte[] userImage) throws SQLException, ClassNotFoundException {
         PreparedStatement statement = connection.prepareStatement("insert "

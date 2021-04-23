@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AirlineProducts;
+package AirlineProducts.Unit;
 
+import AirlineProducts.DBManager;
+import AirlineProducts.ticketreport;
 import java.sql.SQLException;
 import java.util.Vector;
 import static org.junit.Assert.assertEquals;
@@ -18,6 +20,17 @@ import static org.mockito.Mockito.when;
  */
 public class ticketreportTest {
 
+/**
+     * Test Case ID: UnitTest-LoadData-029
+     * Requirement: R-33 The system shall allow a user to generate a ticket report
+     * Purpose: To ensure the report pulled in in the correct format
+     * Test Setup: The system will test the amount of rows to make sure all
+     * data can be diplayed correctly
+     * Test Strategy: Whitebox Testing
+     * Input:"CS999", "FO500", "First", "990", "1", "2021-05-04"
+     * Expected Output: True
+     * 
+     */
     @Test
     public void LoadDataTest() throws SQLException {
         System.out.println("Load Data Test");
@@ -61,7 +74,16 @@ public class ticketreportTest {
         assertEquals(50, instance.jTable1.getModel().getRowCount());
 
     }
-
+  /**
+     * Test Case ID: UnitTest-LoadData-028
+     * Requirement: R-34 The system shall allow a user to generate a ticket report
+     * Purpose: To check that the data is loaded from DBanger 
+     * Test Setup: Throw an exception when the DBManager is called
+     * Test Strategy:Mock
+     * Input: Mock of DB manager
+     * Expected Output: SQL Exception
+     * 
+     */
     @Test()
     public void testLoadDataException() throws SQLException {
         ticketreport instance = new ticketreport();

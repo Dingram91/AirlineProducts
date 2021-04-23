@@ -8,6 +8,13 @@ package AirlineProducts;
  */
 public class Main extends javax.swing.JFrame {
 
+    public AddCustomer addCustomer;
+    public SearchCustomer searchCustomer;
+    public AddFlight addFlight;
+    public ticket ticket;
+    public ticketreport ticketReport;
+    public UserCreation userCreation;
+
     /**
      * Creates new form Main
      */
@@ -27,18 +34,17 @@ public class Main extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mi_add_customer = new javax.swing.JMenuItem();
+        mi_search_customer = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        mi_book_ticket = new javax.swing.JMenuItem();
+        mi_ticket_report = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mi_add_flight = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        mi_user_creation = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1366, 768));
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -53,65 +59,70 @@ public class Main extends javax.swing.JFrame {
 
         jMenu1.setText("Customer");
 
-        jMenuItem1.setText("Add Customer");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mi_add_customer.setText("Add Customer");
+        mi_add_customer.setName("addCustomerComp"); // NOI18N
+        mi_add_customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mi_add_customerActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(mi_add_customer);
 
-        jMenuItem2.setText("Search Customer");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mi_search_customer.setText("Search Customer");
+        mi_search_customer.setName("searchCustomerMI"); // NOI18N
+        mi_search_customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mi_search_customerActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(mi_search_customer);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Tickets");
 
-        jMenuItem3.setText("Book Ticket");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        mi_book_ticket.setText("Book Ticket");
+        mi_book_ticket.setName("bookTickitMI"); // NOI18N
+        mi_book_ticket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                mi_book_ticketActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenu2.add(mi_book_ticket);
 
-        jMenuItem6.setText("Ticket Report");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        mi_ticket_report.setText("Ticket Report");
+        mi_ticket_report.setName("ticketReportMI"); // NOI18N
+        mi_ticket_report.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                mi_ticket_reportActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(mi_ticket_report);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Flight");
 
-        jMenuItem4.setText("Add Flight");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        mi_add_flight.setText("Add Flight");
+        mi_add_flight.setName("addFlightMI"); // NOI18N
+        mi_add_flight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                mi_add_flightActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem4);
+        jMenu3.add(mi_add_flight);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("User");
 
-        jMenuItem5.setText("UserCreation");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        mi_user_creation.setText("UserCreation");
+        mi_user_creation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                mi_user_creationActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem5);
+        jMenu4.add(mi_user_creation);
 
         jMenuBar1.add(jMenu4);
 
@@ -131,56 +142,75 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mi_add_customerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_add_customerActionPerformed
         // TODO add your handling code here:
-        AddCustomer cus = new AddCustomer();
-        jDesktopPane1.add(cus);
-        cus.setVisible(true);
+//        AddCustomer cus = new AddCustomer();
+        if (addCustomer == null) {
+            addCustomer = new AddCustomer();
+        }
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(addCustomer);
+        addCustomer.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mi_add_customerActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-
-        SearchCustomer scus = new SearchCustomer();
-        jDesktopPane1.add(scus);
-        scus.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-        AddFlight f = new AddFlight();
-        jDesktopPane1.add(f);
-        f.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        ticket t = new ticket();
-        jDesktopPane1.add(t);
-        t.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void mi_search_customerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_search_customerActionPerformed
         // TODO add your handling code here:
 
-        ticketreport ti = new ticketreport();
-        jDesktopPane1.add(ti);
-        ti.setVisible(true);
+        if (searchCustomer == null) {
+            searchCustomer = new SearchCustomer();
+        }
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(searchCustomer);
+        searchCustomer.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_mi_search_customerActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void mi_add_flightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_add_flightActionPerformed
+        // TODO add your handling code here:
+        if (addFlight == null) {
+            addFlight = new AddFlight();
+        }
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(addFlight);
+        addFlight.setVisible(true);
+
+    }//GEN-LAST:event_mi_add_flightActionPerformed
+
+    private void mi_book_ticketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_book_ticketActionPerformed
+        // TODO add your handling code here:
+        if (ticket == null) {
+            ticket = new ticket();
+        }
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(ticket);
+        ticket.setVisible(true);
+
+    }//GEN-LAST:event_mi_book_ticketActionPerformed
+
+    private void mi_ticket_reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_ticket_reportActionPerformed
         // TODO add your handling code here:
 
-        UserCreation u = new UserCreation();
-        jDesktopPane1.add(u);
-        u.setVisible(true);
+        if (ticketReport == null) {
+            ticketReport = new ticketreport();
+        }
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(ticketReport);
+        ticketReport.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_mi_ticket_reportActionPerformed
+
+    private void mi_user_creationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_user_creationActionPerformed
+        // TODO add your handling code here:
+
+        if (userCreation == null) {
+            userCreation = new UserCreation();
+        }
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(userCreation);
+        userCreation.setVisible(true);
+
+    }//GEN-LAST:event_mi_user_creationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,11 +254,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
+    public javax.swing.JMenuItem mi_add_customer;
+    public javax.swing.JMenuItem mi_add_flight;
+    public javax.swing.JMenuItem mi_book_ticket;
+    public javax.swing.JMenuItem mi_search_customer;
+    public javax.swing.JMenuItem mi_ticket_report;
+    public javax.swing.JMenuItem mi_user_creation;
     // End of variables declaration//GEN-END:variables
 }

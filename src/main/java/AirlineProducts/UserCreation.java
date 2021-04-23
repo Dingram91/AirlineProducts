@@ -198,6 +198,10 @@ public class UserCreation extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_b_cancelActionPerformed
 
+    /**
+     * Generates a new ID for the user based on the previous maximum.
+     * 
+     */
     private void generateID() {
         try {
             Connection connection = DbUtils.getDbConnection();
@@ -215,7 +219,13 @@ public class UserCreation extends javax.swing.JInternalFrame {
         }
     }
 
-    String generateID(String maxID) {
+    /**
+     * A helper method in generating a new ID for the user
+     * 
+     * @param maxID
+     * @return the new maximum ID
+     */
+    public String generateID(String maxID) {
         if (maxID == null) {
             return "UO001";
         } else {
@@ -224,7 +234,14 @@ public class UserCreation extends javax.swing.JInternalFrame {
         }
     }
 
-    boolean isValidName(String name) {
+    /**
+     * Verifies that a entered name is valid else it will display an error
+     * via a dialog
+     * 
+     * @param name
+     * @return true if name is valid
+     */
+    public boolean isValidName(String name) {
         if (name.length() < 2 || name.length() > 15) {
             JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
             return false;
@@ -236,7 +253,14 @@ public class UserCreation extends javax.swing.JInternalFrame {
         return true;
     }
 
-    boolean isValidUsername(String username) {
+    /**
+     * Verifies that the username that was entered is value else it will
+     * show an error dialog
+     * 
+     * @param username
+     * @return true if the username entered is valid
+     */
+    public boolean isValidUsername(String username) {
         if (username.length() < 2 || username.length() > 15) {
             JOptionPane.showMessageDialog(this, "Username must be between 2 and 15 characters");
             return false;
@@ -267,7 +291,14 @@ public class UserCreation extends javax.swing.JInternalFrame {
         return true;
     }
 
-    boolean isValidPassword(String password) {
+    /**
+     * Verifies that the entered password is valid else it will display an
+     * error dialog
+     * 
+     * @param password
+     * @return true if the password entered is valid
+     */
+    public boolean isValidPassword(String password) {
         if (password.length() < 6 || password.length() > 15) {
             JOptionPane.showMessageDialog(this, "Password must be between 6 and 15 characters");
             return false;
@@ -283,7 +314,13 @@ public class UserCreation extends javax.swing.JInternalFrame {
         return true;
     }
 
-    boolean hasValidID(String id) {
+    /**
+     * Verifies that the current ID is valid
+     * 
+     * @param id
+     * @return true if the current ID is valid
+     */
+    public boolean hasValidID(String id) {
         if (id.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid ID");
             return false;
@@ -291,6 +328,16 @@ public class UserCreation extends javax.swing.JInternalFrame {
         return true;
     }
 
+    /**
+     * Verifies that all inputs are valid.
+     * 
+     * @param id
+     * @param firstName
+     * @param lastName
+     * @param username
+     * @param password
+     * @return 
+     */
     private boolean hasValidInputs(String id, String firstName, String lastName,
             String username, String password) {
         return hasValidID(id) && isValidName(firstName) && isValidName(lastName)

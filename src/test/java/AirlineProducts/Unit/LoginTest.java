@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AirlineProducts;
+package AirlineProducts.Unit;
 
+import AirlineProducts.Login;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -15,6 +16,12 @@ import static org.junit.Assert.*;
 public class LoginTest {
 
     /**
+     * Test Case ID: UnitTest-Inputs-011
+     * Requirement: R-2 Users shall be required to enter a valid username and password before being allowed to access the various system tools
+     * Purpose: This test will check that both the username and password have a valid character inputs
+     * Test Strategy: Equivalence Class Testing
+     * Input: Username: Joe  Password: 098, Username:   Password: 098, Username:   Password: , Username: Joe  Password: 
+     * Expected Output: True, False, False, False
      * Test of hasValidInputs method, of class Login.
      */
     @Test
@@ -43,7 +50,13 @@ public class LoginTest {
         assertEquals(true, instance.hasValidInputs(username, password));
     }
 
-    /**
+        /**
+     * Test Case ID: UnitTest-User-012
+     * Requirement: R-2 Users shall be required to enter a valid username and password before being allowed to access the various system tools
+     * Purpose: This test will check that both the username and password are valid to access system
+     * Test Strategy: Equivalence Class Testing
+     * Input: Username: Joe  Password: 123,  Username: Password: 098, Username: Password: , Username: Joe Password: 
+     * Expected Output: True, False, False, False
      * Test of isValidUser method, of class Login.
      */
     @Test

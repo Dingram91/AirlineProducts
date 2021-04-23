@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AirlineProducts;
+package AirlineProducts.Integration;
 
+import AirlineProducts.AddCustomer;
+import AirlineProducts.DBManager;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -18,15 +20,19 @@ import static org.mockito.Mockito.when;
 
 /**
  *
- * @author alexa
+ * @author AliT
  */
 public class AddCustomerTest {
     
-    public AddCustomerTest() {
-    }
-
     /**
-     * Test of generateID method, of class AddCustomer.
+     * Test Case ID: IntegrationTest-ID-1
+     * Requirement: R-25 The software shall generate a new customer ID
+     * Purpose: To check that the ID generated is valid
+     * Test Setup: Verify that the AddCustomer class interacts with the DBManager to retrieve
+     * the last maximum ID and increments it correctly
+     * Test Strategy:Mock
+     * Input: AddCustomer class and DBManager mock
+     * Expected Output: CS1000 & CS1001
      */
     @Test
     public void testGenerateID() throws SQLException, ClassNotFoundException {
@@ -48,64 +54,16 @@ public class AddCustomerTest {
         when(dbManager.getMaxCustomerId()).thenReturn("CS1000");       
         assertEquals("CS1001", instance.generateID(dbManager.getMaxCustomerId()));
     }
-
+    
     /**
-     * Test of isValidName method, of class AddCustomer.
-     */
-    @Test
-    public void testIsValidName() {
-        System.out.println("isValidName");
-        AddCustomer instance = new AddCustomer();
-        
-        // Test name that is too short - length = 1
-        String name = "j";
-        assertEquals(false, instance.isValidName(name));
-
-        // Test name that is too long - length = 16
-        name = "johnjohnjohnjohn";
-        assertEquals(false, instance.isValidName(name));
-
-        // Test contains characters that are not letters
-        name = "jo hn234";
-        assertEquals(false, instance.isValidName(name));
-
-        // Test valid name
-        name = "john";
-        assertEquals(true, instance.isValidName(name));
-    }
-
-    /**
-     * Test of isValidNIC method, of class AddCustomer.
-     */
-    @Test
-    public void testIsValidNIC() {
-        System.out.println("isValidNIC");
-        AddCustomer instance = new AddCustomer();
-        
-        // Test empty NIC
-        assertEquals(false, instance.isValidNIC(""));
-        
-        // Test non-empty NIC
-        assertEquals(true, instance.isValidNIC("NIC"));
-    }
-
-    /**
-     * Test of hasValidID method, of class AddCustomer.
-     */
-    @Test
-    public void testHasValidID() {
-        System.out.println("hasValidID");
-        AddCustomer instance = new AddCustomer();
-        
-        // Test empty ID
-        assertEquals(false, instance.hasValidID(""));
-        
-        // Test non-empty ID
-        assertEquals(true, instance.hasValidID("ID"));
-    }
-
-    /**
-     * Test of isValidPassport method, of class AddCustomer.
+     * Test Case ID: IntegrationTest-isValidPassport-2
+     * Requirement: R-8 Users must be required to enter a valid passport 
+     * number for a new customer record
+     * Test Setup: Verify that the AddCustomer class interacts with the DBManager and only 
+     * requests to add a new customer if the inputs are valid
+     * Test Strategy: Mock
+     * Input: AddCustomer class and DBManager mock
+     * Expected Output: true, true, false, false
      */
     @Test
     public void testIsValidPassport() throws SQLException, ClassNotFoundException {
@@ -130,54 +88,16 @@ public class AddCustomerTest {
         when(dbManager.isPassportTaken("")).thenReturn(false);       
         assertEquals(false, instance.isValidPassport(""));
     }
-
-    /**
-     * Test of isValidAddress method, of class AddCustomer.
-     */
-    @Test
-    public void testIsValidAddress() {
-        System.out.println("isValidAddress");
-        AddCustomer instance = new AddCustomer();
-        
-        // Test empty address
-        assertEquals(false, instance.isValidAddress(""));
-        
-        // Test non-empty address
-        assertEquals(true, instance.isValidAddress("my address"));
-    }
-
-    /**
-     * Test of isValidDate method, of class AddCustomer.
-     */
-    @Test
-    public void testIsValidDate() {
-        System.out.println("isValidDate");
-        AddCustomer instance = new AddCustomer();
-        
-        // Test invalid date
-        assertEquals(false, instance.isValidDate(null));
-        
-        // Test valid date
-        assertEquals(true, instance.isValidDate(new Date()));
-    }
-
-    /**
-     * Test of hasValidContact method, of class AddCustomer.
-     */
-    @Test
-    public void testHasValidContact() {
-        System.out.println("hasValidContact");
-        AddCustomer instance = new AddCustomer();
-        
-        // Test empty contact
-        assertEquals(false, instance.hasValidContact(""));
-        
-        // Test non-empty contact
-        assertEquals(true, instance.hasValidContact("contact"));
-    }
     
     /**
-     * Test of insertCustomer method, of class AddCustomer.
+     * Test Case ID: IntegrationTest-ID-3
+     * Requirement: R-28 Only insert a new customer that has provided valid inputs
+     * Purpose: To check the class interaction
+     * Test Setup: Verify that the AddCustomer class interacts with the DBManager 
+     * and only requests to add a new customer if the inputs are valid 
+     * Test Strategy:Mock
+     * Input: AddCustomer class and DBManager mock
+     * Expected Output: 1 & 0
      */
     @Test
     public void testInsertCustomer() throws SQLException, ClassNotFoundException {
@@ -187,7 +107,6 @@ public class AddCustomerTest {
         instance.setDBManager(dbManager);
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         
-        System.out.println("About to call insert customer");
         instance.insertCustomer("CS1000", "john", "doe", "nic", "02345", "address",
                 new Date(), "michael", "male", null);
         verify(dbManager, times(1)).insertCustomer("CS1000", "john", "doe", "nic", "02345", "address",
@@ -199,4 +118,5 @@ public class AddCustomerTest {
                 null, null, null, null);
         
     }
+    
 }

@@ -23,6 +23,11 @@ public class ticket extends javax.swing.JInternalFrame {
 
     DBManager manager;
 
+    /**
+     * Sets the DBManager to be used for interacting with the database.
+     * 
+     * @param manager 
+     */
     public void setManager(DBManager manager) {
         this.manager = manager;
     }
@@ -85,11 +90,16 @@ public class ticket extends javax.swing.JInternalFrame {
         txtTotal = new javax.swing.JLabel();
         txtDate = new com.toedter.calendar.JDateChooser();
 
+        setName("TicketFrame"); // NOI18N
+
+        jPanel1.setName("ticketPanel1"); // NOI18N
+
         txtsource.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "India", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
 
         txtdepart.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
 
         jLabel1.setText("Source");
+        jLabel1.setName("sourceLabel"); // NOI18N
 
         jLabel2.setText("Departure");
 
@@ -344,6 +354,7 @@ public class ticket extends javax.swing.JInternalFrame {
         txtTotal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(255, 0, 0));
         txtTotal.setText("jLabel4");
+        txtTotal.setName("totalLabel"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -467,6 +478,10 @@ public class ticket extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_BtnClickedSearchFlightsActionPerformed
 
+    /**
+     * Generates a new ID for the ticket.
+     *
+     */
     public void autoID() {
         try {
             con = DbUtils.getDbConnection();
@@ -500,6 +515,14 @@ public class ticket extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_BtnClickedSearchCustomerActionPerformed
 
+    /**
+     * Searches for the customer based on the provided customer ID. Displays
+     * an error message if the customer is not found.
+     * 
+     * @param id
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public void doCustomerSearch(String id) throws SQLException, ClassNotFoundException {
         if (manager == null) {
             manager = DbUtils.getDBManager();
@@ -584,9 +607,9 @@ public class ticket extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnClickedCancel
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton BtnClickedSearchCustomer;
-    protected javax.swing.JButton BtnClickedSearchFlights;
-    protected javax.swing.JButton CancelButton;
+    public javax.swing.JButton BtnClickedSearchCustomer;
+    public javax.swing.JButton BtnClickedSearchFlights;
+    public javax.swing.JButton CancelButton;
     private javax.swing.JLabel flightname;
     private javax.swing.JLabel flightno;
     protected javax.swing.JButton jButton1;
@@ -613,7 +636,7 @@ public class ticket extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextField txtPrice;
     protected javax.swing.JSpinner txtSeats;
-    protected javax.swing.JLabel txtTicketNum;
+    public javax.swing.JLabel txtTicketNum;
     private javax.swing.JLabel txtTotal;
     private javax.swing.JComboBox<String> txtdepart;
     private javax.swing.JLabel txtdept;

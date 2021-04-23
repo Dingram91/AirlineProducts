@@ -15,6 +15,11 @@ public class ticketreport extends javax.swing.JInternalFrame {
 
     DBManager manager;
 
+    /**
+     * Sets the DBManager to be used for interacting with the database.
+     * 
+     * @param manager 
+     */
     public void setManager(DBManager manager) {
         this.manager = manager;
     }
@@ -40,6 +45,8 @@ public class ticketreport extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
+        setName("ticketReportFrame"); // NOI18N
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -51,6 +58,7 @@ public class ticketreport extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Cancel");
+        jButton1.setName("cancelButton"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnClickedCancel(evt);
@@ -89,6 +97,10 @@ public class ticketreport extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_BtnClickedCancel
 
+    /**
+     * Loads all of the tickets into the table.
+     * 
+     */
     public void LoadData() {
 
         try {
@@ -109,6 +121,6 @@ public class ticketreport extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    protected javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

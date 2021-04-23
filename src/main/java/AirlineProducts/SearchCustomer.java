@@ -1,9 +1,5 @@
 package AirlineProducts;
 
-
-
-
-
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -12,11 +8,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,30 +31,34 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * and open the template in the editor.
  */
 public class SearchCustomer extends javax.swing.JInternalFrame {
-    
+
     private String path = null;
     private byte[] userImage = null;
     private DBManager dbManager;
 
-   
     /**
      * Creates new form SearchCustomer
      */
     public SearchCustomer() {
         initComponents();
-        
+
         ButtonGroup group = new ButtonGroup();
         group.add(rb_female);
         group.add(rb_male);
     }
-   
-        public void setDBManager(DBManager dbManager) {
+
+    /**
+     * Sets the DBManager to be used for interacting with the database.
+     * 
+     * @param manager 
+     */
+    public void setDBManager(DBManager dbManager) {
         this.dbManager = dbManager;
     }
-        
+
     Connection con;
     PreparedStatement pst;
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,42 +97,47 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         txtcustid = new javax.swing.JTextField();
         b_find = new javax.swing.JButton();
 
+        setName("searchCustomerFrame"); // NOI18N
+
         l_firstName.setBackground(new java.awt.Color(51, 0, 255));
+        l_firstName.setName("textPanel1"); // NOI18N
 
         l_firstname.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_firstname.setForeground(new java.awt.Color(255, 255, 255));
         l_firstname.setText("FirstName");
+        l_firstname.setName("firstNameLabel"); // NOI18N
 
         l_lastName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_lastName.setForeground(new java.awt.Color(255, 255, 255));
         l_lastName.setText("LastName");
+        l_lastName.setName("lastNameLabel"); // NOI18N
 
         l_nic.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_nic.setForeground(new java.awt.Color(255, 255, 255));
         l_nic.setText("Nic No");
+        l_nic.setName("nicNoLabel"); // NOI18N
 
         l_passport.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_passport.setForeground(new java.awt.Color(255, 255, 255));
         l_passport.setText("Passport ID");
+        l_passport.setName("passportIdLabel"); // NOI18N
 
         l_address.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         l_address.setForeground(new java.awt.Color(255, 255, 255));
         l_address.setText("Address");
+        l_address.setName("addressLabel"); // NOI18N
 
-        txtlastname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtlastnameActionPerformed(evt);
-            }
-        });
+        txtlastname.setName("lastNameBox"); // NOI18N
 
-        txtpassport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpassportActionPerformed(evt);
-            }
-        });
+        txtfirstname.setName("firstNameBox"); // NOI18N
+
+        txtnic.setName("nicNoBox"); // NOI18N
+
+        txtpassport.setName("passportIdBox"); // NOI18N
 
         txtaddress.setColumns(20);
         txtaddress.setRows(5);
+        txtaddress.setName("addressBox"); // NOI18N
         jScrollPane1.setViewportView(txtaddress);
 
         javax.swing.GroupLayout l_firstNameLayout = new javax.swing.GroupLayout(l_firstName);
@@ -211,8 +214,12 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         l_contact.setText("Contact");
 
         rb_male.setText("Male");
+        rb_male.setName("maleRadioButton"); // NOI18N
 
         rb_female.setText("Female");
+        rb_female.setName("femaleRadioButton"); // NOI18N
+
+        txtcontact.setName("contactBox"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -260,6 +267,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         txtphoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         b_browse.setText("Browse");
+        b_browse.setName("photoFileBrowserButton"); // NOI18N
         b_browse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_browseActionPerformed(evt);
@@ -267,6 +275,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         });
 
         b_update.setText("Update");
+        b_update.setName("updateButton"); // NOI18N
         b_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_updateActionPerformed(evt);
@@ -274,13 +283,17 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         });
 
         btnClickedCancel.setText("Cancel");
+        btnClickedCancel.setName("cancelButton"); // NOI18N
         btnClickedCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClickedCancelActionPerformed(evt);
             }
         });
 
+        txtcustid.setName("customerIDBox"); // NOI18N
+
         b_find.setText("Find");
+        b_find.setName("findButton"); // NOI18N
         b_find.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_findActionPerformed(evt);
@@ -350,38 +363,30 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtlastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtlastnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtlastnameActionPerformed
-
-    private void txtpassportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpassportActionPerformed
-
     private void b_browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_browseActionPerformed
         // TODO add your handling code here:
 
         try {
             JFileChooser picchooser = new JFileChooser();
+
             picchooser.showOpenDialog(null);
-            File pic = picchooser.getSelectedFile();       
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images","png","jpg");
-            picchooser.addChoosableFileFilter(filter);     
-            path= pic.getAbsolutePath();
-            BufferedImage img;                    
+            File pic = picchooser.getSelectedFile();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
+            picchooser.addChoosableFileFilter(filter);
+            path = pic.getAbsolutePath();
+            BufferedImage img;
             img = ImageIO.read(picchooser.getSelectedFile());
-            ImageIcon imageIcon = new ImageIcon(new
-            ImageIcon(img).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
-            txtphoto.setIcon(imageIcon); 
-              
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+            txtphoto.setIcon(imageIcon);
+
             File image = new File(path);
             FileInputStream fis = new FileInputStream(image);
-            ByteArrayOutputStream baos= new ByteArrayOutputStream();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             byte[] buff = new byte[1024];
-            for(int readNum; (readNum=fis.read(buff)) !=-1 ; ) {
-                baos.write(buff,0,readNum);
+            for (int readNum; (readNum = fis.read(buff)) != -1;) {
+                baos.write(buff, 0, readNum);
             }
-            userImage=baos.toByteArray();              
+            userImage = baos.toByteArray();
         } catch (IOException ex) {
             Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -389,67 +394,66 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
 
     private void b_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_updateActionPerformed
         // TODO add your handling code here:
-        
+
         String id = txtcustid.getText();
         String firstname = txtfirstname.getText();
         String lastname = txtlastname.getText();
-        String nic = txtnic.getText(); 
+        String nic = txtnic.getText();
         String passport = txtpassport.getText();
         String address = txtaddress.getText();
         Date date = dc_dob.getDate();
         String contact = txtcontact.getText();
         String gender = (rb_male.isSelected()) ? "Male" : "Female";
-        updateCustomer(id, firstname, lastname, nic, passport, 
-                        address, date, contact, gender, userImage);
+        updateCustomer(id, firstname, lastname, nic, passport,
+                address, date, contact, gender, userImage);
     }//GEN-LAST:event_b_updateActionPerformed
 
     private void btnClickedCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClickedCancelActionPerformed
         // TODO add your handling code here:
-      
+
         this.hide();
     }//GEN-LAST:event_btnClickedCancelActionPerformed
 
     private void b_findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_findActionPerformed
         // TODO add your handling code here:
-        
+
         String id = txtcustid.getText();
-        
+
         try {
             con = DbUtils.getDbConnection();
             pst = con.prepareStatement("select * from customer where id = ?");
             pst.setString(1, id);
             ResultSet rs = pst.executeQuery();
-            
-            if(rs.next() == false) {
+
+            if (rs.next() == false) {
                 JOptionPane.showMessageDialog(this, "Record not Found");
             } else {
                 String fname = rs.getString("firstname");
                 String lname = rs.getString("lastname");
                 String nic = rs.getString("nic");
                 String passport = rs.getString("passport");
-                 
+
                 String address = rs.getString("address");
                 String dob = rs.getString("dob");
                 Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
-                String gender =rs.getString("gender");
-                 
+                String gender = rs.getString("gender");
+
                 Blob blob = rs.getBlob("photo");
-                byte[ ]  _imagebytes=blob.getBytes( 1, (int) blob.length( ) );
+                byte[] _imagebytes = blob.getBytes(1, (int) blob.length());
                 ImageIcon image = new ImageIcon(_imagebytes);
                 Image im = image.getImage();
-                Image myImg = im.getScaledInstance(txtphoto.getWidth(), txtphoto.getHeight(),Image.SCALE_SMOOTH);
+                Image myImg = im.getScaledInstance(txtphoto.getWidth(), txtphoto.getHeight(), Image.SCALE_SMOOTH);
                 ImageIcon newImage = new ImageIcon(myImg);
-                 
-                if(gender.equals("Female")) {
-                     rb_male.setSelected(false);
-                     rb_female.setSelected(true);
-                }
-                else {
+
+                if (gender.equals("Female")) {
+                    rb_male.setSelected(false);
+                    rb_female.setSelected(true);
+                } else {
                     rb_male.setSelected(true);
                     rb_female.setSelected(false);
                 }
                 String contact = rs.getString("contact");
-                 
+
                 txtfirstname.setText(fname.trim());
                 txtlastname.setText(lname.trim());
                 txtnic.setText(nic.trim());
@@ -458,17 +462,24 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
                 txtcontact.setText(contact.trim());
                 dc_dob.setDate(date1);
                 txtphoto.setIcon(newImage);
-            }     
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
             Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_b_findActionPerformed
 
-       boolean isValidName(String name) {
+    /**
+     * Verifies that a entered name is valid else it will display an error
+     * via a dialog
+     * 
+     * @param name
+     * @return true if name is valid
+     */
+    public boolean isValidName(String name) {
         if (name.length() < 2 || name.length() > 15) {
             JOptionPane.showMessageDialog(this, "Names must be between 2 and 15 characters");
             return false;
@@ -479,30 +490,51 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         }
         return true;
     }
-        
-    boolean isValidNIC(String nic) {
+
+    /**
+     * Verifies that the National Identity Card is valid else it will display
+     * an error message via a dialog
+     * 
+     * @param nic
+     * @return true if the NIC is valid
+     */
+    public boolean isValidNIC(String nic) {
         if (nic.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid NIC");
             return false;
         }
         return true;
     }
-    
-    boolean hasValidID(String id) {
+
+    /**
+     * Verifies that the ID is valid else it will show an error dialog.
+     * 
+     * @param id
+     * @return true if the ID is valid
+     */
+    public boolean hasValidID(String id) {
         if (id.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There is no valid ID");
             return false;
         }
         return true;
     }
-    
-    boolean isValidPassport(String passport) {
+
+    /**
+     * Verifies that the passport is valid else it will show an error dialog.
+     * 
+     * @param passport
+     * @return true if the passport is valid
+     */
+    public boolean isValidPassport(String passport) {
         if (!passport.matches("^(?!^0+$)[a-zA-Z0-9]{3,20}$")) {
             JOptionPane.showMessageDialog(this, "Passport is not valid");
             return false;
         }
         try {
-            if (dbManager == null) dbManager = DbUtils.getDBManager();
+            if (dbManager == null) {
+                dbManager = DbUtils.getDBManager();
+            }
             if (dbManager.isPassportTaken(passport)) {
                 JOptionPane.showMessageDialog(this, "Passport is already associated with another customer");
                 return false;
@@ -517,27 +549,47 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         }
         return true;
     }
-    
-    boolean isValidAddress(String address) {
+
+    /**
+     * Verifies that the entered address is valid else it will display an
+     * error dialog.
+     * 
+     * @param address
+     * @return true if the address is valid
+     */
+    public boolean isValidAddress(String address) {
         if (address.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Address is not valid");
             return false;
         }
         return true;
     }
-    
-    boolean isValidDate(Date date) {
+
+    /**
+     * Verifies that the entered date is valid else it will show an error
+     * dialog
+     * 
+     * @param date
+     * @return true if the date is valid.
+     */
+    public boolean isValidDate(Date date) {
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            da.format(date);   
+            da.format(date);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Date is not formatted correctly");
             return false;
         }
         return true;
     }
-    
-    boolean hasSelectedGender() {
+
+    /**
+     * Verifies that the user has selected a gender else it will display
+     * an error dialog
+     * 
+     * @return true if a gender was selected.
+     */
+    public boolean hasSelectedGender() {
         if (rb_female.isSelected() || rb_male.isSelected()) {
             return true;
         } else {
@@ -545,8 +597,15 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
             return false;
         }
     }
-    
-    boolean hasValidContact(String contact) {
+
+    /**
+     * Verifies that a valid contact was entered else it will display an
+     * error dialog
+     * 
+     * @param contact
+     * @return true if a valid contact was entered
+     */
+    public boolean hasValidContact(String contact) {
         if (contact.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a contact");
             return false;
@@ -554,35 +613,64 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
             return true;
         }
     }
-    
-    boolean hasValidInputs(String id, String firstname, String lastname, String nic, 
+
+    /**
+     * Verifies that all inputs are valid
+     * 
+     * @param id
+     * @param firstname
+     * @param lastname
+     * @param nic
+     * @param passport
+     * @param address
+     * @param date
+     * @param contact
+     * @return 
+     */
+    public boolean hasValidInputs(String id, String firstname, String lastname, String nic,
             String passport, String address, Date date, String contact) {
         return hasValidID(id) && isValidName(firstname) && isValidName(lastname)
                 && isValidNIC(nic) && isValidAddress(address)
                 && isValidDate(date) && hasValidContact(contact);
     }
-    
-    void updateCustomer(String id, String firstname, String lastname, String nic, 
-        String passport, String address, Date date, String contact, String gender,
-        byte[] userImage) {
+
+    /**
+     * Updates the user in the database if all user inputs were valid
+     * 
+     * @param id
+     * @param firstname
+     * @param lastname
+     * @param nic
+     * @param passport
+     * @param address
+     * @param date
+     * @param contact
+     * @param gender
+     * @param userImage 
+     */
+    public void updateCustomer(String id, String firstname, String lastname, String nic,
+            String passport, String address, Date date, String contact, String gender,
+            byte[] userImage) {
         System.out.println("Update customers");
         if (hasValidInputs(id, firstname, lastname, nic, passport, address,
                 date, contact)) {
             System.out.println("has valid inputs");
             try {
-                if (dbManager == null) dbManager = DbUtils.getDBManager();
+                if (dbManager == null) {
+                    dbManager = DbUtils.getDBManager();
+                }
                 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 String dateFormatted = formatter.format(date);
-                dbManager.updateCustomer(id, firstname, lastname, nic, passport, 
+                dbManager.updateCustomer(id, firstname, lastname, nic, passport,
                         address, dateFormatted, contact, gender, userImage);
-                JOptionPane.showMessageDialog(null,"File Updated...");
+                JOptionPane.showMessageDialog(null, "File Updated...");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "Unable to connect to database");
             } catch (SQLException ex) {
                 Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "An error occurred "
-                    + "interacting with the database");
+                        + "interacting with the database");
             }
         }
     }
@@ -615,6 +703,5 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtpassport;
     private javax.swing.JLabel txtphoto;
     // End of variables declaration//GEN-END:variables
-
 
 }
