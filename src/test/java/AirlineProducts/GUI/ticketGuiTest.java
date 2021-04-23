@@ -37,6 +37,16 @@ public class ticketGuiTest {
         window.cleanUp();
     }
 
+    /**
+     * Test Case ID: GUITest-Contrast-002 Requirement: R-36: The GUI shall use
+     * colors that make text easily legible and different parts of the current
+     * screen distinguishable. Purpose: To test that the screen background and
+     * font colors. input passed to the method mouse and keyboard commands,
+     * ensures the font and background have a sufficient amount of contrast.
+     * Test Setup: This test is setup to determine if the font and background
+     * have a sufficient level of contrast. Test Strategy: Equivalence Class
+     * Testing Input: Mouse and keyboard commands. Expected Output: true
+     */
     @Test
     public void checkTextContrast() {
         window.menuItem("bookTickitMI").click();

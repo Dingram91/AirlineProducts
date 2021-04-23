@@ -16,11 +16,11 @@ import org.junit.Test;
 public class OtherPerformanceTests {
 
     /**
-     * Startup Time test
-     *
-     * @throws SQLException
-     * @throws ClassNotFoundException
-     * @throws java.lang.InterruptedException
+     * Test Case ID: GUITest-Contrast-001 Requirement: R-40: TOpening windows
+     * should take less than 1 second. Purpose: To test that opening windows
+     * takes less than a minutes. Test Setup: This test opening windows takes
+     * less than a second. Test Strategy: White box Testing Input: Mouse and
+     * keyboard commands. Expected Output: N/A
      */
     @Test(timeout = 10000)
     public void testMain() throws SQLException, ClassNotFoundException, InterruptedException {
