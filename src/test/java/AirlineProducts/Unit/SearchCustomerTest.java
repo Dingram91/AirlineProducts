@@ -19,6 +19,18 @@ public class SearchCustomerTest {
     public SearchCustomerTest() {
     }
 
+  /**
+     * Test Case ID: UnitTest-FirstName-013
+     * Requirement: R-4: Users shall be able to search the centralized database for 
+     * customer information via customer ID or passport
+     * Purpose: To test the inputs passed to the method hasValidInputs,
+     * ensures all inputs are in the correct format
+     * Test Setup: assertEquals is used to check if the inputs pass the test
+     * Test Strategy: Equivalence Class testing
+     * Input: "CS999", "john", "smith", "14145", "235235235", "123 somplace, nm 31313", new Date(), "5555555555")
+     * Expected Output: True, False, False, False, False, False, False
+     * Test of isValidName method, of class SearchCustomer.
+     */
     @Test
     public void testhasValidInputs() {
         SearchCustomer instance = new SearchCustomer();
@@ -32,7 +44,16 @@ public class SearchCustomerTest {
         assertEquals(instance.hasValidInputs("CS999", "john", "smith", "14145", "235235235", "123 somplace, nm 31313", new Date(), ""), false);
     }
 
-    /**
+        /**
+     * Test Case ID: UnitTest-FirstName-014
+     * Requirement: R-8: Users must be required to enter a 
+     * valid First name for a new customer record
+     * Purpose: To test the input passed to the method isValidName,
+     * ensures the name is between 2 and 15 characters
+     * Test Setup: assertEquals is used to check if the inputs pass the test
+     * Test Strategy: Equivalence Class testing
+     * Input: “a” - a name that is too short, “alex” - a name of acceptable length, “alexalexalexalex” - a name that is too long
+     * Expected Output: False, True, False
      * Test of isValidName method, of class SearchCustomer.
      */
     @Test
@@ -56,8 +77,16 @@ public class SearchCustomerTest {
         name = "john";
         assertEquals(true, instance.isValidName(name));
     }
-
     /**
+     * Test Case ID: UnitTest-NIC-015
+     * Requirement:R-9 Users must be required to enter a valid (National Identity Card) 
+     * number for a new customer record
+     * Purpose: To test the input passed to the method isValidNic,
+     * this test shows that the user has not left the field 
+     * Test Setup: assertEquals is used to check if the inputs pass the test
+     * Test Strategy: Equivalence Class Testing
+     * Input: "   ", NIC
+     * Expected Output: false, true
      * Test of isValidNIC method, of class SearchCustomer.
      */
     @Test
@@ -73,7 +102,15 @@ public class SearchCustomerTest {
     }
 
     /**
-     * Test of hasValidID method, of class SearchCustomer.
+     * Test Case ID: UnitTest-ID-016
+     * Requirement: R-25 A user must be required to enter a valid ID 
+     * for a new customer record
+     * Purpose: To check if the ID is valid and so customer can be searched in the system
+     * Test Setup: assertEquals is used to check if the inputs pass the test
+     * Test Strategy: Equivalence Class Testing
+     * Input: "   ", "ID"
+     * Expected Output: false, true
+     * Test of hasValidId method, of class AddCustomer.
      */
     @Test
     public void testHasValidID() {
@@ -88,6 +125,15 @@ public class SearchCustomerTest {
     }
 
     /**
+     * Test Case ID: UnitTest-ID-017
+     * Requirement: R-19 A user shall be able to enter a new Customer Address 
+     * into the graphical interface for a customer record
+     * Purpose: To check if the Address is valid and so customers can be searched 
+     * or updated in the system
+     * Test Setup: assertEquals is used to check if the inputs pass the test
+     * Test Strategy: Equivalence Class Testing
+     * Input: "   ", "123 Birch Street"
+     * Expected Output: false, true
      * Test of isValidAddress method, of class SearchCustomer.
      */
     @Test
@@ -103,6 +149,15 @@ public class SearchCustomerTest {
     }
 
     /**
+     * Test Case ID: UnitTest-Date-018
+     * Requirement:R-20 A user shall be able to select a new date of birth in the 
+     * graphical interface for a customer record
+     * Purpose: To test that the date input is in the correct format
+     * Test Setup: assertEquals is used to check if the inputs pass 
+     * the test that he field is not null
+     * Test Strategy:Equivalence Class Testing
+     * Input: "2021-01-20"
+     * Expected Output: false, true
      * Test of isValidDate method, of class SearchCustomer.
      */
     @Test
@@ -117,6 +172,18 @@ public class SearchCustomerTest {
         assertEquals(true, instance.isValidDate(new Date()));
     }
 
+    
+        /**
+     * Test Case ID: UnitTest-Contact-019
+     * Requirement:R-12 Users must be required to select a gender for a
+     * new customer record
+     * Purpose: To test that a gender is selected
+     * Test Setup: assertEquals is used to check if the gender is selected
+     * Test Strategy:Equivalence Class Testing
+     * Input: select male
+     * Expected Output: true
+     * Test of hasValidContact method, of class SearchCustomer.
+     */
     @Test
     public void checkHasValidGener() {
         SearchCustomer instance = new SearchCustomer();
@@ -124,6 +191,15 @@ public class SearchCustomerTest {
     }
 
     /**
+     * Test Case ID: UnitTest-Contact-020
+     * Requirement:R-11 Users must be required to enter a 
+     * valid phone number for a new customer record
+     * Purpose: To test that the date input is in the correct format
+     * Test Setup: assertEquals is used to check if the inputs pass 
+     * the test that he field is not null
+     * Test Strategy:Equivalence Class Testing
+     * Input: 239-555-8877
+     * Expected Output: false, true
      * Test of hasValidContact method, of class SearchCustomer.
      */
     @Test
