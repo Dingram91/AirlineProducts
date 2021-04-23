@@ -20,7 +20,7 @@ public class SearchCustomerTest {
     }
 
   /**
-     * Test Case ID: UnitTest-FirstName-013
+     * Test Case ID: UnitTest-Inputs-013
      * Requirement: R-4: Users shall be able to search the centralized database for 
      * customer information via customer ID or passport
      * Purpose: To test the inputs passed to the method hasValidInputs,
@@ -125,7 +125,7 @@ public class SearchCustomerTest {
     }
 
     /**
-     * Test Case ID: UnitTest-ID-017
+     * Test Case ID: UnitTest-Address-017
      * Requirement: R-19 A user shall be able to enter a new Customer Address 
      * into the graphical interface for a customer record
      * Purpose: To check if the Address is valid and so customers can be searched 
@@ -174,7 +174,7 @@ public class SearchCustomerTest {
 
     
         /**
-     * Test Case ID: UnitTest-Contact-019
+     * Test Case ID: UnitTest-Gender-019
      * Requirement:R-12 Users must be required to select a gender for a
      * new customer record
      * Purpose: To test that a gender is selected
