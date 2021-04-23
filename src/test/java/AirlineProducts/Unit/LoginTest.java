@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class LoginTest {
 
     /**
-     * Test Case ID: UnitTest-Date-011
+     * Test Case ID: UnitTest-Inputs-011
      * Requirement: R-2 Users shall be required to enter a valid username and password before being allowed to access the various system tools
      * Purpose: This test will check that both the username and password have a valid character inputs
      * Test Strategy: Equivalence Class Testing
@@ -51,7 +51,7 @@ public class LoginTest {
     }
 
         /**
-     * Test Case ID: UnitTest-Date-012
+     * Test Case ID: UnitTest-User-012
      * Requirement: R-2 Users shall be required to enter a valid username and password before being allowed to access the various system tools
      * Purpose: This test will check that both the username and password are valid to access system
      * Test Strategy: Equivalence Class Testing

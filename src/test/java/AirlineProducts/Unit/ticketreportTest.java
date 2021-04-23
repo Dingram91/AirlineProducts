@@ -20,6 +20,16 @@ import static org.mockito.Mockito.when;
  */
 public class ticketreportTest {
 
+/**
+     * Test Case ID: UnitTest-LoadData-029
+     * Requirement:
+     * Purpose:
+     * Test Setup: 
+     * Test Strategy: 
+     * Input:
+     * Expected Output: 
+     * 
+     */
     @Test
     public void LoadDataTest() throws SQLException {
         System.out.println("Load Data Test");
@@ -63,7 +73,16 @@ public class ticketreportTest {
         assertEquals(50, instance.jTable1.getModel().getRowCount());
 
     }
-
+/**
+     * Test Case ID: UnitTest-Buttons-030
+     * Requirement:
+     * Purpose:
+     * Test Setup: 
+     * Test Strategy: 
+     * Input:
+     * Expected Output: 
+     * 
+     */
     @Test()
     public void testLoadDataException() throws SQLException {
         ticketreport instance = new ticketreport();
