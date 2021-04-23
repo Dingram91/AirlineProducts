@@ -27,11 +27,13 @@ public class ticketTest {
     /**
      * Test Case ID: UnitTest-AutoId-026
      * Requirement:
-     * Purpose:
-     * Test Setup: 
-     * Test Strategy: 
-     * Input:
-     * Expected Output: 
+     * Purpose: To check that the number part of the
+     * flight ID is an actual number
+     * Test Setup: Check that the field is not null, then check that the number
+     * part is an actual number
+     * Test Strategy: Equivalence Class Testing
+     * Input: FO003
+     * Expected Output: FO003
      * Test of autoID method, of class ticket
      */
     @Test
@@ -71,14 +73,12 @@ public class ticketTest {
 
     }
 
-      /**
-     * Test Case ID: UnitTest-Buttons-028
-     * Requirement:
-     * Purpose:
-     * Test Setup: 
-     * Test Strategy: 
-     * Input:
-     * Expected Output: 
+
+    /**
+     * Test Case ID: UnitTest-Buttons-030
+     * Purpose: To ensure the buttons are working 
+     * Test Setup: This test will check the activity of the buttons
+     * Test Strategy: Whitebox 
      * 
      */
     @Test

@@ -22,12 +22,13 @@ public class ticketreportTest {
 
 /**
      * Test Case ID: UnitTest-LoadData-029
-     * Requirement:
-     * Purpose:
-     * Test Setup: 
-     * Test Strategy: 
-     * Input:
-     * Expected Output: 
+     * Requirement: R-33 The system shall allow a user to generate a ticket report
+     * Purpose: To ensure the report pulled in in the correct format
+     * Test Setup: The system will test the amount of rows to make sure all
+     * data can be diplayed correctly
+     * Test Strategy: Whitebox Testing
+     * Input:"CS999", "FO500", "First", "990", "1", "2021-05-04"
+     * Expected Output: True
      * 
      */
     @Test
@@ -73,14 +74,14 @@ public class ticketreportTest {
         assertEquals(50, instance.jTable1.getModel().getRowCount());
 
     }
-/**
-     * Test Case ID: UnitTest-Buttons-030
-     * Requirement:
-     * Purpose:
-     * Test Setup: 
-     * Test Strategy: 
-     * Input:
-     * Expected Output: 
+  /**
+     * Test Case ID: UnitTest-LoadData-028
+     * Requirement: R-34 The system shall allow a user to generate a ticket report
+     * Purpose: To check that the data is loaded from DBanger 
+     * Test Setup: Throw an exception when the DBManager is called
+     * Test Strategy:Mock
+     * Input: Mock of DB manager
+     * Expected Output: SQL Exception
      * 
      */
     @Test()
