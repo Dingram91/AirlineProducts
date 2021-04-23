@@ -25,7 +25,14 @@ public class ticketTest {
     }
 
     /**
-     * Test of autoID method, of class ticket.
+     * Test Case ID: UnitTest-AutoId-026
+     * Requirement:
+     * Purpose:
+     * Test Setup: 
+     * Test Strategy: 
+     * Input:
+     * Expected Output: 
+     * Test of autoID method, of class ticket
      */
     @Test
     public void testAutoID() {
@@ -42,6 +49,16 @@ public class ticketTest {
 
     }
 
+     /**
+     * Test Case ID: UnitTest-CustomerSearchExceptionTest-027
+     * Requirement:
+     * Purpose:
+     * Test Setup: 
+     * Test Strategy: 
+     * Input:
+     * Expected Output: 
+     * 
+     */
     @Test(expected = SQLException.class) // bad connection should throw an SQLException
     public void doCustomerSearchExceptionTest() throws SQLException, ClassNotFoundException {
         ticket instance = new ticket();
@@ -54,6 +71,16 @@ public class ticketTest {
 
     }
 
+      /**
+     * Test Case ID: UnitTest-Buttons-028
+     * Requirement:
+     * Purpose:
+     * Test Setup: 
+     * Test Strategy: 
+     * Input:
+     * Expected Output: 
+     * 
+     */
     @Test
     public void testButtons() {
         ticket instance = new ticket();
